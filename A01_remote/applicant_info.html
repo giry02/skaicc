@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 신청인 정보 입력</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">리모컨 구매</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">신청하시는 고객님의<br /><span
+                            id="relation-text" class="text-[#5031E5]">가족</span> 성함을 입력해 주세요.</h2>
+                </div>
+
+                <div class="join-step-content join-section-gap">
+                    <div class="relative group">
+
+                        <input type="text" id="name-input"
+                            class="w-full bg-gray-50 border border-gray-100 rounded-[20px] px-6 py-5 text-[18px] font-bold text-gray-900 placeholder:text-gray-300 outline-none focus:bg-white focus:border-[#5031E5] focus:ring-4 focus:ring-indigo-50 transition-all"
+                            placeholder="성함을 입력해 주세요" oninput="toggleBtn()" />
+                    </div>
+
+                    <div class="bg-blue-50/50 rounded-2xl p-4 flex gap-3 border border-blue-100/30">
+                        <i data-lucide="info" class="w-5 h-5 text-blue-500 shrink-0 mt-0.5"></i>
+                        <p class="text-[13px] text-blue-600/80 leading-relaxed font-medium">
+                            명의자 본인이 아니신 경우, 관계 확인을 위한 본인 인증 절차가 진행됩니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 다음 버튼 -->
+                <div class="mt-auto pt-4 pb-6">
+                    <button id="next-btn"
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold opacity-50 pointer-events-none transition-all shadow-lg active:scale-95"
+                        onclick="location.href='address_select.html'">다음으로</button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-80 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const relation = urlParams.get('relation') || '가족';
+        document.getElementById('relation-text').innerText = relation;
+
+        const pageText = "본인 확인을 위해 성함을 입력해 주세요.";
+        initCommonUI(pageText);
+
+        function toggleBtn() {
+            const input = document.getElementById('name-input');
+            const btn = document.getElementById('next-btn');
+            if (input.value.trim().length >= 2) {
+                btn.classList.remove('opacity-50', 'pointer-events-none');
+            } else {
+                btn.classList.add('opacity-50', 'pointer-events-none');
+            }
+        }
+    </script>
+</body>
+
+</html>

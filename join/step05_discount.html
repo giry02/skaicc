@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 할인 혜택</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">바로가입</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">
+                        놓치면 아쉬운<br /><span class="text-[#5031E5]">추가 할인</span>을 챙겨드릴게요.
+                    </h2>
+                </div>
+
+                <div class="join-step-content join-section-gap">
+                    <!-- 휴대폰 결합 -->
+                    <div class="bg-gray-50 border border-gray-100 rounded-[24px] p-5 shadow-sm">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-[16px] font-bold text-gray-900">SKT 휴대폰 결합</h3>
+                            <button class="bg-gray-200 text-gray-500 text-[12px] font-bold px-3 py-1.5 rounded-full"
+                                onclick="toggleDiscount(this, 'mobile-discount')">신청 안함</button>
+                        </div>
+                        <p class="text-[13px] text-gray-500 leading-snug mb-3">
+                            SKT 휴대폰을 사용 중이시라면<br />매월 <span class="text-[#5031E5] font-bold">13,200원</span> 추가 할인!
+                        </p>
+                        <div id="mobile-discount"
+                            class="hidden mt-3 p-3 bg-white rounded-xl border border-gray-200 text-center">
+                            <p class="text-[14px] font-bold text-gray-400">할인 적용 완료</p>
+                        </div>
+                    </div>
+
+                    <!-- 제휴 카드 -->
+                    <div class="bg-gray-50 border border-gray-100 rounded-[24px] p-5 shadow-sm">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-[16px] font-bold text-gray-900">제휴카드 할인</h3>
+                            <button
+                                class="bg-[#5031E5] text-white text-[12px] font-bold px-3 py-1.5 rounded-full shadow-md"
+                                onclick="toggleDiscount(this, 'card-discount')">신청 하기</button>
+                        </div>
+                        <p class="text-[13px] text-gray-500 leading-snug mb-3">
+                            제휴카드로 자동이체 시<br />매월 최대 <span class="text-[#5031E5] font-bold">20,000원</span> 청구 할인
+                        </p>
+                        <div id="card-discount"
+                            class="mt-3 p-3 bg-indigo-50 border border-indigo-100 rounded-xl text-center">
+                            <p class="text-[14px] font-bold text-[#5031E5]">롯데카드 등 8개사 적용 가능</p>
+                        </div>
+                    </div>
+
+                    <!-- 최종 혜택 요약 -->
+                    <div class="mt-6 border-t border-gray-100 pt-6">
+                        <div class="flex justify-between items-end">
+                            <span class="text-[15px] font-bold text-gray-500">최종 예상 월 납부금</span>
+                            <div class="text-right">
+                                <span class="text-[13px] text-gray-400 line-through mr-1">46,200원</span>
+                                <span class="text-[24px] font-black text-[#5031E5]">33,000원</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 다음 버튼 -->
+                <div class="mt-auto pt-4 pb-6">
+                    <button
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all"
+                        onclick="location.href='step06_payment.html'">
+                        다음으로
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-80 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "할인 혜택을 꼼꼼히 챙겨드릴게요.";
+        initCommonUI(pageText);
+
+        function toggleDiscount(btn, areaId) {
+            const area = document.getElementById(areaId);
+
+            if (btn.innerText === "신청 하기") {
+                btn.innerText = "신청 취소";
+                btn.classList.remove('bg-[#5031E5]', 'text-white', 'shadow-md');
+                btn.classList.add('bg-gray-200', 'text-gray-500');
+
+                area.classList.remove('hidden');
+                if (areaId === 'mobile-discount') {
+                    area.innerHTML = '<p class="text-[14px] font-bold text-[#5031E5]">할인 적용 완료 (-13,200원)</p>';
+                    area.className = "mt-3 p-3 bg-indigo-50 border border-indigo-100 rounded-xl text-center animate-fade-in-up";
+                }
+            } else {
+                btn.innerText = "신청 하기";
+                btn.classList.add('bg-[#5031E5]', 'text-white', 'shadow-md');
+                btn.classList.remove('bg-gray-200', 'text-gray-500');
+
+                if (areaId === 'mobile-discount') {
+                    area.classList.add('hidden');
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

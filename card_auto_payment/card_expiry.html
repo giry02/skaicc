@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+    <style>
+        .input-box {
+            background: #F8F9FA;
+            border: 2px solid #E5E7EB;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 800;
+            color: #1a1a1a;
+            width: 100%;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .input-box:focus {
+            border-color: #5031E5;
+            background: #ffffff;
+            box-shadow: 0 0 15px rgba(80, 49, 229, 0.1);
+        }
+
+        .input-box::placeholder {
+            color: #D1D5DB;
+        }
+    </style>
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">카드 자동납부</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">카드 유효기간을<br />입력해 주세요.</h2>
+                </div>
+
+                <div class="join-step-content flex gap-4 items-center">
+                    <div class="flex-1">
+                        <label class="block text-[13px] font-bold text-gray-400 mb-1.5 ml-1">월 (MM)</label>
+                        <input type="tel" maxlength="2" placeholder="01" class="input-box" id="expiry-mm"
+                            oninput="handleInput('mm')" autofocus>
+                    </div>
+                    <div class="mt-4 text-2xl font-bold text-gray-300">/</div>
+                    <div class="flex-1">
+                        <label class="block text-[13px] font-bold text-gray-400 mb-1.5 ml-1">연 (YY)</label>
+                        <input type="tel" maxlength="2" placeholder="28" class="input-box" id="expiry-yy"
+                            oninput="handleInput('yy')">
+                    </div>
+                </div>
+
+                <div class="mt-4 p-4 bg-[#F8F9FA] rounded-[20px] border border-gray-100">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-2 h-2 bg-[#5031E5] rounded-full"></div>
+                        <p class="text-[14px] font-bold text-gray-800">입금전용계좌 안내</p>
+                    </div>
+                    <p class="text-[13px] text-gray-500 leading-relaxed pl-5">
+                        결제에 사용할 카드 정보를 정확히 입력해 주세요. 등록하신 정보는 안전하게 보호됩니다.
+                    </p>
+                </div>
+
+                <!-- 다음 버튼 -->
+                <div class="mt-auto pt-4 pb-6">
+                    <button
+                        class="w-full bg-gray-200 text-gray-400 py-4 rounded-xl text-[19px] font-bold transition-all shadow-sm"
+                        id="next-btn" disabled onclick="location.href='card_complete.html'">변경 완료하기</button>
+                    <p class="text-center text-[12px] text-gray-400 mt-2">유효기간을 입력하면 버튼이 활성화됩니다.</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "카드 유효기간을 입력해 주세요.";
+        initCommonUI(pageText);
+
+        function handleInput(type) {
+            const mm = document.getElementById('expiry-mm');
+            const yy = document.getElementById('expiry-yy');
+            const nextBtn = document.getElementById('next-btn');
+
+            if (type === 'mm' && mm.value.length === 2) {
+                yy.focus();
+            }
+
+            if (mm.value.length === 2 && yy.value.length === 2) {
+                nextBtn.disabled = false;
+                nextBtn.classList.remove('bg-gray-200', 'text-gray-400');
+                nextBtn.classList.add('bg-[#5031E5]', 'text-white', 'shadow-lg');
+            } else {
+                nextBtn.disabled = true;
+                nextBtn.classList.add('bg-gray-200', 'text-gray-400');
+                nextBtn.classList.remove('bg-[#5031E5]', 'text-white', 'shadow-lg');
+            }
+        }
+    </script>
+</body>
+
+</html>

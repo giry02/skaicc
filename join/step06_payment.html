@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 결제 정보</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">바로가입</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">
+                        <span class="text-[#5031E5]">요금 납부 방법</span>을<br />선택해 주세요.
+                    </h2>
+                </div>
+
+                <div class="join-step-content join-section-gap space-y-4">
+                    <!-- 결제 수단 선택 -->
+                    <div class="flex bg-gray-100 p-1 rounded-xl">
+                        <button
+                            class="flex-1 py-2 text-[14px] font-bold text-[#5031E5] bg-white rounded-lg shadow-sm transition-all"
+                            id="method-card" onclick="toggleMethod('card')">신용카드</button>
+                        <button
+                            class="flex-1 py-2 text-[14px] font-medium text-gray-400 hover:text-gray-600 transition-all"
+                            id="method-account" onclick="toggleMethod('account')">계좌이체</button>
+                    </div>
+
+                    <!-- 입력 폼 -->
+                    <div class="space-y-4">
+                        <div class="relative group">
+                            <label class="block text-[13px] font-bold text-gray-700 mb-1.5 ml-1">카드 번호</label>
+                            <input type="text"
+                                class="w-full bg-gray-50 border border-gray-100 rounded-[20px] px-6 py-4 text-[16px] font-medium text-gray-900 placeholder:text-gray-300 outline-none focus:bg-white focus:border-[#5031E5] focus:ring-4 focus:ring-indigo-50 transition-all"
+                                placeholder="0000-0000-0000-0000" />
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="relative group flex-1">
+                                <label class="block text-[13px] font-bold text-gray-700 mb-1.5 ml-1">유효기간</label>
+                                <input type="text"
+                                    class="w-full bg-gray-50 border border-gray-100 rounded-[20px] px-6 py-4 text-[16px] font-medium text-gray-900 placeholder:text-gray-300 outline-none focus:bg-white focus:border-[#5031E5] focus:ring-4 focus:ring-indigo-50 transition-all"
+                                    placeholder="MM/YY" />
+                            </div>
+                            <div class="relative group flex-1">
+                                <label class="block text-[13px] font-bold text-gray-700 mb-1.5 ml-1">생년월일</label>
+                                <input type="text"
+                                    class="w-full bg-gray-50 border border-gray-100 rounded-[20px] px-6 py-4 text-[16px] font-medium text-gray-900 placeholder:text-gray-300 outline-none focus:bg-white focus:border-[#5031E5] focus:ring-4 focus:ring-indigo-50 transition-all"
+                                    placeholder="6자리 (ex. 900101)" />
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50/50 rounded-2xl p-4 flex gap-3 border border-blue-100/30">
+                            <i data-lucide="info" class="w-5 h-5 text-blue-500 shrink-0 mt-0.5"></i>
+                            <p class="text-[12px] text-blue-600/80 leading-relaxed font-medium">
+                                매월 납부하실 요금은 해당 카드로 자동 결제됩니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 다음 버튼 -->
+                <div class="mt-auto pt-4 pb-6">
+                    <button
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all"
+                        onclick="location.href='step07_schedule.html'">
+                        다음으로
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-80 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "안전한 결제를 위해 정보를 입력해 주세요.";
+        initCommonUI(pageText);
+
+        function toggleMethod(type) {
+            const cardBtn = document.getElementById('method-card');
+            const accountBtn = document.getElementById('method-account');
+
+            if (type === 'card') {
+                cardBtn.className = "flex-1 py-2 text-[14px] font-bold text-[#5031E5] bg-white rounded-lg shadow-sm transition-all";
+                accountBtn.className = "flex-1 py-2 text-[14px] font-medium text-gray-400 hover:text-gray-600 transition-all";
+            } else {
+                accountBtn.className = "flex-1 py-2 text-[14px] font-bold text-[#5031E5] bg-white rounded-lg shadow-sm transition-all";
+                cardBtn.className = "flex-1 py-2 text-[14px] font-medium text-gray-400 hover:text-gray-600 transition-all";
+            }
+        }
+    </script>
+</body>
+
+</html>

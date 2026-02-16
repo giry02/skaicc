@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../../css/common.css" rel="stylesheet" />
+    <style>
+        .star-rating {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .star {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .star:active {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <div class="w-10"></div>
+        <h1 class="text-[18px] font-bold text-gray-900">만족도 조사</h1>
+        <button class="p-2 text-gray-400" onclick="location.href='../../move_service_intro.html'"><i data-lucide="x"
+                class="w-6 h-6"></i></button>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="mt-8 mb-10 text-center">
+                    <h2 class="text-[22px] font-extrabold text-[#1a1a1a] leading-tight">오늘 AI 상담은<br />만족스러우셨나요?</h2>
+                    <p class="mt-3 text-gray-400 text-sm">고객님의 소중한 의견은 더 나은 서비스를<br />만드는 데 큰 도움이 됩니다.</p>
+                </div>
+
+                <div class="star-rating py-6" id="star-container">
+                    <i data-lucide="star" class="star w-10 h-10 text-gray-200 fill-gray-200" onclick="rate(1)"></i>
+                    <i data-lucide="star" class="star w-10 h-10 text-gray-200 fill-gray-200" onclick="rate(2)"></i>
+                    <i data-lucide="star" class="star w-10 h-10 text-gray-200 fill-gray-200" onclick="rate(3)"></i>
+                    <i data-lucide="star" class="star w-10 h-10 text-gray-200 fill-gray-200" onclick="rate(4)"></i>
+                    <i data-lucide="star" class="star w-10 h-10 text-gray-200 fill-gray-200" onclick="rate(5)"></i>
+                </div>
+
+                <div class="mt-8">
+                    <textarea
+                        class="w-full bg-gray-50 border border-gray-100 rounded-2xl p-4 text-sm outline-none focus:ring-1 focus:ring-[#5031E5] transition-all"
+                        rows="4" placeholder="추가로 하실 말씀이 있으신가요? (선택)"></textarea>
+                </div>
+
+                <!-- 다음 버튼 -->
+                <div class="mt-auto pt-8 pb-6">
+                    <button
+                        class="w-full bg-gray-200 text-gray-400 py-4 rounded-xl text-[19px] font-bold transition-all"
+                        id="submit-btn" disabled onclick="submitSurvey()">제출하기</button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <!-- 제출 완료 팝업 -->
+    <div class="hidden absolute inset-0 z-50 flex items-center justify-center px-10" id="success-popup">
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+        <div class="relative bg-white rounded-[32px] p-8 w-full flex flex-col items-center animate-bounce-up">
+            <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                <i data-lucide="heart" class="w-8 h-8 text-[#5031E5] fill-[#5031E5]"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">소중한 의견 감사합니다</h3>
+            <p class="text-[14px] text-gray-400 text-center mb-6">항상 최선을 다하는<br />SK브로드밴드가 되겠습니다.</p>
+            <button class="w-full bg-[#5031E5] text-white py-3.5 rounded-xl font-bold"
+                onclick="location.href='../../move_service_intro.html'">닫기</button>
+        </div>
+    </div>
+
+    <script src="../../js/common_ui.js"></script>
+    <script>
+        const pageText = "만족도 조사에 참여해 주세요.";
+        initCommonUI(pageText);
+
+        let selectedRate = 0;
+        function rate(n) {
+            selectedRate = n;
+            const stars = document.querySelectorAll('.star');
+            stars.forEach((star, i) => {
+                if (i < n) {
+                    star.classList.add('text-orange-400', 'fill-orange-400');
+                    star.classList.remove('text-gray-200', 'fill-gray-200');
+                } else {
+                    star.classList.remove('text-orange-400', 'fill-orange-400');
+                    star.classList.add('text-gray-200', 'fill-gray-200');
+                }
+            });
+
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = false;
+            btn.classList.remove('bg-gray-200', 'text-gray-400');
+            btn.classList.add('bg-[#5031E5]', 'text-white', 'shadow-lg');
+        }
+
+        function submitSurvey() {
+            document.getElementById('success-popup').classList.remove('hidden');
+        }
+    </script>
+</body>
+
+</html>

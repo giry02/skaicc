@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 신청인 정보 확인</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">리모컨 구매</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">명의자와의 관계를<br />선택해 주세요.</h2>
+                </div>
+
+                <!-- 관계 선택 리스트 -->
+                <div class="join-step-content join-section-gap small">
+                    <button
+                        class="w-full flex items-center justify-between p-4 bg-white border border-gray-100 rounded-[20px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
+                        onclick="selectRelation('본인')">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 bg-indigo-50 rounded-full flex items-center justify-center text-[#5031E5]">
+                                <i data-lucide="user" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[17px] font-bold text-gray-800">본인 (박*밴)</span>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-300 group-hover:text-[#5031E5]"></i>
+                    </button>
+
+                    <button
+                        class="w-full flex items-center justify-between p-4 bg-white border border-gray-100 rounded-[20px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
+                        onclick="selectRelation('배우자')">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 bg-pink-50 rounded-full flex items-center justify-center text-pink-500">
+                                <i data-lucide="heart" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[17px] font-bold text-gray-800">배우자</span>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-300 group-hover:text-[#5031E5]"></i>
+                    </button>
+
+                    <button
+                        class="w-full flex items-center justify-between p-4 bg-white border border-gray-100 rounded-[20px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
+                        onclick="selectRelation('자녀')">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-500">
+                                <i data-lucide="smile" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[17px] font-bold text-gray-800">자녀</span>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-300 group-hover:text-[#5031E5]"></i>
+                    </button>
+
+                    <button
+                        class="w-full flex items-center justify-between p-4 bg-white border border-gray-100 rounded-[20px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
+                        onclick="selectRelation('부모')">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-green-500">
+                                <i data-lucide="user-check" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[17px] font-bold text-gray-800">부모</span>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-300 group-hover:text-[#5031E5]"></i>
+                    </button>
+
+                    <button
+                        class="w-full flex items-center justify-between p-4 bg-white border border-gray-100 rounded-[20px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
+                        onclick="selectRelation('형제/자매')">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 bg-amber-50 rounded-full flex items-center justify-center text-amber-500">
+                                <i data-lucide="users" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[17px] font-bold text-gray-800">형제/자매</span>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-300 group-hover:text-[#5031E5]"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- 하단 스페이서 복원 (스크롤 유도) -->
+        <div class="w-full h-40 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <!-- 하단 AI 네비게이션 영역 -->
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "서비스 신청을 위해 신청인 정보를 확인하고 있어요.";
+        initCommonUI(pageText);
+
+        const introScrollContainer = document.getElementById('main-scroll-container');
+        const introTypingArea = document.getElementById('typing-area');
+
+        // JS 스크롤 이벤트 제거 (자연스러운 스크롤 사용)
+
+        function selectRelation(rel) {
+            if (rel === '본인') {
+                location.href = 'address_select.html';
+            } else {
+                location.href = 'applicant_info.html?relation=' + encodeURIComponent(rel);
+            }
+        }
+    </script>
+</body>
+
+</html>
