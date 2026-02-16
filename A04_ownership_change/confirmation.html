@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 정보 확인</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">명의 변경</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">입력하신 정보를<br />확인해 주세요.</h2>
+                </div>
+
+                <div class="join-step-content join-section-gap flex-1">
+                    <!-- 정보 테이블 -->
+                    <div class="border-t border-gray-600">
+                        <!-- 기존 명의자 -->
+                        <div class="flex border-b border-gray-200 py-4">
+                            <div class="w-[120px] shrink-0 text-gray-600 font-medium text-[15px]">기존 명의자</div>
+                            <div class="text-gray-900 font-bold text-[15px]">권삼순</div>
+                        </div>
+
+                        <!-- 신규 명의자 -->
+                        <div class="flex border-b border-gray-200 py-4">
+                            <div class="w-[120px] shrink-0 text-gray-600 font-medium text-[15px]">신규 명의자</div>
+                            <div class="text-gray-900 font-bold text-[15px] text-[#5031E5]">정명길</div>
+                        </div>
+
+                        <!-- 명의변경 서비스 약정 정보 -->
+                        <div class="flex border-b border-gray-200 py-4">
+                            <div class="w-[120px] shrink-0 text-gray-600 font-medium text-[15px] pt-1">명의변경 서비스<br>약정 정보
+                            </div>
+                            <div class="text-gray-900 text-[14px]">
+                                <div class="mb-2">
+                                    <span class="font-bold block mb-0.5">[CA인터넷]</span>
+                                    <span class="text-gray-600">[TC]케이블광랜(H)_01</span>
+                                    <span class="block text-gray-500 text-[13px] mt-0.5">3년 (~2025.11.11)</span>
+                                </div>
+                                <div>
+                                    <span class="font-bold block mb-0.5">[QAM]</span>
+                                    <span class="text-gray-600">[TC]B tv cable200</span>
+                                    <span class="block text-gray-500 text-[13px] mt-0.5">3년 (~2025.11.11)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 가족관계여부 -->
+                        <div class="flex border-b border-gray-200 py-4">
+                            <div class="w-[120px] shrink-0 text-gray-600 font-medium text-[15px]">가족관계 여부</div>
+                            <div class="text-gray-900 font-bold text-[15px]">N (아니오)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 하단 버튼 -->
+                <div class="mt-auto pt-4 pb-6">
+                    <button
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all"
+                        onclick="location.href='consent.html'">정보가 맞아요</button>
+                    <button
+                        class="w-full mt-3 text-gray-400 py-3 rounded-xl text-[15px] font-medium underline underline-offset-4"
+                        onclick="history.back()">수정할래요</button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "입력된 내용이 맞는지 꼼꼼히 확인해 주세요.";
+        initCommonUI(pageText);
+    </script>
+</body>
+
+</html>

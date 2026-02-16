@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 필수 안내 사항</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">명의 변경</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">필수 안내 사항을<br />확인해 주세요.</h2>
+                </div>
+
+                <div class="join-step-content join-section-gap flex-1 space-y-4">
+                    <!-- 유의사항 1 -->
+                    <div class="bg-gray-50 rounded-[20px] p-5 border border-gray-100">
+                        <h3 class="font-bold text-gray-900 mb-2 flex items-center gap-2">
+                            <i class="w-5 h-5 text-red-500" data-lucide="alert-circle"></i>
+                            미납 요금 안내
+                        </h3>
+                        <p class="text-[14px] text-gray-600 leading-snug">
+                            이번 달 청구 요금 중 미납이 발생할 경우, 신규 명의자에게 다음 달 합산되어 청구될 예정입니다.
+                        </p>
+                    </div>
+
+                    <!-- 유의사항 2 -->
+                    <div class="bg-gray-50 rounded-[20px] p-5 border border-gray-100">
+                        <h3 class="font-bold text-gray-900 mb-2 flex items-center gap-2">
+                            <i class="w-5 h-5 text-orange-500" data-lucide="alert-triangle"></i>
+                            혜택 소멸 및 위약금
+                        </h3>
+                        <p class="text-[14px] text-gray-600 leading-snug">
+                            일부 요금제, 부가서비스, 유무선 결합, 세트 상품 등은 명의 변경 시 혜택이 소멸되거나 할인 반환금이 부과될 수 있습니다.
+                        </p>
+                    </div>
+
+                    <!-- 동의 체크 -->
+                    <label
+                        class="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-[16px] cursor-pointer hover:bg-gray-50 transition-colors">
+                        <div class="relative flex items-center">
+                            <input type="checkbox" class="peer sr-only" onchange="toggleBtn()" />
+                            <div
+                                class="w-6 h-6 border-2 border-gray-300 rounded focus:ring-blue-500 peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] flex items-center justify-center transition-all">
+                                <i class="w-4 h-4 text-white" data-lucide="check"></i>
+                            </div>
+                        </div>
+                        <span class="text-[15px] font-medium text-gray-900 select-none">안내 사항을 모두 확인했습니다.</span>
+                    </label>
+                </div>
+
+                <!-- 하단 버튼 -->
+                <div class="mt-auto pt-4 pb-6">
+                    <button id="next-btn"
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all opacity-50 pointer-events-none"
+                        onclick="location.href='applicant_info.html'">확인 완료</button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "원활한 명의 변경을 위해 내용을 읽고 확인해 주세요.";
+        initCommonUI(pageText);
+
+        function toggleBtn() {
+            const checkbox = document.querySelector('input[type="checkbox"]');
+            const btn = document.getElementById('next-btn');
+
+            if (checkbox.checked) {
+                btn.classList.remove('opacity-50', 'pointer-events-none');
+            } else {
+                btn.classList.add('opacity-50', 'pointer-events-none');
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 전자서명 동의</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">명의 변경</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">명의 변경 신청을 위한<br />전자서명에 동의하시겠어요?
+                    </h2>
+                </div>
+
+                <div class="join-step-content join-section-gap flex-1 flex flex-col justify-center items-center">
+                    <div class="w-40 h-40 bg-blue-50 rounded-full flex items-center justify-center mb-6 animate-pulse">
+                        <i class="w-20 h-20 text-[#5031E5]" data-lucide="pen-tool"></i>
+                    </div>
+                    <p class="text-[15px] text-gray-500 text-center leading-relaxed">
+                        신청서 접수를 위해<br>본인 인증 및 서명이 필요합니다.
+                    </p>
+                </div>
+
+                <!-- 하단 버튼 -->
+                <div class="mt-auto pt-4 pb-6 flex gap-3">
+                    <button
+                        class="flex-1 bg-gray-100 text-gray-700 py-4 rounded-xl text-[17px] font-bold active:scale-95 transition-all"
+                        onclick="location.href='../index.html'">아니오</button>
+                    <button
+                        class="flex-1 bg-[#5031E5] text-white py-4 rounded-xl text-[17px] font-bold shadow-lg active:scale-95 transition-all"
+                        onclick="location.href='auth_select.html'">동의합니다</button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "신청서 접수를 위해 사용자의 동의가 필요해요.";
+        initCommonUI(pageText);
+    </script>
+</body>
+
+</html>

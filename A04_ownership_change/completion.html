@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 신청 완료</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">신청 완료</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header mb-8" id="target-anchor">
+                    <h2 class="text-[24px] font-extrabold text-[#1a1a1a] leading-tight">명의 변경 신청이<br />완료되었습니다.</h2>
+                </div>
+
+                <div class="join-step-content join-section-gap flex-1 flex flex-col items-center">
+                    <div
+                        class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6 animate-bounce-subtle">
+                        <i class="w-12 h-12 text-green-600" data-lucide="check-circle-2"></i>
+                    </div>
+
+                    <div class="flex flex-col gap-2 w-full mb-6">
+                        <div
+                            class="flex justify-between items-center p-4 bg-white border border-gray-100 rounded-2xl shadow-sm">
+                            <span class="text-gray-500 text-[13px]">신청 서비스</span>
+                            <span class="text-gray-900 font-bold text-[14px]">인터넷 + IPTV</span>
+                        </div>
+                        <div
+                            class="flex justify-between items-center p-4 bg-white border border-gray-100 rounded-2xl shadow-sm">
+                            <span class="text-gray-500 text-[13px]">접수 일자</span>
+                            <span class="text-gray-900 font-bold text-[14px]">2026.02.16</span>
+                        </div>
+                    </div>
+
+                    <div class="w-full bg-gray-50 rounded-[20px] p-6 border border-gray-100 text-center">
+                        <p class="text-[15px] font-bold text-gray-900 mb-2">신규 명의자에게 링크 전송 완료</p>
+                        <p class="text-[13px] text-gray-500 leading-relaxed">
+                            입력하신 연락처로 본인 인증 링크가 발송되었습니다.<br>
+                            신규 명의자가 인증을 완료하면 최종 처리됩니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 하단 버튼 제거됨 (사용자 요청) -->
+                <div class="pt-4 pb-6"></div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "모든 절차가 완료되었습니다. 메인으로 돌아갑니다.";
+        initCommonUI(pageText);
+    </script>
+</body>
+
+</html>

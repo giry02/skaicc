@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 개인정보 동의</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+    <style>
+        /* Custom Checkbox */
+        .custom-checkbox input:checked+div {
+            background-color: #5031E5;
+            border-color: #5031E5;
+        }
+
+        .custom-checkbox input:checked+div svg {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">명의 변경</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header mb-8" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">
+                        개인정보 활용에<br>동의해 주세요.
+                    </h2>
+                </div>
+
+                <div class="join-step-content join-section-gap flex-1">
+
+                    <!-- 전체 동의 -->
+                    <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+                        <span class="text-[17px] font-bold text-gray-900">약관 전체 동의</span>
+                        <label class="custom-checkbox flex items-center gap-2 cursor-pointer">
+                            <span class="text-[14px] text-gray-500">전체 선택</span>
+                            <input type="checkbox" id="check-all" class="hidden" onchange="toggleAll(this)">
+                            <div
+                                class="w-6 h-6 rounded border border-gray-300 flex items-center justify-center bg-white transition-colors">
+                                <i data-lucide="check" class="w-4 h-4 text-white hidden"></i>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- [필수] 서비스 제공에 필요한 필수 동의 -->
+                    <div class="border border-gray-300 rounded-xl overflow-hidden mb-4">
+                        <button onclick="toggleAccordion('required-section', 'required-icon')"
+                            class="w-full flex items-center justify-between p-4 bg-white hover:bg-gray-50 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <label class="custom-checkbox flex items-center cursor-pointer"
+                                    onclick="event.stopPropagation()">
+                                    <input type="checkbox" name="required-group"
+                                        class="hidden consent-check required-check" onchange="updateAllCheck()">
+                                    <div
+                                        class="w-5 h-5 rounded border border-gray-300 flex items-center justify-center bg-white transition-colors">
+                                        <i data-lucide="check" class="w-3.5 h-3.5 text-white hidden"></i>
+                                    </div>
+                                </label>
+                                <span class="text-[15px] font-bold text-gray-900 leading-snug text-left">[필수] 서비스 제공 필수
+                                    동의</span>
+                            </div>
+                            <i id="required-icon" data-lucide="chevron-up"
+                                class="w-5 h-5 text-gray-400 transition-transform"></i>
+                        </button>
+
+                        <div id="required-section" class="border-t border-gray-200 p-4 bg-gray-50 space-y-3">
+                            <p class="text-[13px] text-gray-600 mb-2 leading-relaxed">서비스 이용에 필요한 개인정보 활용에 대한 내용을 자세히
+                                읽어보신 후 동의해 주시기 바랍니다.</p>
+
+                            <!-- 항목들 -->
+                            <div class="space-y-2">
+                                <div
+                                    class="flex items-center justify-between bg-white border border-gray-200 rounded-lg p-3">
+                                    <span class="text-[13px] text-gray-700 font-medium">개인정보 수집/이용 내역</span>
+                                    <div class="flex items-center gap-2">
+                                        <button
+                                            class="text-[11px] text-gray-500 border border-gray-200 rounded px-2 py-0.5 bg-gray-50">보기</button>
+                                        <label class="custom-checkbox flex items-center cursor-pointer">
+                                            <input type="checkbox" class="hidden consent-check required-sub-check"
+                                                onchange="updateGroupCheck('required-group', 'required-sub-check')">
+                                            <div
+                                                class="w-5 h-5 rounded border border-gray-300 flex items-center justify-center bg-white transition-colors">
+                                                <i data-lucide="check" class="w-3.5 h-3.5 text-white hidden"></i>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between bg-white border border-gray-200 rounded-lg p-3">
+                                    <span class="text-[13px] text-gray-700 font-medium">신용정보 제공/조회 내역</span>
+                                    <div class="flex items-center gap-2">
+                                        <button
+                                            class="text-[11px] text-gray-500 border border-gray-200 rounded px-2 py-0.5 bg-gray-50">보기</button>
+                                        <label class="custom-checkbox flex items-center cursor-pointer">
+                                            <input type="checkbox" class="hidden consent-check required-sub-check"
+                                                onchange="updateGroupCheck('required-group', 'required-sub-check')">
+                                            <div
+                                                class="w-5 h-5 rounded border border-gray-300 flex items-center justify-center bg-white transition-colors">
+                                                <i data-lucide="check" class="w-3.5 h-3.5 text-white hidden"></i>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between bg-white border border-gray-200 rounded-lg p-3">
+                                    <span class="text-[13px] text-gray-700 font-medium">고유식별정보 수집/이용</span>
+                                    <div class="flex items-center gap-2">
+                                        <button
+                                            class="text-[11px] text-gray-500 border border-gray-200 rounded px-2 py-0.5 bg-gray-50">보기</button>
+                                        <label class="custom-checkbox flex items-center cursor-pointer">
+                                            <input type="checkbox" class="hidden consent-check required-sub-check"
+                                                onchange="updateGroupCheck('required-group', 'required-sub-check')">
+                                            <div
+                                                class="w-5 h-5 rounded border border-gray-300 flex items-center justify-center bg-white transition-colors">
+                                                <i data-lucide="check" class="w-3.5 h-3.5 text-white hidden"></i>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- [선택] 서비스 제공에 필요한 선택 동의 -->
+                    <div class="border border-gray-300 rounded-xl overflow-hidden">
+                        <button onclick="toggleAccordion('optional-section', 'optional-icon')"
+                            class="w-full flex items-center justify-between p-4 bg-white hover:bg-gray-50 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <label class="custom-checkbox flex items-center cursor-pointer"
+                                    onclick="event.stopPropagation()">
+                                    <input type="checkbox" class="hidden consent-check" onchange="updateAllCheck()">
+                                    <div
+                                        class="w-5 h-5 rounded border border-gray-300 flex items-center justify-center bg-white transition-colors">
+                                        <i data-lucide="check" class="w-3.5 h-3.5 text-white hidden"></i>
+                                    </div>
+                                </label>
+                                <span class="text-[15px] font-bold text-gray-900 leading-snug text-left">[선택] 서비스 제공 선택
+                                    동의</span>
+                            </div>
+                            <i id="optional-icon" data-lucide="chevron-down"
+                                class="w-5 h-5 text-gray-400 transition-transform -rotate-180"></i>
+                        </button>
+
+                        <div id="optional-section" class="border-t border-gray-200 p-4 bg-gray-50 space-y-3 hidden">
+                            <div
+                                class="flex items-center justify-between bg-white border border-gray-200 rounded-lg p-3">
+                                <span class="text-[13px] text-gray-700 font-medium">혜택 안내 수신 동의</span>
+                                <div class="flex items-center gap-2">
+                                    <button
+                                        class="text-[11px] text-gray-500 border border-gray-200 rounded px-2 py-0.5 bg-gray-50">보기</button>
+                                    <label class="custom-checkbox flex items-center cursor-pointer">
+                                        <input type="checkbox" class="hidden consent-check">
+                                        <div
+                                            class="w-5 h-5 rounded border border-gray-300 flex items-center justify-center bg-white transition-colors">
+                                            <i data-lucide="check" class="w-3.5 h-3.5 text-white hidden"></i>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="mt-6 text-[12px] text-gray-400 font-medium flex items-center gap-1.5 justify-center opacity-80">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                        <span>개인정보보호법을 준수하여 안전하게 처리됩니다.</span>
+                    </div>
+
+                </div>
+
+                <!-- 하단 버튼 -->
+                <div class="mt-auto pt-4 pb-6">
+                    <button id="next-btn"
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all opacity-50 pointer-events-none"
+                        onclick="location.href='service_select.html'">다음</button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "서비스 이용을 위해 약관 동의가 필요합니다.";
+        initCommonUI(pageText);
+
+        function toggleAccordion(id, iconId) {
+            const section = document.getElementById(id);
+            const icon = document.getElementById(iconId);
+
+            if (section.classList.contains('hidden')) {
+                section.classList.remove('hidden');
+                icon.classList.remove('-rotate-180');
+            } else {
+                section.classList.add('hidden');
+                icon.classList.add('-rotate-180');
+            }
+        }
+
+        function toggleAll(source) {
+            const checkboxes = document.querySelectorAll('.consent-check');
+            checkboxes.forEach(cb => {
+                cb.checked = source.checked;
+            });
+            updateNextButton();
+        }
+
+        function updateAllCheck() {
+            const all = document.getElementById('check-all');
+            const checkboxes = document.querySelectorAll('.consent-check');
+            const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+            all.checked = allChecked;
+            updateNextButton();
+        }
+
+        function updateGroupCheck(groupName, subClass) {
+            const group = document.getElementsByName(groupName)[0];
+            const subs = document.querySelectorAll('.' + subClass);
+            const allSubsChecked = Array.from(subs).every(cb => cb.checked);
+            group.checked = allSubsChecked;
+            updateAllCheck();
+        }
+
+        function updateNextButton() {
+            const requiredCheck = document.querySelector('.required-check');
+            const btn = document.getElementById('next-btn');
+
+            if (requiredCheck.checked) {
+                btn.classList.remove('opacity-50', 'pointer-events-none');
+            } else {
+                btn.classList.add('opacity-50', 'pointer-events-none');
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 명의 변경</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+    <style>
+        .slide-up {
+            animation: slideUp 0.3s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">명의 변경</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header mb-8" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">
+                        명의변경 신청 안내사항이에요.
+                    </h2>
+                </div>
+
+                <div class="join-step-content join-section-gap flex-1">
+                    <!-- 중앙 콘텐츠 카드 -->
+                    <div
+                        class="flex flex-col items-center justify-center py-10 px-6 border border-gray-100 rounded-2xl bg-gray-50/50 shadow-sm text-center">
+                        <div class="mb-6 relative">
+                            <div class="absolute inset-0 bg-blue-100 rounded-full opacity-30 transform scale-110"></div>
+                            <i data-lucide="user-cog" class="w-20 h-20 text-[#5031E5] relative z-10 stroke-[1.5]"></i>
+                        </div>
+                        <h3 class="text-[22px] font-bold text-gray-900 mb-3">명의변경 신청</h3>
+                        <p class="text-[15px] text-gray-500 mb-8 leading-relaxed word-keep-all">
+                            온라인으로 간편하게<br>명의변경을 신청해보세요.
+                        </p>
+
+                        <button onclick="openModal()"
+                            class="w-full bg-white text-gray-700 border border-gray-200 py-3.5 rounded-xl text-[15px] font-bold shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2 hover:bg-gray-50">
+                            <i data-lucide="info" class="w-4 h-4 text-gray-400"></i>
+                            명의변경 신청 안내사항
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 하단 버튼 -->
+                <div class="mt-auto pt-4 pb-6">
+                    <button
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all"
+                        onclick="location.href='privacy_consent.html'">시작하기</button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <!-- 모달 (상세 안내사항) -->
+    <div id="infoModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/60 transition-opacity" onclick="closeModal()"></div>
+        <div class="absolute inset-x-0 bottom-0 bg-white rounded-t-[24px] h-[85%] flex flex-col slide-up shadow-2xl">
+            <!-- Modal Header -->
+            <div class="flex justify-center items-center py-5 border-b border-gray-100 relative shrink-0">
+                <div class="w-12 h-1.5 bg-gray-200 rounded-full absolute top-3"></div>
+                <h3 class="text-[18px] font-bold mt-2">명의변경 신청 안내사항</h3>
+                <button onclick="closeModal()" class="absolute right-5 top-5 text-gray-400">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body (Scrollable) -->
+            <div class="flex-1 overflow-y-auto p-6 space-y-8">
+                <!-- Section 1 -->
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-3 text-[15px]">신청과정</h4>
+                    <ol class="text-[14px] text-gray-600 space-y-2 list-decimal pl-4 leading-relaxed">
+                        <li>기존 명의자 신청 완료</li>
+                        <li>신규 명의자에게 문자메시지로 신청 링크 발송</li>
+                        <li>신규 명의자 신청 완료</li>
+                        <li>명의변경 시 필요한 서류 제출</li>
+                        <li>추가 상담이 필요한 경우 전화 상담을 통해 명의변경 완료</li>
+                    </ol>
+                </div>
+
+                <!-- Section 2 -->
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-3 text-[15px]">온라인 명의변경 신청이 불가한 경우</h4>
+                    <ul class="text-[14px] text-gray-600 space-y-2 list-disc pl-4 leading-relaxed">
+                        <li>법인/공공기관 고객</li>
+                        <li>외국인, 미성년자 고객</li>
+                        <li>SK 텔레콤 인터넷을 사용 중인 고객</li>
+                        <li>미납요금이 있는 고객 등</li>
+                    </ul>
+                </div>
+
+                <!-- Section 3 -->
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-3 text-[15px]">안내사항</h4>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-4 rounded-xl">
+                            <p class="text-[13px] font-bold text-gray-800 mb-1">• 신청 기한</p>
+                            <p class="text-[13px] text-gray-600 leading-snug">기존 명의자 신청 후 7일 내로 신규 명의자의 신청이 완료되지 않으면 신청
+                                내역이 자동 취소됩니다.</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-xl">
+                            <p class="text-[13px] font-bold text-gray-800 mb-1">• 서류 제출</p>
+                            <p class="text-[13px] text-gray-600 leading-snug">아래 경우에 해당되는 경우 서류를 제출해야 합니다. 신규 명의자 신청 후
+                                5일 내 서류가 제출되지 않으면 신청 내역이 자동 취소 되니 미리 서류를 준비한 후 신청해주세요.</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-xl">
+                            <p class="text-[13px] font-bold text-gray-800 mb-1">&lt;가족 간 명의변경&gt;</p>
+                            <p class="text-[13px] text-gray-600 leading-snug">가족관계증명서, 신분증 등...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-6 pt-2 shrink-0 border-t border-gray-100 bg-white pb-8">
+                <button onclick="closeModal()"
+                    class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[17px] font-bold active:scale-95 transition-transform">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "명의변경 신청 안내사항이에요.";
+        initCommonUI(pageText);
+
+        function openModal() {
+            const modal = document.getElementById('infoModal');
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('infoModal');
+            modal.classList.add('hidden');
+        }
+    </script>
+</body>
+
+</html>
