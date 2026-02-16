@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>SK브로드밴드 AI상담사 콜비</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #ffffff;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: none;
+            overscroll-behavior: none;
+        }
+
+        /* 스크롤바 숨기기 */
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* 커서 깜빡임 */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+
+        /* 메인 콘텐츠 바운스 업 */
+        @keyframes bounce-up {
+            0% { transform: translateY(30px); opacity: 0; }
+            60% { transform: translateY(-5px); opacity: 1; }
+            80% { transform: translateY(2px); }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .animate-bounce-up {
+            animation: bounce-up 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* 배너 팝아웃 */
+        @keyframes pop-out {
+            0% { transform: scaleX(0.5) translateX(20px); opacity: 0; }
+            60% { transform: scaleX(1.02) translateX(-2px); opacity: 1; }
+            100% { transform: scaleX(1) translateX(0); opacity: 1; }
+        }
+        .animate-pop-out {
+            transform-origin: right center;
+            animation: pop-out 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        /* 모달 슬라이드 업 */
+        @keyframes slide-up { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        .animate-slide-up { animation: slide-up 0.3s ease-out forwards; }
+
+        /* 말풍선 둥둥 효과 */
+        @keyframes float-gentle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+        .animate-float { animation: float-gentle 3s ease-in-out infinite; }
+
+        /* 이퀄라이저 애니메이션 */
+        @keyframes equalizer {
+            0%, 100% { height: 3px; }
+            50% { height: 10px; }
+        }
+        .animate-eq-1 { animation: equalizer 0.8s ease-in-out infinite; animation-delay: 0s; }
+        .animate-eq-2 { animation: equalizer 0.8s ease-in-out infinite; animation-delay: 0.1s; }
+        .animate-eq-3 { animation: equalizer 0.8s ease-in-out infinite; animation-delay: 0.2s; }
+        .animate-eq-4 { animation: equalizer 0.8s ease-in-out infinite; animation-delay: 0.1s; }
+        .animate-eq-5 { animation: equalizer 0.8s ease-in-out infinite; animation-delay: 0s; }
+
+        /* 음성 인식 웨이브 */
+        @keyframes wave-scale {
+            0%, 100% { height: 20px; }
+            50% { height: 50px; }
+        }
+        .animate-wave-1 { animation: wave-scale 1.2s ease-in-out infinite; animation-delay: 0s; }
+        .animate-wave-2 { animation: wave-scale 1.2s ease-in-out infinite; animation-delay: 0.1s; }
+        .animate-wave-3 { animation: wave-scale 1.2s ease-in-out infinite; animation-delay: 0.2s; }
+        .animate-wave-4 { animation: wave-scale 1.2s ease-in-out infinite; animation-delay: 0.3s; }
+        .animate-wave-5 { animation: wave-scale 1.2s ease-in-out infinite; animation-delay: 0.1s; }
+        
+        /* 하단 핸들 펄스 */
+        @keyframes pulse-blue { 0%, 100% { background-color: #D1D5DB; } 50% { background-color: #5031E5; } }
+        .animate-handle-pulse { animation: pulse-blue 2s infinite ease-in-out; }
+
+        /* 스와이프 가이드 */
+        @keyframes guide-fade { 
+            0% { transform: translate(-50%, 10px); opacity: 0; } 
+            15% { transform: translate(-50%, 0); opacity: 1; } 
+            85% { transform: translate(-50%, 0); opacity: 1; } 
+            100% { transform: translate(-50%, -15px); opacity: 0; } 
+        }
+        .animate-guide { animation: guide-fade 2s ease-in-out forwards; }
+
+        /* 아코디언 */
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .accordion-content.open { max-height: 500px; }
+    </style>
+</head>
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+<!-- 상단 고정 헤더 -->
+<div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+<button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors">
+<i class="w-7 h-7" data-lucide="chevron-left"></i>
+</button>
+<h1 class="text-[18px] font-bold text-gray-900">가정 내 PC/TV 이동</h1>
+<div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="resetMain(true)">
+<span class="text-sm font-bold text-gray-900">종료</span>
+<i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+</div>
+</div>
+<!-- 메인 스크롤 컨테이너 -->
+<div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth" id="main-scroll-container">
+<!-- 타이핑 텍스트 영역 -->
+<div class="min-h-[30px] flex items-center justify-start mb-2 shrink-0" id="typing-area">
+<span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+<span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+</div>
+<!-- 바운스 애니메이션 적용 컨테이너 -->
+<div class="w-full opacity-0" id="main-content-body"><div class="flex flex-col h-full bg-white"><div class="mb-8 pt-2" id="target-anchor">
+<h2 class="text-[26px] font-extrabold text-[#1a1a1a] leading-tight"><span class="text-black font-bold">이동 필요 서비스를</span><br/>선택하고 신청해 주세요.</h2>
+</div><div class="mt-6 mb-4 grid grid-cols-2 gap-3"><div class="service-option relative flex flex-col items-center justify-center p-5 rounded-2xl border border-gray-100 bg-gray-50 cursor-pointer transition-all active:scale-95" onclick="selectService(this, 'internet_tv')"><div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-2xl mb-3 shadow-sm">📺</div><span class="text-[15px] font-bold text-gray-800">인터넷 / B tv</span><div class="absolute top-3 right-3 text-[#5031E5] opacity-0 check-mark"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"></polyline></svg></div></div><div class="service-option relative flex flex-col items-center justify-center p-5 rounded-2xl border border-gray-100 bg-gray-50 cursor-pointer transition-all active:scale-95" onclick="selectService(this, 'phone')"><div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-2xl mb-3 shadow-sm">📞</div><span class="text-[15px] font-bold text-gray-800">전화</span><div class="absolute top-3 right-3 text-[#5031E5] opacity-0 check-mark"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"></polyline></svg></div></div></div><div class="mt-6"><button class="w-full bg-[#E9ECEF] text-[#ADB5BD] py-4 rounded-xl text-[18px] font-bold transition-all cursor-not-allowed" disabled="disabled" id="apply-btn" onclick="goToSchedule()">신청하기</button></div></div></div>
+<!-- 하단 스페이스 (스크롤 여유 공간) -->
+<div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+</div>
+<!-- 하단 영역 -->
+<div class="w-full bg-white flex flex-col items-center relative z-20 pb-4 pt-2 cursor-grab active:cursor-grabbing select-none shadow-[0_-10px_30px_rgba(0,0,0,0.03)] rounded-t-[20px]" id="swipe-area">
+<!-- 스와이프 가이드 -->
+<div class="absolute -top-12 left-1/2 -translate-x-1/2 pointer-events-none opacity-0 flex flex-col items-center z-30" id="swipe-guide">
+<div class="bg-black/70 text-white text-[12px] font-bold px-3 py-1 rounded-full mb-1 backdrop-blur-md shadow-lg whitespace-nowrap">위로 밀어서 검색</div>
+<div class="flex flex-col items-center -space-y-1.5">
+<i class="w-4 h-4 text-gray-400 opacity-30" data-lucide="chevron-up"></i>
+<i class="w-4 h-4 text-gray-400 opacity-60" data-lucide="chevron-up"></i>
+<i class="w-4 h-4 text-[#5031E5]" data-lucide="chevron-up"></i>
+</div>
+</div>
+<div class="w-full px-6 h-20 flex items-center justify-center relative">
+<div class="relative w-full flex items-center">
+<!-- 말풍선 배너 (hidden 대신 invisible pointer-events-none 사용) -->
+<div class="flex-1 flex items-center bg-[#ebf2ff] h-[60px] rounded-full pl-6 pr-14 -mr-8 opacity-0 relative z-0 shadow-sm border border-white min-w-0 invisible pointer-events-none" id="floating-banner">
+<button class="w-6 h-6 bg-[#d8e4fc] rounded-full flex-shrink-0 flex items-center justify-center text-blue-600 mr-2 hover:bg-white transition-colors" onclick="event.stopPropagation(); this.parentElement.classList.add('invisible', 'pointer-events-none')"><i class="w-3.5 h-3.5" data-lucide="x"></i></button>
+<p class="text-[#1e2a4a] font-bold text-[14px] leading-tight">손가락을 위로 드래그 하시면<br/>입력창이 나타나요.</p>
+</div>
+<!-- AI 로봇 아이콘 및 말풍선 -->
+<div class="relative z-10 flex-shrink-0 transition-transform opacity-0" id="robot-container">
+<div class="w-16 h-16 bg-[#5031E5] rounded-full border-[4px] border-white shadow-lg flex items-center justify-center cursor-pointer active:scale-95 transition-transform" onclick="toggleCategoryModal()">
+<svg class="w-9 h-9 text-white" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24">
+<line x1="12" x2="12" y1="2" y2="5"></line><circle cx="12" cy="2" fill="currentColor" r="1.5" stroke="none"></circle><rect height="15" rx="5" ry="5" width="18" x="3" y="5"></rect>
+<circle cx="8.5" cy="11.5" fill="currentColor" r="1.5" stroke="none"></circle><circle cx="15.5" cy="11.5" fill="currentColor" r="1.5" stroke="none"></circle><path d="M9 16c.5 1 2.5 1 3 1s2.5 0 3-1"></path>
+</svg>
+<div class="absolute top-[45%] -left-[2px] w-[3px] h-[6px] bg-blue-200 rounded-l-full animate-pulse"></div>
+<div class="absolute top-[45%] -right-[2px] w-[3px] h-[6px] bg-blue-200 rounded-r-full animate-pulse"></div>
+</div>
+<div class="absolute -top-9 -right-2 bg-[#5031E5] text-white text-[12px] font-bold px-3 py-1.5 rounded-2xl shadow-lg flex items-center gap-1.5 animate-float cursor-pointer whitespace-nowrap z-20 border border-white/20 active:bg-[#3f24b5] transition-colors" onclick="toggleListeningModal()">
+<span>듣고 있어요!</span>
+<div class="flex items-center gap-[2px] h-3">
+<div class="w-[2px] bg-white rounded-full animate-eq-1"></div><div class="w-[2px] bg-white rounded-full animate-eq-2"></div><div class="w-[2px] bg-white rounded-full animate-eq-3"></div><div class="w-[2px] bg-white rounded-full animate-eq-4"></div><div class="w-[2px] bg-white rounded-full animate-eq-5"></div>
+</div>
+<div class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-[#5031E5]"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full flex justify-center pb-2 pt-[5px] cursor-pointer" onclick="toggleSearchModal()">
+<div class="w-12 h-[5px] bg-gray-300 rounded-full animate-handle-pulse"></div>
+</div>
+</div>
+<!-- ================= MODALS ================= -->
+<!-- [MODAL 5] 카테고리 모달 -->
+<div class="hidden absolute inset-0 z-50 overflow-hidden" id="category-modal">
+<div class="absolute inset-0 bg-black/50 backdrop-blur-[2px]" onclick="toggleCategoryModal()"></div>
+<div class="absolute bottom-0 w-full h-[90%] bg-white rounded-t-[30px] flex flex-col shadow-[0_-10px_40px_rgba(0,0,0,0.1)] animate-slide-up">
+<div class="flex items-center justify-between px-6 pt-6 pb-2">
+<h2 class="text-xl font-extrabold text-gray-900">어떤 내용이 궁금하신가요?</h2>
+<button class="p-2 -mr-2 text-gray-400 hover:text-gray-600" onclick="toggleCategoryModal()"><i class="w-7 h-7" data-lucide="x"></i></button>
+</div>
+<div class="flex-1 overflow-y-auto px-6 pb-10 scrollbar-hide">
+<div class="flex justify-between items-start mb-10 mt-4 px-2">
+<div class="flex flex-col items-center gap-2 cursor-pointer active:scale-95 transition-transform"><div class="w-14 h-14 bg-[#EEF2FF] rounded-full flex items-center justify-center text-[#5031E5] shadow-sm"><i class="w-7 h-7" data-lucide="file-text"></i></div><span class="text-sm font-bold text-gray-700">이용안내</span></div>
+<div class="flex flex-col items-center gap-2 cursor-pointer active:scale-95 transition-transform"><div class="w-14 h-14 bg-[#EEF2FF] rounded-full flex items-center justify-center text-[#5031E5] shadow-sm"><i class="w-7 h-7" data-lucide="headset"></i></div><span class="text-sm font-bold text-gray-700">상담사 연결</span></div>
+<div class="flex flex-col items-center gap-2 cursor-pointer active:scale-95 transition-transform"><div class="w-14 h-14 bg-[#F3E8FF] rounded-full flex items-center justify-center text-[#A855F7] shadow-sm"><i class="w-7 h-7" data-lucide="bot"></i></div><span class="text-sm font-bold text-gray-700">챗봇 상담</span></div>
+</div>
+<div class="space-y-8">
+<div><h3 class="text-[17px] font-bold text-gray-900 mb-3"># 요금 및 납부</h3><div class="flex flex-wrap gap-2"><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">카드 자동납부</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">은행 자동납부</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">요금 조회</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">입금계좌 안내</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">요금 결제</button></div></div>
+<div><h3 class="text-[17px] font-bold text-gray-900 mb-3"># 증빙서류 발급</h3><div class="flex flex-wrap gap-2"><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">요금 안내서</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">요금 납부 이력 확인서</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">세금계산서</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">세금계산서 발행 이력</button></div></div>
+<div class="relative"><h3 class="text-[17px] font-bold text-gray-900 mb-3"># 서비스 이용 변경</h3><div class="flex flex-wrap gap-2 pr-8"><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">이전 설치</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">일시정지 해제</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">일시정지 신청</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">부가서비스 해지</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">월정액 해지</button></div><div class="absolute right-0 bottom-3 text-gray-400"><i class="w-5 h-5" data-lucide="chevron-down"></i></div></div>
+<div class="relative"><h3 class="text-[17px] font-bold text-gray-900 mb-3"># 가입 및 정보 변경</h3><div class="flex flex-wrap gap-2 pr-8"><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">가입 문의</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">유무선 결합 신청</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">가입 정보</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">상품 업그레이드 신청</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">개통 진행</button></div><div class="absolute right-0 bottom-3 text-gray-400"><i class="w-5 h-5" data-lucide="chevron-down"></i></div></div>
+<div class="relative"><h3 class="text-[17px] font-bold text-gray-900 mb-3"># 장애 및 지원</h3><div class="flex flex-wrap gap-2 pr-8"><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">고장 진단</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">망 작업/장애</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">리모컨 구매</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">B tv 이용안내</button><button class="px-4 py-2 bg-white border border-gray-200 rounded-full text-[14px] text-gray-600 font-medium active:bg-gray-50 transition-colors">모바일 B tv 설치</button></div><div class="absolute right-0 bottom-3 text-gray-400"><i class="w-5 h-5" data-lucide="chevron-down"></i></div></div>
+</div>
+</div>
+</div>
+</div>
+<!-- [MODAL 1] 음성 인식 모달 -->
+<div class="hidden absolute inset-0 z-50 overflow-hidden" id="listening-modal">
+<div class="absolute inset-0 bg-black/50 backdrop-blur-[2px]" onclick="toggleListeningModal()"></div>
+<div class="absolute bottom-0 w-full h-auto pb-8 bg-white rounded-t-[30px] flex flex-col shadow-[0_-10px_40px_rgba(0,0,0,0.1)] animate-slide-up">
+<div class="absolute top-4 right-4 z-10"><button class="p-2 text-gray-400 hover:text-gray-600" onclick="toggleListeningModal()"><i class="w-7 h-7" data-lucide="x"></i></button></div>
+<div class="pt-6 px-6 pb-0 text-center"><h2 class="text-[22px] font-extrabold text-gray-900">듣고 있습니다</h2><p class="text-[18px] font-bold text-[#5031E5] mt-2">말씀해 주세요</p></div>
+<div class="flex-1 flex flex-col items-center justify-start px-6 pt-4">
+<div class="flex items-center justify-center gap-2 h-12 mb-6">
+<div class="w-2.5 bg-[#5031E5] rounded-full animate-wave-1"></div><div class="w-2.5 bg-[#5031E5] rounded-full animate-wave-2"></div><div class="w-2.5 bg-[#5031E5] opacity-60 rounded-full animate-wave-3 h-[30px]"></div><div class="w-2.5 bg-[#5031E5] rounded-full animate-wave-4"></div><div class="w-2.5 bg-[#5031E5] rounded-full animate-wave-5"></div>
+</div>
+<div class="w-full space-y-3">
+<div class="w-full bg-white border-[2px] border-[#5031E5] rounded-2xl p-5 text-left cursor-pointer active:bg-indigo-50 shadow-sm relative group" onclick="simulateSuccess()">
+<p class="text-[13px] font-bold text-[#5031E5] mb-1">인식 성공 시뮬레이션</p>
+<p class="text-[18px] font-extrabold text-[#1a1a1a]">"이번 달 <span class="text-[#5031E5]">요금</span> 확인해줘"</p>
+<i class="absolute right-5 top-1/2 -translate-y-1/2 text-[#5031E5] w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" data-lucide="mic"></i>
+</div>
+<div class="w-full bg-white border border-gray-200 rounded-2xl p-5 text-left cursor-pointer active:bg-gray-50 transition-colors shadow-sm" onclick="simulateFail()">
+<p class="text-[13px] font-bold text-gray-400 mb-1">인식 실패 시뮬레이션</p>
+<p class="text-[18px] font-bold text-gray-400">"어... 그게... 음..."</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- [MODAL 2] 검색 모달 -->
+<div class="hidden absolute inset-0 z-50 overflow-hidden" id="search-modal">
+<div class="absolute inset-0 bg-black/40 backdrop-blur-[2px]" onclick="toggleSearchModal()"></div>
+<div class="absolute bottom-0 w-full h-[90%] bg-white rounded-t-[30px] flex flex-col shadow-[0_-10px_40px_rgba(0,0,0,0.1)] animate-slide-up">
+<div class="absolute top-4 right-4 z-10"><button class="p-2 text-gray-400 hover:text-gray-600" onclick="toggleSearchModal()"><i class="w-7 h-7" data-lucide="x"></i></button></div>
+<div class="p-6 pb-2"><div class="flex items-center justify-center mb-6 pt-2"><h2 class="text-lg font-bold text-gray-900">업무 검색</h2></div>
+<div class="relative w-full"><div class="flex items-center bg-gray-100 rounded-[16px] px-4 py-3 transition-all focus-within:bg-white focus-within:ring-2 focus-within:ring-[#5031E5] transition-all"><i class="text-gray-400 w-5 h-5 mr-3" data-lucide="search"></i><input class="w-full bg-transparent outline-none text-gray-800 text-[16px]" id="search-input" oninput="handleInput(this)" placeholder="무엇을 도와드릴까요?" type="text"/><i class="text-[#5031E5] w-5 h-5 ml-2" data-lucide="mic"></i></div></div>
+</div>
+<div class="flex-1 overflow-y-auto px-6 pb-10 scrollbar-hide">
+<div class="hidden mb-6" id="search-results-container"><div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden" id="suggestions"></div></div>
+<div class="hidden mb-6" id="faq-section">
+<div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100">
+<button class="w-full px-5 py-4 flex items-center justify-between group" onclick="toggleAccordion('faq-content', 'faq-chevron')"><div class="flex items-center gap-3"><div class="w-6 h-6 bg-[#A855F7] rounded-full flex items-center justify-center text-white text-[12px]"><i class="w-4 h-4" data-lucide="help-circle"></i></div><span class="font-bold text-gray-800">자주 묻는 질문</span></div><i class="w-5 h-5 text-gray-400 transition-transform" data-lucide="chevron-down" id="faq-chevron"></i></button>
+<div class="accordion-content bg-white" id="faq-content"><div class="px-5 py-2 border-t border-gray-50"><div class="flex items-center justify-between py-4 border-b border-gray-50 cursor-pointer hover:bg-gray-50"><span class="text-gray-600 text-sm">이전 <span class="text-[#5031E5] font-bold">요금</span> 내역을 확인하는 방법</span><i class="w-4 h-4 text-gray-300" data-lucide="chevron-right"></i></div><div class="flex items-center justify-between py-4 cursor-pointer hover:bg-gray-50"><span class="text-gray-600 text-sm"><span class="text-[#5031E5] font-bold">요금</span> 결제 방법은 어떤게 있나요?</span><i class="w-4 h-4 text-gray-300" data-lucide="chevron-right"></i></div></div></div>
+</div>
+</div>
+<button class="w-full py-5 bg-[#ebf2ff] rounded-2xl text-[#5031E5] font-bold flex items-center justify-center gap-2 active:bg-blue-100 transition-colors" onclick="continueCounseling()"><i class="w-5 h-5" data-lucide="arrow-left"></i>이어서 상담받기</button>
+</div>
+</div>
+</div>
+<!-- [MODAL 3] 분석 결과 모달 -->
+<div class="hidden absolute inset-0 z-50 overflow-hidden" id="result-modal">
+<div class="absolute inset-0 bg-black/40 backdrop-blur-[2px]" onclick="toggleResultModal()"></div>
+<div class="absolute bottom-0 w-full h-[90%] bg-white rounded-t-[30px] flex flex-col shadow-[0_-10px_40px_rgba(0,0,0,0.1)] animate-slide-up">
+<div class="w-full flex justify-center pt-3 pb-2"><div class="w-10 h-1 bg-gray-300 rounded-full"></div></div>
+<div class="absolute top-4 right-4 z-10"><button class="p-2 text-gray-400 hover:text-gray-600" onclick="toggleResultModal()"><i class="w-7 h-7" data-lucide="x"></i></button></div>
+<div class="px-6 pt-6 pb-6 flex flex-col items-center text-center"><h2 class="text-[22px] font-extrabold text-gray-900 mb-3 leading-tight">"<span class="text-[#5031E5]">요금</span>"으로 검색한 결과예요.</h2><span class="bg-[#EBF2FF] text-[#5031E5] text-[13px] font-bold px-4 py-1.5 rounded-full">분석 완료</span></div>
+<div class="flex-1 overflow-y-auto px-6 pb-10 scrollbar-hide">
+<div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden mb-6">
+<div class="px-5 py-4 border-b border-gray-50 flex justify-between items-center group cursor-pointer hover:bg-[#ebf2ff] transition-colors group"><span class="text-gray-700 font-medium text-[16px]"><span class="text-[#5031E5] font-bold">요금</span> 조회/납부</span><i class="w-4 h-4 text-gray-300 group-hover:text-[#5031E5]" data-lucide="chevron-right"></i></div>
+<div class="px-5 py-4 border-b border-gray-50 flex justify-between items-center group cursor-pointer hover:bg-[#ebf2ff] transition-colors group"><span class="text-gray-700 font-medium text-[16px]"><span class="text-[#5031E5] font-bold">요금</span> 안내서</span><i class="w-4 h-4 text-gray-300 group-hover:text-[#5031E5]" data-lucide="chevron-right"></i></div>
+<div class="px-5 py-4 border-b border-gray-50 flex justify-between items-center group cursor-pointer hover:bg-[#ebf2ff] transition-colors group"><span class="text-gray-700 font-medium text-[16px]"><span class="text-[#5031E5] font-bold">요금</span> 납부내역 조회</span><i class="w-4 h-4 text-gray-300 group-hover:text-[#5031E5]" data-lucide="chevron-right"></i></div>
+<div class="px-5 py-4 border-b border-gray-50 flex justify-between items-center group cursor-pointer hover:bg-[#ebf2ff] transition-colors group"><span class="text-gray-700 font-medium text-[16px]">실시간 <span class="text-[#5031E5] font-bold">요금</span> 확인</span><i class="w-4 h-4 text-gray-300 group-hover:text-[#5031E5]" data-lucide="chevron-right"></i></div>
+<div class="px-5 py-4 flex justify-between items-center group cursor-pointer hover:bg-[#ebf2ff] transition-colors group"><span class="text-gray-700 font-medium text-[16px]"><span class="text-[#5031E5] font-bold">요금</span>납부 방법</span><i class="w-4 h-4 text-gray-300 group-hover:text-[#5031E5]" data-lucide="chevron-right"></i></div>
+</div>
+<div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 mb-6">
+<button class="w-full px-5 py-4 flex items-center justify-between group" onclick="toggleAccordion('result-faq-content', 'result-faq-chevron')"><div class="flex items-center gap-3"><div class="w-6 h-6 bg-[#5031E5] rounded-full flex items-center justify-center text-white text-[12px]"><i class="w-4 h-4" data-lucide="help-circle"></i></div><span class="font-bold text-gray-800 text-[16px]">자주 묻는 질문</span></div><i class="w-5 h-5 text-gray-400 transition-transform" data-lucide="chevron-down" id="result-faq-chevron"></i></button>
+<div class="accordion-content bg-white" id="result-faq-content"><div class="px-5 py-2 border-t border-gray-50"><div class="flex items-center justify-between py-4 border-b border-gray-50 cursor-pointer hover:bg-gray-50"><span class="text-gray-600 text-sm">이전 <span class="text-[#5031E5] font-bold">요금</span> 내역 확인 방법</span><i class="w-4 h-4 text-gray-300" data-lucide="chevron-right"></i></div><div class="flex items-center justify-between py-4 cursor-pointer hover:bg-gray-50"><span class="text-gray-600 text-sm"><span class="text-[#5031E5] font-bold">요금</span> 결제 방법은?</span><i class="w-4 h-4 text-gray-300" data-lucide="chevron-right"></i></div></div></div>
+</div>
+<button class="w-full py-5 bg-[#EBF2FF] rounded-2xl text-[#5031E5] font-bold flex items-center justify-center gap-2 active:bg-blue-100 transition-colors text-[16px]" onclick="continueCounseling()"><i class="w-5 h-5" data-lucide="arrow-left"></i>이어서 상담받기</button>
+</div>
+</div>
+</div>
+<!-- [MODAL 4] 인식 실패 모달 -->
+<div class="hidden absolute inset-0 z-50 overflow-hidden" id="fail-modal">
+<div class="absolute inset-0 bg-black/40 backdrop-blur-[2px]" onclick="toggleFailModal()"></div>
+<div class="absolute bottom-0 w-full h-auto pb-10 bg-white rounded-t-[30px] flex flex-col shadow-[0_-10px_40px_rgba(0,0,0,0.1)] animate-slide-up">
+<div class="absolute top-4 right-4 z-10"><button class="p-2 text-gray-400 hover:text-gray-600" onclick="toggleFailModal()"><i class="w-7 h-7" data-lucide="x"></i></button></div>
+<div class="flex-1 flex flex-col items-center justify-start px-6 pt-12">
+<div class="mb-4 text-gray-300"><i class="w-14 h-14" data-lucide="mic-off"></i></div>
+<h2 class="text-[22px] font-bold text-gray-900 mb-8">잘 이해하지 못했어요.</h2>
+<div class="w-full space-y-3">
+<button class="w-full py-4 bg-[#2563EB] rounded-2xl text-white font-bold text-[16px] shadow-sm active:bg-blue-700 transition-colors flex items-center justify-center gap-2" onclick="retryListening()"><i class="w-5 h-5" data-lucide="rotate-ccw"></i>다시 시도하기</button>
+<button class="w-full py-4 bg-[#EBF2FF] rounded-2xl text-[#5031E5] font-bold text-[16px] active:bg-blue-100 transition-colors flex items-center justify-center gap-2" onclick="continueCounseling()"><i class="w-5 h-5" data-lucide="arrow-left"></i>이어서 상담받기</button>
+<button class="w-full py-4 bg-white border border-gray-200 rounded-2xl text-gray-800 font-bold text-[16px] active:bg-gray-50 transition-colors flex items-center justify-center gap-2"><i class="w-5 h-5 text-orange-500" data-lucide="headset"></i>상담사 연결하기</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+        lucide.createIcons();
+
+        const textToType = "이동할 서비스를 선택해 주세요.";
+        const typingTextEl = document.getElementById('typing-text');
+        const cursorEl = document.getElementById('cursor');
+        const mainContentBody = document.getElementById('main-content-body');
+        const floatingBanner = document.getElementById('floating-banner');
+        const robotContainer = document.getElementById('robot-container');
+        const swipeGuide = document.getElementById('swipe-guide');
+        const scrollContainer = document.getElementById('main-scroll-container');
+        const spacer = document.getElementById('bottom-spacer');
+        
+        let typingTimer;
+        let index = 0;
+
+        function type() {
+            if (index < textToType.length) {
+                typingTextEl.innerHTML += textToType.charAt(index);
+                index++;
+                typingTimer = setTimeout(type, 80); 
+            } else {
+                cursorEl.style.display = 'none'; 
+                mainContentBody.classList.remove('opacity-0');
+                mainContentBody.classList.add('animate-bounce-up');
+                setTimeout(showBottomElements, 300);
+            }
+        }
+
+        function showBottomElements() {
+            // invisible과 pointer-events-none을 제거하여 보여줌
+            floatingBanner.classList.remove('invisible', 'pointer-events-none', 'opacity-0');
+            floatingBanner.classList.add('animate-pop-out');
+            if (robotContainer) {
+                robotContainer.classList.remove('opacity-0');
+                robotContainer.classList.add('animate-bounce-up');
+            }
+            setTimeout(() => {
+                swipeGuide.style.display = 'flex';
+                swipeGuide.classList.add('animate-guide');
+            }, 1000);
+        }
+
+        function resetMain(closeAll = false) {
+             clearTimeout(typingTimer);
+             index = 0;
+             typingTextEl.innerHTML = "";
+             cursorEl.style.display = 'inline-block';
+             mainContentBody.classList.add('opacity-0');
+             mainContentBody.classList.remove('animate-bounce-up');
+             
+             // 리셋 시 다시 invisible 상태로
+             floatingBanner.classList.add('invisible', 'pointer-events-none', 'opacity-0');
+             floatingBanner.classList.remove('animate-pop-out');
+             
+             robotContainer.classList.add('opacity-0');
+             swipeGuide.style.display = 'none';
+             spacer.style.height = '0'; // 리셋 시 여백 제거
+             if (closeAll) closeAllModals();
+             scrollContainer.scrollTo({ top: 0, behavior: 'auto' });
+             setTimeout(type, 300);
+        }
+
+        // 핵심 기능: '이어서 상담받기' 버튼 로직 (수정됨)
+        function continueCounseling() {
+            // 1. 모든 모달 즉시 종료
+            closeAllModals();
+
+            // 2. 타이핑 문구 즉시 완성 및 애니메이션 중단
+            clearTimeout(typingTimer);
+            typingTextEl.innerHTML = textToType;
+            cursorEl.style.display = 'none';
+
+            // 3. 메인 콘텐츠 및 애니메이션 상태 초기화 (모션 재발생을 위함)
+            mainContentBody.classList.remove('animate-bounce-up');
+            mainContentBody.classList.add('opacity-0');
+            
+            // 말풍선 레이아웃 유지하며 숨기기
+            floatingBanner.classList.add('invisible', 'pointer-events-none', 'opacity-0');
+            
+            robotContainer.classList.add('opacity-0');
+            swipeGuide.style.display = 'none';
+
+            // 4. 하단에 충분한 빈 공간(600px)을 만들어 스크롤이 끝까지 올라가게 보장
+            spacer.style.height = '600px';
+
+            // 5. 정밀 스크롤 이동
+            const target = document.getElementById('target-anchor');
+            if (scrollContainer && target) {
+                scrollContainer.scrollTo({ top: target.offsetTop, behavior: 'auto' });
+            }
+
+            // 6. 바운스 효과 재시작
+            setTimeout(() => {
+                mainContentBody.classList.remove('opacity-0');
+                mainContentBody.classList.add('animate-bounce-up');
+                setTimeout(showBottomElements, 300);
+            }, 50);
+        }
+
+        const searchModal = document.getElementById('search-modal');
+        const listeningModal = document.getElementById('listening-modal');
+        const resultModal = document.getElementById('result-modal');
+        const failModal = document.getElementById('fail-modal');
+        const categoryModal = document.getElementById('category-modal');
+        
+        function closeAllModals() {
+            [searchModal, listeningModal, resultModal, failModal, categoryModal].forEach(m => m.classList.add('hidden'));
+        }
+
+        function toggleSearchModal() {
+            if (searchModal.classList.contains('hidden')) {
+                closeAllModals();
+                searchModal.classList.remove('hidden');
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+            } else {
+                searchModal.classList.add('hidden');
+            }
+        }
+
+        function toggleListeningModal() {
+            if (listeningModal.classList.contains('hidden')) {
+                closeAllModals();
+                listeningModal.classList.remove('hidden');
+            } else {
+                listeningModal.classList.add('hidden');
+            }
+        }
+
+        function toggleResultModal() {
+            if (resultModal.classList.contains('hidden')) {
+                closeAllModals();
+                resultModal.classList.remove('hidden');
+            } else {
+                resultModal.classList.add('hidden');
+            }
+        }
+
+        function toggleFailModal() {
+            if (failModal.classList.contains('hidden')) {
+                closeAllModals();
+                failModal.classList.remove('hidden');
+            } else {
+                failModal.classList.add('hidden');
+            }
+        }
+
+        function toggleCategoryModal() {
+            if (categoryModal.classList.contains('hidden')) {
+                closeAllModals();
+                categoryModal.classList.remove('hidden');
+            } else {
+                categoryModal.classList.add('hidden');
+            }
+        }
+
+        function toggleAccordion(contentId, chevronId) {
+            const content = document.getElementById(contentId);
+            const chevron = document.getElementById(chevronId);
+            content.classList.toggle('open');
+            chevron.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+
+        function simulateSuccess() {
+            listeningModal.classList.add('hidden'); 
+            setTimeout(toggleResultModal, 200);
+        }
+
+        function simulateFail() {
+            listeningModal.classList.add('hidden');
+            setTimeout(toggleFailModal, 200);
+        }
+
+        function retryListening() {
+            failModal.classList.add('hidden');
+            setTimeout(toggleListeningModal, 200);
+        }
+
+        function handleInput(input) {
+            const results = document.getElementById('search-results-container');
+            const faq = document.getElementById('faq-section');
+            const suggestions = document.getElementById('suggestions');
+            if (input.value.includes('요금')) {
+                results.classList.remove('hidden');
+                faq.classList.remove('hidden');
+                suggestions.innerHTML = `
+                    <div class="px-5 py-4 border-b border-gray-50 flex justify-between items-center group cursor-pointer" onclick="toggleResultModal()"><span class="text-gray-700 font-medium text-sm"><span class="text-[#5031E5] font-bold">요금</span> 조회/납부</span><i data-lucide="chevron-right" class="w-4 h-4 text-gray-300"></i></div>
+                    <div class="px-5 py-4 border-b border-gray-50 flex justify-between items-center group cursor-pointer" onclick="toggleResultModal()"><span class="text-gray-700 font-medium text-sm"><span class="text-[#5031E5] font-bold">요금</span> 안내서</span><i data-lucide="chevron-right" class="w-4 h-4 text-gray-300"></i></div>
+                    <div class="px-5 py-4 border-b border-gray-50 flex justify-between items-center group cursor-pointer" onclick="toggleResultModal()"><span class="text-gray-700 font-medium text-sm"><span class="text-[#5031E5] font-bold">요금</span> 납부내역 조회</span><i data-lucide="chevron-right" class="w-4 h-4 text-gray-300"></i></div>
+                `;
+                lucide.createIcons();
+            } else {
+                results.classList.add('hidden');
+                faq.classList.add('hidden');
+            }
+        }
+
+        window.onload = function() {
+            initSwipeEvents();
+            setTimeout(type, 500);
+        };
+
+        function initSwipeEvents() {
+            let startY = 0;
+            const swipeArea = document.getElementById('swipe-area');
+            swipeArea.addEventListener('touchstart', (e) => { startY = e.touches[0].clientY; }, { passive: true });
+            swipeArea.addEventListener('touchend', (e) => { 
+                if (startY - e.changedTouches[0].clientY > 30) toggleSearchModal(); 
+            }, { passive: true });
+        }
+    </script>
+
+<script>
+    let selectedId = null;
+
+    function selectService(el, id) {
+        // 모든 옵션 초기화
+        document.querySelectorAll('.service-option').forEach(opt => {
+            opt.classList.remove('border-[#5031E5]', 'bg-[#eff6ff]', 'ring-2', 'ring-[#5031E5]/20');
+            opt.classList.add('border-gray-100', 'bg-gray-50');
+            opt.querySelector('.check-mark').classList.add('opacity-0');
+        });
+
+        // 선택 항목 강조 (브랜드 컬러 적용)
+        el.classList.remove('border-gray-100', 'bg-gray-50');
+        el.classList.add('border-[#5031E5]', 'bg-[#eff6ff]', 'ring-2', 'ring-[#5031E5]/20');
+        el.querySelector('.check-mark').classList.remove('opacity-0');
+        
+        selectedId = id;
+        
+        // 버튼 활성화 (브랜드 컬러 #5031E5 적용)
+        const btn = document.getElementById('apply-btn');
+        btn.disabled = false;
+        btn.classList.remove('bg-[#E9ECEF]', 'text-[#ADB5BD]', 'cursor-not-allowed');
+        btn.classList.add('bg-[#5031E5]', 'text-white', 'shadow-lg');
+    }
+
+    function goToSchedule() {
+        if(selectedId) {
+            location.href = 'visit_schedule_modal.html';
+        }
+    }
+    </script>
+</body>
+</html>
