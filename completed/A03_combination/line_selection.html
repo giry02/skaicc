@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">유무선 결합 신청</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0 flex-1 flex flex-col" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">결합하실 휴대폰 회선을<br />선택해 주세요.</h2>
+                </div>
+
+                <div class="join-step-content join-section-gap small">
+                    <!-- 회선 카드 1 -->
+                    <div class="line-card relative bg-white border border-gray-100 rounded-[20px] p-5 shadow-sm active:scale-[0.98] transition-all cursor-pointer overflow-hidden border-2"
+                        data-selected="false" onclick="toggleLine(this)">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="text-[14px] font-bold text-gray-400 category-tag w-10">본인</span>
+                                <h3 class="text-[18px] font-black text-gray-900 leading-none">홍길동</h3>
+                                <p class="text-[15px] font-medium text-gray-400 ml-1">010-1234-****</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <p class="text-[11px] font-bold text-blue-500 bg-blue-50 px-2 py-0.5 rounded-md">5G</p>
+                                <div class="check-icon opacity-0 bg-[#5031E5] rounded-full p-1.5 transition-opacity">
+                                    <i data-lucide="check" class="w-3.5 h-3.5 text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 회선 카드 2 -->
+                    <div class="line-card relative bg-white border border-gray-100 rounded-[20px] p-5 shadow-sm active:scale-[0.98] transition-all cursor-pointer overflow-hidden border-2"
+                        data-selected="false" onclick="toggleLine(this)">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="text-[14px] font-bold text-gray-400 category-tag w-10">가족 1</span>
+                                <h3 class="text-[18px] font-black text-gray-900 leading-none">김철수</h3>
+                                <p class="text-[15px] font-medium text-gray-400 ml-1">010-5678-****</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <p class="text-[11px] font-bold text-blue-500 bg-blue-50 px-2 py-0.5 rounded-md">LTE</p>
+                                <div class="check-icon opacity-0 bg-[#5031E5] rounded-full p-1.5 transition-opacity">
+                                    <i data-lucide="check" class="w-3.5 h-3.5 text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 회선 카드 3 (비활성 예시) -->
+                    <div class="relative bg-gray-50 border border-dashed border-gray-200 rounded-[20px] p-5 opacity-60">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <span class="text-[14px] font-bold text-gray-400 w-10">가족 2</span>
+                                <h3 class="text-[18px] font-black text-gray-400 leading-none">이영희</h3>
+                                <p class="text-[15px] font-medium text-gray-300 ml-1">010-9012-****</p>
+                            </div>
+                            <span class="text-[11px] font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded">이미
+                                결합됨</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-blue-50/50 rounded-xl mb-4">
+                    <p class="text-[12px] text-blue-600/70 font-medium leading-relaxed">
+                        ※ 선택하신 휴대폰 회선의 명의자에게 결합 동의를 위한 SMS가 발송됩니다.
+                    </p>
+                </div>
+
+                <!-- 다음 버튼 -->
+                <div class="mt-auto pt-4 pb-6">
+                    <button
+                        class="w-full bg-gray-200 text-white py-4 rounded-xl text-[19px] font-bold transition-all cursor-not-allowed"
+                        id="apply-btn" disabled onclick="location.href='fee_confirm.html'">선택 완료 (0개 선택됨)</button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        // 페이지 개별 설정 및 UI 초기화
+        const pageText = "결합하실 휴대폰 회선을 선택해 주세요.";
+        initCommonUI(pageText);
+
+        let selectedCount = 0;
+
+        function toggleLine(el) {
+            const isSelected = el.getAttribute('data-selected') === 'true';
+            const checkIcon = el.querySelector('.check-icon');
+            const tag = el.querySelector('.category-tag');
+
+            if (isSelected) {
+                el.setAttribute('data-selected', 'false');
+                el.classList.remove('border-[#5031E5]', 'bg-indigo-50/30');
+                el.classList.add('border-gray-100');
+                checkIcon.classList.add('opacity-0');
+                tag.classList.remove('text-[#5031E5]');
+                tag.classList.add('text-gray-400');
+                selectedCount--;
+            } else {
+                el.setAttribute('data-selected', 'true');
+                el.classList.add('border-[#5031E5]', 'bg-indigo-50/30');
+                el.classList.remove('border-gray-100');
+                checkIcon.classList.remove('opacity-0');
+                tag.classList.add('text-[#5031E5]');
+                tag.classList.remove('text-gray-400');
+                selectedCount++;
+            }
+
+            updateButton();
+        }
+
+        function updateButton() {
+            const btn = document.getElementById('apply-btn');
+            if (selectedCount > 0) {
+                btn.disabled = false;
+                btn.classList.remove('bg-gray-200', 'cursor-not-allowed');
+                btn.classList.add('bg-[#5031E5]', 'shadow-lg');
+                btn.innerHTML = `선택 완료 (${selectedCount}개)`;
+            } else {
+                btn.disabled = true;
+                btn.classList.add('bg-gray-200', 'cursor-not-allowed');
+                btn.classList.remove('bg-[#5031E5]', 'shadow-lg');
+                btn.innerHTML = `선택 완료 (0개 선택됨)`;
+            }
+        }
+    </script>
+</body>
+
+</html>

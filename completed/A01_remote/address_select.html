@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 주소 선택</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="history.back()">
+            <i class="w-7 h-7" data-lucide="chevron-left"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">주소 선택</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">리모컨을 신청하실<br />주소를 선택해 주세요.</h2>
+                </div>
+
+                <div class="join-step-content join-section-gap small">
+                    <button
+                        class="w-full text-left p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
+                        onclick="location.href='model_selection.html'">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="bg-indigo-50 text-[#5031E5] text-[10px] font-bold px-2 py-0.5 rounded-full">기본
+                                주소</span>
+                        </div>
+                        <p class="text-[17px] font-bold text-gray-900 mb-0.5 group-hover:text-[#5031E5]">서울시 중구 퇴계로 24
+                        </p>
+                        <p class="text-[14px] text-gray-500 font-medium tracking-tight">B타워 15층 (남대문로5가)</p>
+                    </button>
+
+                    <button
+                        class="w-full text-left p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
+                        onclick="location.href='model_selection.html'">
+                        <p class="text-[17px] font-bold text-gray-900 mb-0.5 group-hover:text-[#5031E5]">서울시 강남구 테헤란로
+                            123</p>
+                        <p class="text-[14px] text-gray-500 font-medium tracking-tight">에이아이빌딩 5층 (역삼동)</p>
+                    </button>
+                </div>
+
+                <button
+                    class="mt-4 flex items-center justify-center gap-2 py-4 bg-gray-50 border border-gray-100 rounded-[20px] text-[14px] font-bold text-gray-500 active:scale-95 transition-transform"
+                    onclick="showRestrictedModal()">
+                    <i data-lucide="help-circle" class="w-4 h-4 text-gray-400"></i>
+                    <span>원하는 주소가 없으신가요?</span>
+                </button>
+            </div>
+        </div>
+        <div class="w-full h-80 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+
+    <!-- [MODAL] 구매 비대상자 안내 -->
+    <div class="hidden fixed inset-0 z-[100] flex items-center justify-center px-6" id="restricted-modal">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="hideRestrictedModal()"></div>
+        <div class="relative bg-white rounded-[32px] w-full max-w-sm overflow-hidden animate-pop-in text-center p-8">
+            <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="w-10 h-10 text-amber-600" data-lucide="alert-circle"></i>
+            </div>
+            <h2 class="text-[22px] font-black text-gray-900 mb-3 leading-tight">안내드립니다.</h2>
+            <div class="text-[15px] text-gray-500 font-medium leading-relaxed mb-6 px-1">
+                <p>고객님, 이용 중이신 서비스 종류에 따라 <br><span class="text-[#5031E5] font-bold">리모컨 구매가 제한</span>될 수 있습니다.</p>
+                <p class="mt-4 text-[13px] bg-gray-50 p-4 rounded-2xl border border-gray-100/50">정확한 확인을 위해 전문 상담사가
+                    <br>상세히 안내해 드릴까요?
+                </p>
+            </div>
+            <div class="flex gap-3">
+                <button
+                    class="flex-1 bg-gray-100 text-gray-500 py-4 rounded-2xl text-[17px] font-bold active:scale-95 transition-transform"
+                    onclick="hideRestrictedModal()">취소</button>
+                <button
+                    class="flex-1 bg-[#1a1a1a] text-white py-4 rounded-2xl text-[17px] font-bold active:scale-95 transition-transform"
+                    onclick="location.href='../index.html'">상담사 연결</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 공통 모달 시스템 생략 (원활한 UI 구동을 위해 필요한 뼈대만 유지) -->
+
+
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "가입 정보를 조회해보니 사용 중이신 주소가 두 곳이네요. 어디로 신청할까요?";
+        initCommonUI(pageText);
+
+        function showRestrictedModal() {
+            document.getElementById('restricted-modal').classList.remove('hidden');
+        }
+
+        function hideRestrictedModal() {
+            document.getElementById('restricted-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+
+</html>

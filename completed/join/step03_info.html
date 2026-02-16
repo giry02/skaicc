@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>SK브로드밴드 B 다이렉트샵 - 추가 정보</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .steps-container {
+            border-bottom: 4px solid #f3f4f6;
+            margin-bottom: 2rem;
+        }
+
+        .step-item {
+            position: relative;
+            font-weight: 500;
+            color: #9ca3af;
+        }
+
+        .step-item.active {
+            color: #5031E5;
+            font-weight: 700;
+        }
+
+        .step-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: #5031E5;
+        }
+
+        .form-input {
+            width: 100%;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: #5031E5;
+            ring: 2px solid #eef2ff;
+        }
+
+        .section-header {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800">
+
+    <!-- 헤더 -->
+    <header class="border-b border-gray-100 sticky top-0 bg-white z-50">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-6">
+                <a href="../index.html" class="flex items-center gap-2">
+                    <span class="text-[#5031E5] font-black text-2xl">B</span>
+                    <span class="font-bold text-gray-900 text-lg">다이렉트샵</span>
+                </a>
+                <nav class="hidden md:flex gap-6 text-[15px] font-medium text-gray-600">
+                    <a href="#" class="hover:text-[#5031E5]">상품 서비스</a>
+                    <a href="#" class="text-[#5031E5] font-bold border-b-2 border-[#5031E5] py-5">B 다이렉트샵</a>
+                    <a href="#" class="hover:text-[#5031E5]">혜택</a>
+                    <a href="#" class="hover:text-[#5031E5]">고객지원</a>
+                    <a href="#" class="hover:text-[#5031E5]">MY</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-4 text-[13px] text-gray-500">
+                <a href="#">로그인</a>
+                <button><i data-lucide="search" class="w-5 h-5"></i></button>
+                <button><i data-lucide="menu" class="w-5 h-5"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 단계 네비게이션 -->
+    <div class="bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex justify-between items-center h-14 steps-container">
+                <div class="step-item flex-1 text-center py-4">상품 선택</div>
+                <div class="step-item flex-1 text-center py-4">본인 인증</div>
+                <div class="step-item active flex-1 text-center py-4">추가 정보</div>
+                <div class="step-item flex-1 text-center py-4">신청 완료</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 메인 컨텐츠 영역 -->
+    <main class="max-w-6xl mx-auto px-4 pb-20 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- 왼쪽 입력 폼 영역 -->
+        <div class="lg:col-span-8 space-y-8">
+
+            <!-- 1. 설치 정보 -->
+            <section>
+                <h3 class="section-header">설치 정보</h3>
+                <div class="mt-4 space-y-8">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">설치 주소</label>
+                        <div class="flex gap-2 mb-2">
+                            <input type="text" placeholder="우편번호" class="form-input bg-gray-50 w-32" readonly
+                                onclick="openAddressModal()">
+                            <button
+                                class="bg-[#5031E5] text-white px-6 rounded-lg text-sm font-bold hover:bg-[#4326c9] transition-colors"
+                                onclick="openAddressModal()">주소 찾기</button>
+                        </div>
+                        <input type="text" id="main-addr" placeholder="주소를 입력해 주세요" class="form-input bg-gray-50 mb-2"
+                            readonly onclick="openAddressModal()">
+                        <input type="text" placeholder="상세 주소를 입력해 주세요" class="form-input">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">설치 희망일 및 시간</label>
+                        <div class="flex gap-2">
+                            <input type="date" class="form-input w-1/2" value="2026-02-16">
+                            <select class="form-input w-1/2">
+                                <option>10:00 ~ 12:00</option>
+                                <option>13:00 ~ 15:00</option>
+                                <option>15:00 ~ 17:00</option>
+                            </select>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-2">※ 설치를 위해 서비스매니저가 방문하며, 출동비는 별도로 부과됩니다.</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">복지할인 대상 <span
+                                class="text-xs font-normal text-gray-400">(09시~24시까지 확인 가능)</span></label>
+                        <select class="form-input">
+                            <option>해당없음</option>
+                            <option>기초생활수급자</option>
+                            <option>국가유공자</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. 휴대폰 결합 정보 -->
+            <section class="border-t border-gray-100 pt-8">
+                <h3 class="section-header">휴대폰 결합 정보</h3>
+                <div class="mt-4 bg-gray-50 p-6 rounded-xl">
+                    <div class="grid grid-cols-3 gap-3 mb-4">
+                        <button
+                            class="border-2 border-[#5031E5] bg-white text-[#5031E5] py-3 rounded-lg font-bold text-sm">SK텔레콤
+                            결합</button>
+                        <button
+                            class="border border-gray-200 bg-white text-gray-500 py-3 rounded-lg font-medium text-sm">알뜰폰
+                            결합</button>
+                        <button
+                            class="border border-gray-200 bg-white text-gray-500 py-3 rounded-lg font-medium text-sm">없음</button>
+                    </div>
+                    <ul class="text-xs text-gray-500 space-y-1 ml-4 list-disc">
+                        <li>본인/가족 명의 휴대폰 회선에 대한 결합신청이 가입완료 후 되어 결합될 수 있습니다.</li>
+                        <li>본인명의의 휴대폰에 2회선 이상이 고객님 중 기존 자동이체 등 부가혜택이 별도로 있는 경우 추가 설정이 불가합니다.<br>(기존 가족 결합 삭제)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 3. 요금안내서 확인방법 -->
+            <section class="border-t border-gray-100 pt-8">
+                <h3 class="section-header">요금안내서 확인방법</h3>
+                <div class="mt-4 space-y-8">
+                    <div class="flex gap-3">
+                        <button
+                            class="flex-1 border border-gray-200 py-3 rounded-lg text-sm font-medium text-gray-500">Bill
+                            Letter</button>
+                        <button
+                            class="flex-1 border-2 border-[#5031E5] bg-white text-[#5031E5] py-3 rounded-lg text-sm font-bold">문자</button>
+                        <button
+                            class="flex-1 border border-gray-200 py-3 rounded-lg text-sm font-medium text-gray-500">이메일</button>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">휴대폰</label>
+                        <input type="text" value="01079175431" class="form-input bg-gray-50" readonly>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. 요금 납부 방법 -->
+            <section class="border-t border-gray-100 pt-8">
+                <h3 class="section-header">요금 납부 방법</h3>
+                <div class="mt-4 space-y-6">
+                    <div class="flex gap-0 border-b border-gray-200 mb-4">
+                        <button class="flex-1 py-3 text-[#5031E5] font-bold border-b-2 border-[#5031E5]">카드결제</button>
+                        <button class="flex-1 py-3 text-gray-400 font-medium border-b border-transparent">계좌이체</button>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">카드주 <span
+                                    class="text-[#5031E5]">*</span></label>
+                            <input type="text" value="정명길" class="form-input bg-gray-200 text-gray-500" readonly>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">카드번호 <span
+                                    class="text-[#5031E5]">*</span></label>
+                            <input type="text" placeholder="-없이 숫자만 입력해 주세요." class="form-input">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">카드사 <span
+                                    class="text-[#5031E5]">*</span></label>
+                            <input type="text" placeholder="카드번호 입력 시 자동으로 표시됩니다." class="form-input bg-gray-50"
+                                readonly>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">유효기간 <span
+                                    class="text-[#5031E5]">*</span></label>
+                            <div class="flex gap-2">
+                                <select class="form-input w-24">
+                                    <option>MM</option>
+                                </select>
+                                <span class="self-center">/</span>
+                                <select class="form-input w-24">
+                                    <option>YY</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">요금결제시 카드번호 표기</label>
+                            <div class="flex gap-6">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="radio" name="card_mark" class="text-[#5031E5] focus:ring-[#5031E5]">
+                                    <span class="text-sm">표기</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="radio" name="card_mark" class="text-[#5031E5] focus:ring-[#5031E5]"
+                                        checked>
+                                    <span class="text-sm text-[#5031E5] font-bold">표기 안 함</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button
+                            class="w-full bg-[#1a1a1a] text-white py-3 rounded-lg font-bold text-sm hover:bg-black transition-colors">
+                            결제 가능 여부 확인하기
+                        </button>
+
+                        <div class="pt-4">
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox"
+                                    class="mt-1 w-4 h-4 text-[#5031E5] rounded border-gray-300 focus:ring-[#5031E5]"
+                                    checked>
+                                <span class="text-sm text-gray-600"><span class="text-[#5031E5] font-bold">[필수]</span>
+                                    본인/배우자는 납부 금액을 위 카드사에서 매달 승인/결제하는 것에 동의합니다.</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. 서비스 이용계약서 신청 -->
+            <section class="border-t border-gray-100 pt-8">
+                <h3 class="section-header">서비스 이용계약서 신청</h3>
+                <div class="mt-4 space-y-4">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox"
+                            class="w-4 h-4 text-[#5031E5] rounded border-gray-300 focus:ring-[#5031E5]">
+                        <span class="text-sm text-gray-600"><span class="text-gray-400 font-bold">[선택]</span> 신청하신 상품에
+                            대한 서비스 이용계약서(가입신청서)를 이메일로 받아봅니다.</span>
+                    </label>
+
+                    <div class="border-t border-gray-100 pt-4 space-y-3">
+                        <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox"
+                                    class="w-4 h-4 text-[#5031E5] rounded border-gray-300 focus:ring-[#5031E5]" checked>
+                                <span class="text-sm text-gray-600"><span class="text-red-500 font-bold">[필수]</span>
+                                    개인정보 안내</span>
+                            </label>
+                            <button class="text-xs border border-gray-300 px-2 py-1 rounded bg-white">자세히 보기</button>
+                        </div>
+                        <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox"
+                                    class="w-4 h-4 text-[#5031E5] rounded border-gray-300 focus:ring-[#5031E5]" checked>
+                                <span class="text-sm text-gray-600"><span class="text-red-500 font-bold">[필수]</span>
+                                    AI결합서비스 이용을 위한 개인정보 수집이용 동의</span>
+                            </label>
+                            <button class="text-xs border border-gray-300 px-2 py-1 rounded bg-white">자세히 보기</button>
+                        </div>
+                        <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox"
+                                    class="w-4 h-4 text-[#5031E5] rounded border-gray-300 focus:ring-[#5031E5]" checked>
+                                <span class="text-sm text-gray-600"><span class="text-red-500 font-bold">[필수]</span>
+                                    AI결합서비스 이용을 위한 개인정보 제3자 제공 동의</span>
+                            </label>
+                            <button class="text-xs border border-gray-300 px-2 py-1 rounded bg-white">자세히 보기</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- 오른쪽 Sticky 사이드바 -->
+        <div class="lg:col-span-4">
+            <div class="sticky top-24 space-y-4">
+                <div class="bg-white rounded-[24px] border border-gray-100 shadow-xl p-6">
+                    <h3 class="font-bold text-gray-900 border-b border-gray-100 pb-4 mb-4">최종 신청 내역</h3>
+
+                    <div class="space-y-4 mb-6 text-sm">
+                        <div class="bg-gray-50 p-3 rounded-lg">
+                            <p class="font-bold text-[#5031E5] mb-1">인터넷</p>
+                            <p class="text-gray-500 text-xs">기가라이트(500M)+WiFi 6 | 윙즈(일반)</p>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-lg">
+                            <p class="font-bold text-[#5031E5] mb-1">B tv</p>
+                            <p class="text-gray-500 text-xs">B tv All<br>Smart 3</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 mb-6 text-xs text-gray-500 border-b border-gray-100 pb-4">
+                        <div class="flex justify-between"><span class="text-gray-400">약정기간</span> <span
+                                class="text-red-400">3년 약정</span></div>
+                        <div class="flex justify-between"><span class="text-gray-400">WiFi 포함</span> <span
+                                class="text-red-400">포함</span></div>
+                        <div class="flex justify-between"><span class="text-gray-400">이동전화</span> <span
+                                class="text-red-400">SK텔레콤 결합</span></div>
+                    </div>
+
+                    <div class="space-y-3 mb-6 bg-gray-50 p-3 rounded-lg">
+                        <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+                            <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+                                onclick="location.href='../index.html'">
+                                <i class="w-7 h-7" data-lucide="home"></i>
+                            </button>
+                            <h1 class="text-[18px] font-bold text-gray-900">바로가입</h1>
+                            <div class="flex items-center gap-1 cursor-pointer px-2 py-1"
+                                onclick="location.href='../index.html'">
+                                <span class="text-sm font-bold text-gray-900">종료</span>
+                                <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+                            </div>
+                        </div>
+                        <div
+                            class="flex justify-between text-xs items-center bg-purple-50 p-2 rounded border border-purple-100">
+                            <span class="font-bold text-gray-600"><span class="text-[#5031E5] underline">제휴카드 할인</span>
+                                적용시,<br>최대 2만원 추가 할인</span>
+                            <span class="font-bold text-[#5031E5]">월 11,350원</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#f8f9fa] rounded-xl p-4 mb-4">
+                        <div class="flex justify-between items-end">
+                            <span class="text-sm font-bold text-gray-600">예상 납부금액</span>
+                            <div class="text-right">
+                                <span class="text-2xl font-black text-[#5031E5]">월 31,350원</span>
+                                <span class="text-[10px] text-gray-400 block">(부가세 포함)</span>
+                            </div>
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-2">+ SKT 결합 시 휴대폰 요금 추가 할인 최대 <span
+                                class="text-[#5031E5]">24,000원</span> (5회선)</p>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2">
+                        <button
+                            class="col-span-1 border border-[#5031E5] text-[#5031E5] py-3 rounded-lg text-sm font-bold hover:bg-indigo-50 transition-colors"
+                            onclick="location.href='index.html'">
+                            다시 선택
+                        </button>
+                        <button
+                            class="col-span-2 bg-[#5031E5] text-white py-3 rounded-lg text-lg font-bold shadow-lg hover:bg-[#4326c9] transition-all transform active:scale-[0.98]"
+                            onclick="location.href='complete.html'">
+                            신청 완료
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="bg-[#1a1a1a] text-white py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 border-b border-gray-700 pb-8">
+                <div>
+                    <h3 class="font-bold text-lg mb-2">인터넷/B tv/B tv cable 신규 가입</h3>
+                    <p class="text-gray-400 text-sm mb-4">상담센터 운영 : 평일 9시~24시(점심시간 12시~13시), 토요일 9시~15시</p>
+                    <div class="flex gap-4">
+                        <div class="bg-[#2a2a2a] px-6 py-3 rounded-lg flex items-center gap-3">
+                            <i data-lucide="phone" class="text-gray-400"></i>
+                            <div>
+                                <p class="text-xs text-gray-400">B tv(유료)</p>
+                                <p class="font-bold text-lg">1600-0106</p>
+                            </div>
+                        </div>
+                        <div class="bg-[#2a2a2a] px-6 py-3 rounded-lg flex items-center gap-3">
+                            <i data-lucide="phone-call" class="text-gray-400"></i>
+                            <div>
+                                <p class="text-xs text-gray-400">365일 24시간</p>
+                                <p class="font-bold text-lg">바로가입</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-2">일반/고장 문의</h3>
+                    <p class="text-gray-400 text-sm mb-4">상담센터 운영 : 일반문의(평일 9시~18시) / 고장문의(365일 24시간)</p>
+                    <div class="bg-[#2a2a2a] px-6 py-3 rounded-lg inline-flex items-center gap-3">
+                        <i data-lucide="headphones" class="text-gray-400"></i>
+                        <div>
+                            <p class="text-xs text-gray-400">고객센터(무료)</p>
+                            <p class="font-bold text-lg">106</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-gray-500 text-xs">
+                <p class="mb-2">COPYRIGHT © SK BROADBAND CO., LTD. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 주소 찾기 모달 -->
+    <div id="addr-modal" class="fixed inset-0 z-[100] hidden items-center justify-center">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeAddressModal()"></div>
+        <div
+            class="bg-white w-full max-w-[500px] h-[600px] rounded-2xl relative z-10 flex flex-col shadow-2xl animate-fade-in-up">
+            <div class="p-5 border-b border-gray-100 flex justify-between items-center">
+                <h3 class="font-bold text-xl text-gray-900">주소 찾기</h3>
+                <button onclick="closeAddressModal()"><i data-lucide="x" class="text-gray-400"></i></button>
+            </div>
+
+            <div class="p-6 flex-1 overflow-y-auto">
+                <p class="text-sm text-gray-600 mb-4">찾으시는 주소를 입력하신 후 검색을 눌러주세요.</p>
+
+                <div class="mb-6">
+                    <label class="block text-xs font-bold text-gray-500 mb-1">주소</label>
+                    <div class="flex gap-2">
+                        <input type="text" placeholder="예: 판교역로 235" class="form-input" id="modal-addr-input">
+                        <button class="border border-gray-300 px-6 rounded-lg text-sm font-medium hover:bg-gray-50"
+                            onclick="searchAddress()">검색</button>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <p class="text-xs font-bold text-gray-700 mb-2">빠른 검색 Tip</p>
+                    <ul class="text-xs text-gray-500 space-y-1">
+                        <li>도로명+건물번호(예시: 퇴계로24)</li>
+                        <li>읍/면/동+번지 (예시: 남대문로5가 267)</li>
+                        <li>읍면동+건물명 (예시: 남대문로5가 남산소월타워)</li>
+                    </ul>
+                </div>
+
+                <div class="border-t border-gray-100 pt-4">
+                    <p class="text-sm font-bold text-gray-900 mb-2">주소 검색결과 (<span id="result-count">0</span>건)</p>
+                    <div id="search-results" class="hidden space-y-2">
+                        <!-- 검색 결과 예시 -->
+                        <button
+                            class="w-full text-left p-3 hover:bg-gray-50 rounded-lg border border-transparent hover:border-gray-200 transition-all"
+                            onclick="selectAddress('경기 성남시 분당구 판교역로 235', '13494')">
+                            <p class="text-sm font-bold text-gray-900">경기 성남시 분당구 판교역로 235</p>
+                            <p class="text-xs text-gray-400 mt-1">[지번] 경기 성남시 분당구 삼평동 681</p>
+                            <span
+                                class="inline-block mt-2 text-[10px] bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded">13494</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function openAddressModal() {
+            document.getElementById('addr-modal').classList.remove('hidden');
+            document.getElementById('addr-modal').classList.add('flex');
+        }
+
+        function closeAddressModal() {
+            document.getElementById('addr-modal').classList.add('hidden');
+            document.getElementById('addr-modal').classList.remove('flex');
+        }
+
+        function searchAddress() {
+            const input = document.getElementById('modal-addr-input').value;
+            if (input.length > 0) {
+                document.getElementById('result-count').innerText = "1";
+                document.getElementById('search-results').classList.remove('hidden');
+            }
+        }
+
+        function selectAddress(addr, zip) {
+            document.getElementById('main-addr').value = addr;
+            closeAddressModal();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Dev Team Chat</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; }
+        .header { background-color: #4a90e2; color: white; padding: 15px; text-align: center; position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .chat-container { max-width: 800px; margin: 80px auto 20px; padding: 20px; display: flex; flex-direction: column; gap: 15px; }
+        
+        .message-card { display: flex; align-items: flex-start; gap: 10px; animation: fadeIn 0.3s ease; }
+        .message-card.right { flex-direction: row-reverse; }
+        
+        .avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #ddd; background-color: #fff; }
+        
+        .bubble { max-width: 70%; padding: 10px 15px; border-radius: 15px; position: relative; font-size: 14px; line-height: 1.5; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        
+        /* Role Styles */
+        .role-PM { background-color: #e3f2fd; border-bottom-left-radius: 2px; } /* Blue */
+        .role-PL { background-color: #e0f7fa; border-bottom-left-radius: 2px; } /* Cyan */
+        .role-Planner { background-color: #e8f5e9; border-bottom-left-radius: 2px; } /* Green */
+        .role-Designer { background-color: #f3e5f5; border-bottom-left-radius: 2px; } /* Purple */
+        .role-Publisher { background-color: #fffde7; border-bottom-left-radius: 2px; } /* Yellow */
+        .role-Developer { background-color: #ffebee; border-bottom-left-radius: 2px; } /* Red */
+        .role-QA { background-color: #fbe9e7; border-bottom-left-radius: 2px; } /* Orange */
+        
+        .role-System { background-color: #eeeeee; color: #555; text-align: center; width: 100%; border-radius: 5px; font-size: 12px; padding: 5px; }
+        
+        .meta { font-size: 11px; color: #888; margin-top: 5px; display: block; }
+        .name { font-weight: bold; font-size: 12px; margin-bottom: 3px; display: block; color: #444; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Thought Bubble Style */
+        .thought { font-style: italic; color: #666; border: 1px dashed #bbb; background-color: #fff; }
+        
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h2>🤖 AI Dev Team Live Chat</h2>
+    <div style="font-size: 12px;">Real-time Monitoring</div>
+</div>
+
+<div class="chat-container" id="chat-box">
+    <!-- Messages will be injected here -->
+</div>
+
+<script>
+    const chatBox = document.getElementById('chat-box');
+    let lastLogCount = 0;
+    
+    const AVATARS = {
+        "PM": "assets/pm.png",
+        "Project Manager": "assets/pm.png",
+        "PL": "assets/pl.png",
+        "Project Leader": "assets/pl.png",
+        "Planner": "assets/planner.png",
+        "Designer": "assets/designer.png",
+        "Publisher": "assets/publisher.png",
+        "Developer": "assets/developer.png",
+        "QA": "assets/qa.png",
+        "Tester": "assets/qa.png",
+        "System": "assets/system.png",
+        "User": "assets/user.png"
+    };
+
+    const REAL_NAMES = {
+        "PM": "Captain Jack (PM)",
+        "PL": "First Mate (PL)",
+        "Planner": "Alice (Planner)",
+        "Designer": "Diva (Designer)",
+        "Publisher": "Pixel (Publisher)",
+        "Developer": "Neo (Dev)",
+        "QA": "Sniper (QA)",
+        "System": "System"
+    };
+
+    function fetchLogs() {
+        console.log("Fetching logs..."); // Debugging
+        fetch('logs/chat_history.json?t=' + new Date().getTime()) // Prevent caching
+            .then(response => response.json())
+            .then(data => {
+                console.log(`Fetched ${data.length} logs. Last count: ${lastLogCount}`);
+                if (data.length > lastLogCount) {
+                    const newLogs = data.slice(lastLogCount);
+                    newLogs.forEach(entry => appendMessage(entry));
+                    lastLogCount = data.length;
+                    
+                    // Auto scroll to bottom
+                    window.scrollTo(0, document.body.scrollHeight);
+                }
+            })
+            .catch(err => console.error("Error fetching logs:", err));
+    }
+
+    function appendMessage(entry) {
+        let div = document.createElement('div');
+        
+        // System Message
+        if (entry.type === 'system' || entry.role === 'System') {
+            div.className = 'message-card';
+            div.innerHTML = `<div class="bubble role-System">📢 ${entry.content}</div>`;
+        } 
+        // Thought
+        else if (entry.type === 'thought') {
+            const roleClass = `role-${entry.role}`;
+            const avatar = AVATARS[entry.role] || 'assets/default.png';
+            const name = REAL_NAMES[entry.role] || entry.role;
+            
+            div.className = `message-card`; 
+            div.innerHTML = `
+                <img src="${avatar}" class="avatar" onerror="this.src='https://via.placeholder.com/50?text=${entry.role}'">
+                <div>
+                    <span class="name">${name} (Thinking...)</span>
+                    <div class="bubble thought">💭 ${entry.content}</div>
+                    <span class="meta">${entry.timestamp.split('T')[1].split('.')[0]}</span>
+                </div>
+            `;
+        }
+        // Message / Action
+        else {
+            const role = entry.sender || entry.role; // Handle both types
+            const content = entry.content;
+            const roleClass = `role-${role}`;
+            const avatar = AVATARS[role] || 'assets/default.png';
+            const name = REAL_NAMES[role] || role;
+
+            div.className = `message-card`;
+            div.innerHTML = `
+                <img src="${avatar}" class="avatar" onerror="this.src='https://via.placeholder.com/50?text=${role}'">
+                <div>
+                    <span class="name">${name}</span>
+                    <div class="bubble ${roleClass}">${content}</div>
+                    <span class="meta">${entry.timestamp.split('T')[1].split('.')[0]}</span>
+                </div>
+            `;
+        }
+        
+        chatBox.appendChild(div);
+    }
+
+    // Initial load and polling
+    fetchLogs();
+    setInterval(fetchLogs, 1000); // Poll every 1 second
+</script>
+
+</body>
+</html>

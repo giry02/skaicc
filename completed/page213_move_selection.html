@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">가정 내 PC/TV 이동</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="resetMain(true)">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">이동이 필요한 서비스를<br />모두 선택해 주세요.
+                    </h2>
+                </div>
+                <div class="join-step-content flex flex-col space-y-2 mb-4 flex-1">
+                    <!-- 서비스 선택 리스트 (DNA 유지) -->
+                    <button
+                        class="py-4 rounded-lg border text-[17px] font-bold text-center transition-colors service-btn bg-white border-[#ddd] text-[#444] hover:border-[#bbb]"
+                        onclick="toggleService(this, 0)">인터넷/와이파이</button>
+                    <button
+                        class="py-4 rounded-lg border text-[17px] font-bold text-center transition-colors service-btn bg-white border-[#ddd] text-[#444] hover:border-[#bbb]"
+                        onclick="toggleService(this, 1)">B tv</button>
+                    <button
+                        class="py-4 rounded-lg border text-[17px] font-bold text-center transition-colors service-btn bg-white border-[#ddd] text-[#444] hover:border-[#bbb]"
+                        onclick="toggleService(this, 2)">집전화</button>
+                </div>
+                <div class="mt-auto pt-4 pb-6">
+                    <button
+                        class="w-full bg-[#E9ECEF] text-[#ADB5BD] py-4 rounded-xl text-[19px] font-bold transition-all cursor-not-allowed"
+                        disabled="" id="apply-btn" onclick="location.href='page213_move_type.html'">신청하기</button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+    <script src="js/agent_overlay.js"></script>
+    <script src="js/common_ui.js"></script>
+    <script>
+        // 페이지 개별 기능: 서비스 선택 로직
+        const selectedItems = new Set();
+        function toggleService(el, idx) {
+            if (selectedItems.has(idx)) {
+                selectedItems.delete(idx);
+                el.classList.remove('bg-[#eff6ff]', 'border-[#5031E5]', 'text-[#5031E5]');
+                el.classList.add('bg-white', 'border-[#ddd]', 'text-[#444]');
+            } else {
+                selectedItems.add(idx);
+                el.classList.remove('bg-white', 'border-[#ddd]', 'text-[#444]');
+                el.classList.add('bg-[#eff6ff]', 'border-[#5031E5]', 'text-[#5031E5]');
+            }
+
+            const btn = document.getElementById('apply-btn');
+            if (selectedItems.size > 0) {
+                btn.disabled = false;
+                btn.classList.remove('bg-[#E9ECEF]', 'text-[#ADB5BD]', 'cursor-not-allowed');
+                btn.classList.add('bg-[#5031E5]', 'text-white', 'shadow-lg');
+            } else {
+                btn.disabled = true;
+                btn.classList.add('bg-[#E9ECEF]', 'text-[#ADB5BD]', 'cursor-not-allowed');
+                btn.classList.remove('bg-[#5031E5]', 'text-white', 'shadow-lg');
+            }
+        }
+
+        // 공통 UI 초기화
+        initCommonUI("서비스 내용을 선택해 주세요.");
+    </script>
+</body>
+
+</html>

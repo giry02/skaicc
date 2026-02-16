@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+    <style>
+        .keypad-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .key-btn {
+            background: #F8F9FA;
+            border: 1px border-gray-100;
+            border-radius: 16px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            transition: all 0.1s;
+        }
+
+        .key-btn:active {
+            background: #EBF2FF;
+            transform: scale(0.95);
+        }
+
+        .digit-box {
+            width: 50px;
+            height: 60px;
+            background: #F8F9FA;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            color: #5031E5;
+            transition: all 0.2s;
+        }
+
+        .digit-box.active {
+            border-color: #5031E5;
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(80, 49, 229, 0.1);
+        }
+
+        .digit-box.filled {
+            border-color: #5031E5;
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">카드 자동납부</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">카드 번호를<br />입력해 주세요.</h2>
+                </div>
+
+                <!-- 카드 정보 입력 데모 (4자리씩) -->
+                <div class="join-step-content join-section-gap small">
+                    <div class="flex justify-between gap-2 border-none">
+                        <div class="digit-group flex gap-1 items-center">
+                            <div class="digit-box active" id="d-0"></div>
+                            <div class="digit-box" id="d-1"></div>
+                            <div class="digit-box" id="d-2"></div>
+                            <div class="digit-box" id="d-3"></div>
+                        </div>
+                        <div class="flex items-center text-gray-300">-</div>
+                        <div class="digit-group flex gap-1 items-center">
+                            <div class="digit-box" id="d-4"></div>
+                            <div class="digit-box" id="d-5"></div>
+                            <div class="digit-box" id="d-6"></div>
+                            <div class="digit-box" id="d-7"></div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between gap-2 mt-3">
+                        <div class="digit-group flex gap-1 items-center">
+                            <div class="digit-box" id="d-8"></div>
+                            <div class="digit-box" id="d-9"></div>
+                            <div class="digit-box" id="d-10"></div>
+                            <div class="digit-box" id="d-11"></div>
+                        </div>
+                        <div class="flex items-center text-gray-300">-</div>
+                        <div class="digit-group flex gap-1 items-center">
+                            <div class="digit-box" id="d-12"></div>
+                            <div class="digit-box" id="d-13"></div>
+                            <div class="digit-box" id="d-14"></div>
+                            <div class="digit-box" id="d-15"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 보안 키패드 영역 -->
+                <div
+                    class="bg-white rounded-[24px] p-4 border border-gray-100 shadow-[0_-10px_40px_rgba(0,0,0,0.02)] mt-auto mb-2">
+                    <div class="flex items-center gap-2 mb-3 text-[#5031E5]">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i>
+                        <span class="text-[12px] font-bold">보안 키패드가 작동 중입니다</span>
+                    </div>
+                    <div class="keypad-grid" id="keypad">
+                        <!-- JS에서 랜덤 셔플로 생성 가능하지만 데모용 고정 -->
+                        <button class="key-btn" onclick="pressKey('1')">1</button>
+                        <button class="key-btn" onclick="pressKey('2')">2</button>
+                        <button class="key-btn" onclick="pressKey('3')">3</button>
+                        <button class="key-btn" onclick="pressKey('4')">4</button>
+                        <button class="key-btn" onclick="pressKey('5')">5</button>
+                        <button class="key-btn" onclick="pressKey('6')">6</button>
+                        <button class="key-btn" onclick="pressKey('7')">7</button>
+                        <button class="key-btn" onclick="pressKey('8')">8</button>
+                        <button class="key-btn" onclick="pressKey('9')">9</button>
+                        <button class="key-btn text-gray-300" disabled></button>
+                        <button class="key-btn" onclick="pressKey('0')">0</button>
+                        <button class="key-btn text-[#5031E5]" onclick="pressKey('back')"><i
+                                data-lucide="delete"></i></button>
+                    </div>
+                </div>
+
+                <!-- 다음 버튼 -->
+                <div class="mt-auto pt-4 pb-6">
+                    <button
+                        class="w-full bg-gray-200 text-gray-400 py-4 rounded-xl text-[19px] font-bold transition-all"
+                        id="next-btn" disabled onclick="location.href='card_expiry.html'">다음으로</button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "카드 번호를 입력해 주세요.";
+        initCommonUI(pageText);
+
+        let cardNumber = "";
+        const maxDigits = 16;
+
+        function updateUI() {
+            for (let i = 0; i < maxDigits; i++) {
+                const box = document.getElementById(`d-${i}`);
+                if (i < cardNumber.length) {
+                    // 카드번호 보안을 위해 뒤 4자리를 제외하고 마스킹 처리 시뮬레이션
+                    if (i < 12) {
+                        box.innerText = "●";
+                    } else {
+                        box.innerText = cardNumber[i];
+                    }
+                    box.classList.add('filled');
+                    box.classList.remove('active');
+                } else {
+                    box.innerText = "";
+                    box.classList.remove('filled');
+                    box.classList.remove('active');
+                }
+            }
+
+            if (cardNumber.length < maxDigits) {
+                document.getElementById(`d-${cardNumber.length}`).classList.add('active');
+            }
+
+            const nextBtn = document.getElementById('next-btn');
+            if (cardNumber.length === maxDigits) {
+                nextBtn.disabled = false;
+                nextBtn.classList.remove('bg-gray-200', 'text-gray-400');
+                nextBtn.classList.add('bg-[#5031E5]', 'text-white', 'shadow-lg');
+            } else {
+                nextBtn.disabled = true;
+                nextBtn.classList.add('bg-gray-200', 'text-gray-400');
+                nextBtn.classList.remove('bg-[#5031E5]', 'text-white', 'shadow-lg');
+            }
+        }
+
+        function pressKey(key) {
+            if (key === 'back') {
+                cardNumber = cardNumber.slice(0, -1);
+            } else if (cardNumber.length < maxDigits) {
+                cardNumber += key;
+            }
+            updateUI();
+        }
+    </script>
+</body>
+
+</html>

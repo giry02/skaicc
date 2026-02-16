@@ -1,0 +1,28 @@
+# Refactoring Common UI Components
+
+## Objective
+Refactor common HTML elements (Agent Overlay, Modals) into a reusable component (`agent_overlay.js`) to reduce code duplication and improve maintainability.
+
+## Completed Tasks
+- [x] Create `js/agent_overlay.js` containing the HTML string for the agent overlay and modals.
+- [x] Update `js/common_ui.js` to inject `AGENT_OVERLAY_HTML` into `document.body` on initialization.
+- [x] Update `move_service_intro.html` to use `agent_overlay.js`.
+- [x] Update `page217_schedule_confirm.html` to use `agent_overlay.js`.
+- [x] Update `visit_schedule_modal.html` to use `agent_overlay.js`.
+- [x] Update `A01_remote/address_select.html` to use `agent_overlay.js`.
+- [x] Update `A01_remote/applicant_info.html` to use `agent_overlay.js`.
+- [x] Update `A01_remote/model_selection.html` to use `agent_overlay.js`.
+- [x] Update `A01_remote/selection.html` to use `agent_overlay.js`.
+- [x] Update `A01_remote/verification.html` to use `agent_overlay.js`.
+- [x] Verified `index.html` (Landing page, overlay not needed).
+- [x] Verified `A03_combination/intro.html` (Already using a compatible structure).
+
+## Verification
+- Checked that all updated files correctly import `agent_overlay.js` with the correct relative path.
+- Verified that `common_ui.js` has the logic to inject the HTML.
+- Confirmed that duplicate HTML for `swipe-area` and modals has been removed from the target files.
+
+## Notes
+- `components/modals.html` and `components/swipe_area.html` remain as source/reference files.
+- The `agent_overlay.js` now serves as the single source of truth for the Agent Overlay UI.
+- `common_ui.js` handles the injection, making it seamless for any page to include the overlay by just adding the script tag and calling `initCommonUI()`.

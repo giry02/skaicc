@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 상품 선택</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">바로가입</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">
+                        <span class="text-[#5031E5]">인터넷 속도</span>와 <span class="text-[#5031E5]">TV 채널</span>을<br />선택해
+                        주세요.
+                    </h2>
+                </div>
+
+                <div class="join-step-content join-section-gap flex flex-col flex-1">
+
+                    <!-- 인터넷 섹션 -->
+                    <div class="space-y-3">
+                        <h3 class="text-sm font-bold text-gray-800 ml-1">인터넷</h3>
+                        <button
+                            class="w-full py-4 px-5 rounded-xl border text-left transition-all bg-white border-gray-200 text-gray-600 hover:border-gray-300 active:scale-[0.98] flex justify-between items-center"
+                            onclick="selectInternet(this)">
+                            <div>
+                                <span class="text-[17px] font-bold">광랜 (100M)</span>
+                                <span class="block text-[13px] font-medium text-gray-400 mt-0.5">가장 합리적인 요금</span>
+                            </div>
+                            <span class="text-[15px] font-bold text-[#5031E5]">22,000원</span>
+                        </button>
+                        <button
+                            class="w-full py-4 px-5 rounded-xl border text-left transition-all bg-blue-50 border-[#5031E5] text-[#5031E5] shadow-sm active:scale-[0.98] flex justify-between items-center"
+                            onclick="selectInternet(this)">
+                            <div>
+                                <span class="text-[17px] font-bold">기가라이트 (500M)</span>
+                                <span class="block text-[13px] font-medium text-[#5031E5]/80 mt-0.5">가장 많이 선택하는
+                                    상품</span>
+                            </div>
+                            <span class="text-[15px] font-bold">33,000원</span>
+                        </button>
+                        <button
+                            class="w-full py-4 px-5 rounded-xl border text-left transition-all bg-white border-gray-200 text-gray-600 hover:border-gray-300 active:scale-[0.98] flex justify-between items-center"
+                            onclick="selectInternet(this)">
+                            <div>
+                                <span class="text-[17px] font-bold">기가 (1G)</span>
+                                <span class="block text-[13px] font-medium text-gray-400 mt-0.5">끊김 없는 빠른 속도</span>
+                            </div>
+                            <span class="text-[15px] font-bold text-[#5031E5]">38,500원</span>
+                        </button>
+                    </div>
+
+                    <!-- TV 섹션 -->
+                    <div class="space-y-3">
+                        <h3 class="text-sm font-bold text-gray-800 ml-1">B tv</h3>
+                        <button
+                            class="w-full py-4 px-5 rounded-xl border text-left transition-all bg-white border-gray-200 text-gray-600 hover:border-gray-300 active:scale-[0.98] flex justify-between items-center"
+                            onclick="selectTv(this)">
+                            <div>
+                                <span class="text-[17px] font-bold">B tv 이코노미</span>
+                                <span class="block text-[13px] font-medium text-gray-400 mt-0.5">184채널 (스포츠 특화)</span>
+                            </div>
+                            <span class="text-[15px] font-bold text-[#5031E5]">13,200원</span>
+                        </button>
+                        <button
+                            class="w-full py-4 px-5 rounded-xl border text-left transition-all bg-blue-50 border-[#5031E5] text-[#5031E5] shadow-sm active:scale-[0.98] flex justify-between items-center"
+                            onclick="selectTv(this)">
+                            <div>
+                                <span class="text-[17px] font-bold">B tv All</span>
+                                <span class="block text-[13px] font-medium text-[#5031E5]/80 mt-0.5">257채널 (모든
+                                    채널)</span>
+                            </div>
+                            <span class="text-[15px] font-bold">16,500원</span>
+                        </button>
+                    </div>
+
+                    <!-- 요금 합계 -->
+                    <div class="bg-gray-900 rounded-xl p-5 text-white flex justify-between items-end mt-4">
+                        <span class="text-sm text-gray-400">월 예상 납부금액</span>
+                        <span class="text-2xl font-bold">49,500원</span>
+                    </div>
+
+                </div>
+
+                <div class="mt-auto pt-4 pb-6">
+                    <button id="next-btn"
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all"
+                        onclick="location.href='step04_benefit.html'">
+                        다음으로
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-8 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "가장 인기있는 상품 조합을 추천해 드렸어요.";
+        initCommonUI(pageText);
+
+        function selectInternet(el) {
+            // 인터넷 버튼 초기화
+            const parent = el.closest('.space-y-3');
+            parent.querySelectorAll('button').forEach(btn => {
+                btn.className = "w-full py-4 px-5 rounded-xl border text-left transition-all bg-white border-gray-200 text-gray-600 hover:border-gray-300 active:scale-[0.98] flex justify-between items-center";
+                btn.querySelector('span.text-\\[15px\\]').className = "text-[15px] font-bold text-[#5031E5]";
+                btn.querySelector('span.block').className = "block text-[13px] font-medium text-gray-400 mt-0.5";
+            });
+
+            // 선택 스타일
+            el.className = "w-full py-4 px-5 rounded-xl border text-left transition-all bg-blue-50 border-[#5031E5] text-[#5031E5] shadow-sm active:scale-[0.98] flex justify-between items-center";
+            el.querySelector('span.text-\\[15px\\]').className = "text-[15px] font-bold";
+            el.querySelector('span.block').className = "block text-[13px] font-medium text-[#5031E5]/80 mt-0.5";
+        }
+
+        function selectTv(el) {
+            // TV 버튼 초기화
+            const parent = el.closest('.space-y-3');
+            parent.querySelectorAll('button').forEach(btn => {
+                btn.className = "w-full py-4 px-5 rounded-xl border text-left transition-all bg-white border-gray-200 text-gray-600 hover:border-gray-300 active:scale-[0.98] flex justify-between items-center";
+                btn.querySelector('span.text-\\[15px\\]').className = "text-[15px] font-bold text-[#5031E5]";
+                btn.querySelector('span.block').className = "block text-[13px] font-medium text-gray-400 mt-0.5";
+            });
+
+            // 선택 스타일
+            el.className = "w-full py-4 px-5 rounded-xl border text-left transition-all bg-blue-50 border-[#5031E5] text-[#5031E5] shadow-sm active:scale-[0.98] flex justify-between items-center";
+            el.querySelector('span.text-\\[15px\\]').className = "text-[15px] font-bold";
+            el.querySelector('span.block').className = "block text-[13px] font-medium text-[#5031E5]/80 mt-0.5";
+        }
+    </script>
+</body>
+
+</html>
