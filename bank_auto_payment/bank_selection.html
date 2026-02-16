@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+    <style>
+        .bank-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .bank-item {
+            background: #F8F9FA;
+            border: 1px solid #F1F3F5;
+            border-radius: 16px;
+            padding: 12px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .bank-item:active {
+            background: #EBF2FF;
+            border-color: #5031E5;
+            transform: scale(0.95);
+        }
+
+        .bank-item.selected {
+            background: #ffffff;
+            border-color: #5031E5;
+            box-shadow: 0 4px 15px rgba(80, 49, 229, 0.1);
+        }
+
+        .bank-logo {
+            width: 36px;
+            height: 36px;
+            background: #ffffff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: #ffffff;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">은행 자동납부</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">납부하실 은행을<br />선택해 주세요.</h2>
+                </div>
+
+                <div class="join-step-content join-section-gap relative mb-2">
+                    <div
+                        class="flex items-center bg-gray-100 rounded-xl px-4 py-2.5 focus-within:bg-white focus-within:ring-2 focus-within:ring-[#5031E5] transition-all">
+                        <i data-lucide="search" class="w-5 h-5 text-gray-400 mr-2"></i>
+                        <input type="text" placeholder="은행명을 검색해 보세요"
+                            class="bg-transparent outline-none text-[15px] w-full">
+                    </div>
+                </div>
+
+                <div class="bank-grid mb-2">
+                    <div class="bank-item" onclick="selectBank(this, 'KB국민')">
+                        <div class="bank-logo" style="background: #FFCC00;">KB</div>
+                        <span class="text-[13px] font-bold text-gray-700">KB국민</span>
+                    </div>
+                    <div class="bank-item" onclick="selectBank(this, '신한')">
+                        <div class="bank-logo" style="background: #0046FF;">신한</div>
+                        <span class="text-[13px] font-bold text-gray-700">신한</span>
+                    </div>
+                    <div class="bank-item" onclick="selectBank(this, '우우리')">
+                        <div class="bank-logo" style="background: #2D65FF;">우리</div>
+                        <span class="text-[13px] font-bold text-gray-700">우리</span>
+                    </div>
+                    <div class="bank-item" onclick="selectBank(this, '하나')">
+                        <div class="bank-logo" style="background: #008485;">하나</div>
+                        <span class="text-[13px] font-bold text-gray-700">하나</span>
+                    </div>
+                    <div class="bank-item" onclick="selectBank(this, 'NH농협')">
+                        <div class="bank-logo" style="background: #00A651;">NH</div>
+                        <span class="text-[13px] font-bold text-gray-700">NH농협</span>
+                    </div>
+                    <div class="bank-item" onclick="selectBank(this, 'IBK기업')">
+                        <div class="bank-logo" style="background: #0068B7;">IBK</div>
+                        <span class="text-[13px] font-bold text-gray-700">IBK기업</span>
+                    </div>
+                    <div class="bank-item" onclick="selectBank(this, '카카오뱅크')">
+                        <div class="bank-logo" style="background: #FEE500; color: #3C1E1E">카카오</div>
+                        <span class="text-[13px] font-bold text-gray-700">카카오</span>
+                    </div>
+                    <div class="bank-item" onclick="selectBank(this, '토스뱅크')">
+                        <div class="bank-logo" style="background: #0056F3;">토스</div>
+                        <span class="text-[13px] font-bold text-gray-700">토스</span>
+                    </div>
+                    <div class="bank-item" onclick="selectBank(this, 'K뱅크')">
+                        <div class="bank-logo" style="background: #1B2C52;">K</div>
+                        <span class="text-[13px] font-bold text-gray-700">K뱅크</span>
+                    </div>
+                </div>
+
+                <!-- 다음 버튼 -->
+                <div class="mt-auto pt-4 pb-6">
+                    <button
+                        class="w-full bg-gray-200 text-gray-400 py-4 rounded-xl text-[19px] font-bold transition-all"
+                        id="next-btn" disabled onclick="location.href='account_number.html'">선택 완료</button>
+                    <p class="text-center text-[12px] text-gray-400 mt-2 underline">원하시는 은행이 없으신가요?</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "변경하고자 하는 은행을 선택해 주세요.";
+        initCommonUI(pageText);
+
+        function selectBank(el, name) {
+            document.querySelectorAll('.bank-item').forEach(item => item.classList.remove('selected'));
+            el.classList.add('selected');
+
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.disabled = false;
+            nextBtn.classList.remove('bg-gray-200', 'text-gray-400');
+            nextBtn.classList.add('bg-[#5031E5]', 'text-white', 'shadow-lg');
+            nextBtn.innerText = `${name} 선택 완료`;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">유무선 결합 신청</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">신청을 위해 약정에<br />동의해 주세요.</h2>
+                </div>
+
+                <div class="join-step-content join-section-gap small flex-1">
+                    <!-- 전체 동의 -->
+                    <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100 cursor-pointer active:scale-[0.99] transition-all"
+                        onclick="toggleAll()">
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 rounded-md border-2 border-gray-300 flex items-center justify-center transition-colors"
+                                id="all-check">
+                                <i data-lucide="check" class="w-4 h-4 text-white hidden"></i>
+                            </div>
+                            <span class="text-[16px] font-black text-gray-900">필수 약관에 모두 동의합니다.</span>
+                        </div>
+                    </div>
+
+                    <!-- 개별 항목 -->
+                    <div class="px-2 space-y-4 pt-1">
+                        <div class="flex items-center justify-between group cursor-pointer" onclick="openTermModal(1)">
+                            <div class="flex items-center gap-3">
+                                <div class="w-5 h-5 rounded border border-gray-300 flex items-center justify-center transition-colors item-check"
+                                    data-id="1" onclick="event.stopPropagation(); toggleItem(1)">
+                                    <i data-lucide="check" class="w-3 h-3 text-white hidden"></i>
+                                </div>
+                                <span
+                                    class="text-[14px] font-medium text-gray-600 underline underline-offset-4 decoration-gray-200">결합
+                                    서비스 이용약관 (필수)</span>
+                            </div>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300 group-hover:text-gray-400"></i>
+                        </div>
+
+                        <div class="flex items-center justify-between group cursor-pointer" onclick="openTermModal(2)">
+                            <div class="flex items-center gap-3">
+                                <div class="w-5 h-5 rounded border border-gray-300 flex items-center justify-center transition-colors item-check"
+                                    data-id="2" onclick="event.stopPropagation(); toggleItem(2)">
+                                    <i data-lucide="check" class="w-3 h-3 text-white hidden"></i>
+                                </div>
+                                <span
+                                    class="text-[14px] font-medium text-gray-600 underline underline-offset-4 decoration-gray-200">개인정보
+                                    수집 및 이용 동의 (필수)</span>
+                            </div>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300 group-hover:text-gray-400"></i>
+                        </div>
+
+                        <div class="flex items-center justify-between group cursor-pointer" onclick="openTermModal(3)">
+                            <div class="flex items-center gap-3">
+                                <div class="w-5 h-5 rounded border border-gray-300 flex items-center justify-center transition-colors item-check"
+                                    data-id="3" onclick="event.stopPropagation(); toggleItem(3)">
+                                    <i data-lucide="check" class="w-3 h-3 text-white hidden"></i>
+                                </div>
+                                <span
+                                    class="text-[14px] font-medium text-gray-600 underline underline-offset-4 decoration-gray-200">개인정보
+                                    제3자 제공 동의 (필수)</span>
+                            </div>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300 group-hover:text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 신청 버튼 -->
+                <div class="mt-auto pt-4 pb-6">
+                    <button
+                        class="w-full bg-gray-200 text-white py-4 rounded-xl text-[19px] font-bold transition-all cursor-not-allowed"
+                        id="apply-btn" disabled onclick="location.href='complete.html'">신청 완료하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        // 페이지 개별 설정 및 UI 초기화
+        const pageText = "약관 내용을 확인하고 동의해 주세요.";
+        initCommonUI(pageText);
+
+        const checks = { 1: false, 2: false, 3: false };
+        let activeTermId = null;
+
+        const termDetails = {
+            1: {
+                title: "결합 서비스 이용약관",
+                content: "[결합 서비스 이용 안내]\n\n1. 본 결합 상품은 SK브로드밴드 인터넷과 SK텔레콤 이동전화를 결합하여 요금 할인을 제공하는 서비스입니다.\n2. 결합 회선 수 및 가입 요금제에 따라 인터넷 및 휴대폰 요금 할인 금액이 달라질 수 있습니다.\n3. 결합 유지 기간 중 회선 명의 변경, 해지, 요금제 하향 시 할인 금액이 변동되거나 결합이 해지될 수 있습니다."
+            },
+            2: {
+                title: "개인정보 수집 및 이용 동의",
+                content: "[개인정보 수집 및 이용 고지]\n\n1. 수집항목: 성명, 생년월일, 전화번호, 가입정보\n2. 이용목적: 결합 상품 가입 가능 여부 조회 및 서비스 제공\n3. 보유 및 이용기간: 서비스 가입 기간 유지 및 해지 후 6개월까지 (법령에 별도 규정이 있는 경우 해당 규정 준수)"
+            },
+            3: {
+                title: "개인정보 제3자 제공 동의",
+                content: "[개인정보 제3자 제공 안내]\n\n1. 제공 받는 자: SK텔레콤(주), SK브로드밴드(주)\n2. 제공 목적: 유무선 결합 서비스 제공 및 요금 할인 적용 확인\n3. 제공 항목: 서비스 가입자 식별 정보 및 요금제 정보\n4. 보유 및 이용기간: 제공 목적 달성 시까지"
+            }
+        };
+
+        function toggleItem(id) {
+            checks[id] = !checks[id];
+            updateUI();
+        }
+
+        function toggleAll() {
+            const allChecked = Object.values(checks).every(v => v);
+            for (let key in checks) checks[key] = !allChecked;
+            updateUI();
+        }
+
+        function openTermModal(id) {
+            activeTermId = id;
+            const detail = termDetails[id];
+            document.getElementById('term-title').innerText = detail.title;
+            document.getElementById('term-content').innerText = detail.content;
+            document.getElementById('term-detail-modal').classList.remove('hidden');
+        }
+
+        function closeTermModal() {
+            document.getElementById('term-detail-modal').classList.add('hidden');
+            activeTermId = null;
+        }
+
+        function agreeAndClose() {
+            if (activeTermId) {
+                checks[activeTermId] = true;
+                updateUI();
+            }
+            closeTermModal();
+        }
+
+        function updateUI() {
+            const allChecked = Object.values(checks).every(v => v);
+            const allCheckDiv = document.getElementById('all-check');
+            // Lucide 실행 후 svg로 변환되므로 [data-lucide] 또는 첫 번째 자식으로 접근
+            const allCheckIcon = allCheckDiv.querySelector('i, svg');
+
+            if (allChecked) {
+                allCheckDiv.classList.remove('border-gray-300');
+                allCheckDiv.classList.add('bg-[#5031E5]', 'border-[#5031E5]');
+                if (allCheckIcon) allCheckIcon.classList.remove('hidden');
+            } else {
+                allCheckDiv.classList.remove('bg-[#5031E5]', 'border-[#5031E5]');
+                allCheckDiv.classList.add('border-gray-300');
+                if (allCheckIcon) allCheckIcon.classList.add('hidden');
+            }
+
+            document.querySelectorAll('.item-check').forEach(el => {
+                const id = el.getAttribute('data-id');
+                const icon = el.querySelector('i, svg');
+                if (checks[id]) {
+                    el.classList.remove('border-gray-300');
+                    el.classList.add('bg-[#5031E5]', 'border-[#5031E5]');
+                    if (icon) icon.classList.remove('hidden');
+                } else {
+                    el.classList.remove('bg-[#5031E5]', 'border-[#5031E5]');
+                    el.classList.add('border-gray-300');
+                    if (icon) icon.classList.add('hidden');
+                }
+            });
+
+            const btn = document.getElementById('apply-btn');
+            if (allChecked) {
+                btn.disabled = false;
+                btn.classList.remove('bg-gray-200', 'cursor-not-allowed', 'opacity-50');
+                btn.classList.add('bg-[#5031E5]', 'shadow-lg');
+            } else {
+                btn.disabled = true;
+                btn.classList.remove('bg-[#5031E5]', 'shadow-lg');
+                btn.classList.add('bg-gray-200', 'cursor-not-allowed', 'opacity-50');
+            }
+        }
+    </script>
+</body>
+
+</html>

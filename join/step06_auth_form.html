@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 정보입력</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+    <style>
+        .form-input {
+            width: 100%;
+            background-color: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 15px;
+            color: #111827;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus {
+            background-color: #fff;
+            border-color: #5031E5;
+            box-shadow: 0 0 0 3px rgba(80, 49, 229, 0.1);
+        }
+    </style>
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">바로가입</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">
+                        <span class="text-[#5031E5]">본인 정보</span>를<br />정확히 입력해 주세요.
+                    </h2>
+                </div>
+
+                <div class="join-step-content join-section-gap small">
+                    <div>
+                        <label class="block text-[13px] font-bold text-gray-500 mb-1 ml-1">이름</label>
+                        <input type="text" class="form-input font-bold" value="정명길" readonly>
+                    </div>
+
+                    <div>
+                        <label class="block text-[13px] font-bold text-gray-500 mb-1 ml-1">주민등록번호</label>
+                        <div class="flex items-center gap-2">
+                            <input type="text" class="form-input font-bold tracking-widest text-center" value="790222"
+                                readonly maxlength="6">
+                            <span class="text-gray-300">-</span>
+                            <div class="flex-1 relative">
+                                <input type="password" class="form-input font-bold tracking-widest text-center"
+                                    value="1234567" readonly maxlength="7">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[13px] font-bold text-gray-500 mb-1 ml-1">휴대폰 번호</label>
+                        <input type="tel" class="form-input font-bold text-center tracking-widest" value="010-7917-5431"
+                            readonly>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <label class="flex items-center gap-3 p-3.5 bg-gray-50 rounded-xl cursor-not-allowed">
+                        <div class="w-5 h-5 rounded-full bg-[#5031E5] flex items-center justify-center shrink-0">
+                            <i data-lucide="check" class="w-3.5 h-3.5 text-white"></i>
+                        </div>
+                        <span class="text-[14px] font-bold text-gray-900">개인정보 수집 및 이용 동의</span>
+                    </label>
+                </div>
+
+                <div class="mt-auto pt-4 pb-6">
+                    <button id="next-btn"
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all"
+                        onclick="simulateAuth()">
+                        인증 요청하기
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-8 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <!-- 로딩 모달 -->
+    <div id="loading-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 backdrop-blur-sm">
+        <div class="bg-white rounded-[24px] p-8 text-center shadow-2xl animate-bounce-in">
+            <div
+                class="w-16 h-16 border-4 border-[#5031E5] border-t-transparent rounded-full animate-spin mx-auto mb-4">
+            </div>
+            <p class="text-lg font-bold text-gray-900">인증 진행 중...</p>
+            <p class="text-sm text-gray-500 mt-2">잠시만 기다려 주세요.</p>
+        </div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "입력된 정보가 맞는지 확인해 주세요.";
+        initCommonUI(pageText);
+
+        function simulateAuth() {
+            document.getElementById('loading-modal').classList.remove('hidden');
+            document.getElementById('loading-modal').classList.add('flex');
+
+            setTimeout(() => {
+                location.href = 'step07_info.html';
+            }, 2000);
+        }
+    </script>
+</body>
+
+</html>

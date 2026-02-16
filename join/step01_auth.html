@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 본인 인증</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">바로가입</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">
+                        <span class="text-[#5031E5]">본인 확인</span>을 위해<br />정보를 입력해 주세요.
+                    </h2>
+                </div>
+
+                <div class="join-step-content join-section-gap space-y-3">
+                    <button
+                        class="w-full flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
+                        onclick="startLoading()">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
+                                <span class="text-red-600 font-black text-xs">PASS</span>
+                            </div>
+                            <div class="text-left">
+                                <p class="text-[17px] font-bold text-gray-900">PASS / 문자(SMS) 인증</p>
+                                <p class="text-[13px] text-gray-400 font-medium">휴대폰 본인 확인</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right"
+                            class="w-5 h-5 text-gray-300 group-hover:text-[#5031E5] transition-colors"></i>
+                    </button>
+
+                    <button
+                        class="w-full flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
+                        onclick="startLoading()">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600">
+                                <i data-lucide="credit-card" class="w-6 h-6"></i>
+                            </div>
+                            <div class="text-left">
+                                <p class="text-[17px] font-bold text-gray-900">신용카드 인증</p>
+                                <p class="text-[13px] text-gray-400 font-medium">본인 명의 카드 확인</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right"
+                            class="w-5 h-5 text-gray-300 group-hover:text-[#5031E5] transition-colors"></i>
+                    </button>
+
+                    <button
+                        class="w-full flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
+                        onclick="startLoading()">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 bg-yellow-50 rounded-2xl flex items-center justify-center text-yellow-600">
+                                <i data-lucide="message-circle" class="w-6 h-6"></i>
+                            </div>
+                            <div class="text-left">
+                                <p class="text-[17px] font-bold text-gray-900">카카오페이 인증</p>
+                                <p class="text-[13px] text-gray-400 font-medium">카카오톡 간편 인증</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right"
+                            class="w-5 h-5 text-gray-300 group-hover:text-[#5031E5] transition-colors"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-80 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <!-- 로딩 모달 -->
+    <div class="hidden fixed inset-0 z-[100] flex items-center justify-center px-6" id="loading-modal">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div class="relative bg-white rounded-[32px] w-full max-w-sm overflow-hidden text-center p-10 shadow-2xl">
+            <div class="mb-6 flex justify-center">
+                <div class="flex items-center gap-1.5 h-8">
+                    <div class="w-2.5 bg-[#5031E5] rounded-full animate-bounce" style="animation-delay: 0s"></div>
+                    <div class="w-2.5 bg-[#5031E5] rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                    <div class="w-2.5 bg-[#5031E5] rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                </div>
+            </div>
+            <h2 class="text-[22px] font-black text-gray-900 mb-2 leading-tight">본인 확인 중</h2>
+            <p class="text-[15px] text-gray-400 font-medium">잠시만 기다려 주세요.</p>
+        </div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "편하신 인증 수단을 선택해 주세요.";
+        initCommonUI(pageText);
+
+        function startLoading() {
+            document.getElementById('loading-modal').classList.remove('hidden');
+            setTimeout(() => {
+                location.href = 'step02_terms.html';
+            }, 1500);
+        }
+    </script>
+</body>
+
+</html>

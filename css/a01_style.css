@@ -1,0 +1,60 @@
+/* A01 리모컨 구매 시나리오 전용 스타일 */
+.model-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.model-card {
+    background: white;
+    border: 1px solid #f1f1f1;
+    border-radius: 20px;
+    padding: 16px;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.model-card.selected {
+    border-color: #5031E5;
+    background-color: #f8f7ff;
+    box-shadow: 0 4px 12px rgba(80, 49, 229, 0.1);
+}
+
+.model-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin: 0 auto 12px;
+}
+
+/* 관계 선택 버튼 */
+.relation-btn {
+    width: 100%;
+    padding: 16px;
+    border-radius: 16px;
+    border: 1.5px solid #eee;
+    background: white;
+    font-weight: 500;
+    text-align: left;
+    margin-bottom: 8px;
+    transition: all 0.2s;
+}
+
+.relation-btn.active {
+    border-color: #5031E5;
+    background: #f8f7ff;
+    color: #5031E5;
+    font-weight: 700;
+}
+
+/* 주소 선택 항목 */
+.address-item {
+    padding: 16px;
+    border-bottom: 1px solid #f5f5f5;
+    cursor: pointer;
+}
+
+.address-item:active {
+    background-color: #fafafa;
+}
