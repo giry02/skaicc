@@ -112,7 +112,7 @@ function initCommonUI(textToType) {
         if (floatingBanner) floatingBanner.classList.add('invisible', 'pointer-events-none', 'opacity-0');
         if (robotContainer) robotContainer.classList.add('opacity-0');
         if (swipeGuide) swipeGuide.style.display = 'none';
-        if (spacer) spacer.style.height = '600px';
+        if (spacer) spacer.style.height = '120px';
 
         const target = document.getElementById('target-anchor');
         if (scrollContainer && target) {

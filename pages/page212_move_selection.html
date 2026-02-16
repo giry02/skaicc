@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 고정 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">가정 내 PC/TV 이동</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="resetMain(true)">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+    <!-- 메인 스크롤 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+        <!-- 바운스 애니메이션 적용 컨테이너 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white">
+                <div class="join-step-header" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight"><span
+                            class="text-black font-bold">이동 필요 서비스를</span><br />선택하고 신청해 주세요.</h2>
+                </div>
+                <div class="join-step-content grid grid-cols-2 gap-3 mb-4">
+                    <div class="service-option relative flex flex-col items-center justify-center p-5 rounded-2xl border border-gray-100 bg-gray-50 cursor-pointer transition-all active:scale-95"
+                        onclick="selectService(this, 'internet_tv')">
+                        <div
+                            class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-2xl mb-3 shadow-sm">
+                            📺</div><span class="text-[15px] font-bold text-gray-800">인터넷 / B tv</span>
+                        <div class="absolute top-3 right-3 text-[#5031E5] opacity-0 check-mark"><svg fill="none"
+                                height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="3" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg></div>
+                    </div>
+                    <div class="service-option relative flex flex-col items-center justify-center p-5 rounded-2xl border border-gray-100 bg-gray-50 cursor-pointer transition-all active:scale-95"
+                        onclick="selectService(this, 'phone')">
+                        <div
+                            class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-2xl mb-3 shadow-sm">
+                            📞</div><span class="text-[15px] font-bold text-gray-800">전화</span>
+                        <div class="absolute top-3 right-3 text-[#5031E5] opacity-0 check-mark"><svg fill="none"
+                                height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="3" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg></div>
+                    </div>
+                </div>
+                <div class="mt-auto pt-4 pb-6"><button
+                        class="w-full bg-[#E9ECEF] text-[#ADB5BD] py-4 rounded-xl text-[19px] font-bold transition-all cursor-not-allowed"
+                        disabled="disabled" id="apply-btn" onclick="goToSchedule()">신청하기</button></div>
+            </div>
+        </div>
+        <!-- 하단 스페이스 (스크롤 여유 공간) -->
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+    <!-- 하단 영역 -->
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "이동할 서비스를 선택해 주세요.";
+        initCommonUI(pageText);
+
+        function selectService(el, id) {
+            // 모든 옵션 초기화
+            document.querySelectorAll('.service-option').forEach(opt => {
+                opt.classList.remove('border-[#5031E5]', 'bg-[#eff6ff]', 'ring-2', 'ring-[#5031E5]/20');
+                opt.classList.add('border-gray-100', 'bg-gray-50');
+                opt.querySelector('.check-mark').classList.add('opacity-0');
+            });
+
+            // 선택 항목 강조 (브랜드 컬러 적용)
+            el.classList.remove('border-gray-100', 'bg-gray-50');
+            el.classList.add('border-[#5031E5]', 'bg-[#eff6ff]', 'ring-2', 'ring-[#5031E5]/20');
+            el.querySelector('.check-mark').classList.remove('opacity-0');
+
+            selectedId = id;
+
+            // 버튼 활성화 (브랜드 컬러 #5031E5 적용)
+            const btn = document.getElementById('apply-btn');
+            btn.disabled = false;
+            btn.classList.remove('bg-[#E9ECEF]', 'text-[#ADB5BD]', 'cursor-not-allowed');
+            btn.classList.add('bg-[#5031E5]', 'text-white', 'shadow-lg');
+        }
+
+        let selectedId = null;
+        function goToSchedule() {
+            if (selectedId) {
+                location.href = 'visit_schedule_modal.html';
+            }
+        }
+    </script>
+</body>
+
+</html>

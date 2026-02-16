@@ -17,10 +17,10 @@
     <!-- 상단 헤더 -->
     <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
         <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
-            onclick="history.back()">
-            <i class="w-7 h-7" data-lucide="chevron-left"></i>
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
         </button>
-        <h1 class="text-[18px] font-bold text-gray-900">리모컨 선택</h1>
+        <h1 class="text-[18px] font-bold text-gray-900">리모컨 구매</h1>
         <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
             <span class="text-sm font-bold text-gray-900">종료</span>
             <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
@@ -43,73 +43,67 @@
                     <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">구매하실 리모컨을<br />선택해 주세요.</h2>
                 </div>
 
-                <div class="join-step-content grid grid-cols-2 gap-4 mb-6">
+                <div class="join-step-content grid grid-cols-2 gap-3 mb-4">
                     <button
-                        class="flex flex-col items-center bg-white border-2 border-[#5031E5] rounded-[24px] p-5 shadow-sm transition-all text-center relative overflow-hidden group">
+                        class="flex flex-col items-center bg-white border-2 border-[#5031E5] rounded-[20px] p-4 shadow-sm transition-all text-center relative overflow-hidden group">
                         <div class="absolute top-3 right-3">
                             <i data-lucide="check-circle-2" class="w-5 h-5 text-[#5031E5]"></i>
                         </div>
                         <div
-                            class="w-20 h-20 bg-gray-50 rounded-2xl mb-4 flex items-center justify-center p-2 group-hover:scale-110 transition-transform">
-                            <img src="https://img.icons8.com/isometric/100/remote-control.png" alt="Remote"
-                                class="w-full h-full object-contain">
+                            class="w-14 h-14 bg-indigo-50 rounded-2xl mb-3 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="tv-2" class="w-7 h-7 text-[#5031E5]"></i>
                         </div>
                         <p class="text-[15px] font-bold text-gray-900">스마트 리모컨</p>
-                        <p class="text-[14px] font-extrabold text-[#5031E5] mt-1">15,400원</p>
+                        <p class="text-[13px] font-extrabold text-[#5031E5] mt-0.5">15,400원</p>
                     </button>
 
                     <button
-                        class="flex flex-col items-center bg-white border border-gray-100 rounded-[24px] p-5 shadow-sm active:scale-95 transition-all text-center opacity-60 hover:opacity-100 hover:border-[#5031E5]">
-                        <div class="w-20 h-20 bg-gray-50 rounded-2xl mb-4 flex items-center justify-center p-2">
-                            <img src="https://img.icons8.com/isometric/100/tv-remote.png" alt="Remote"
-                                class="w-full h-full object-contain">
+                        class="flex flex-col items-center bg-white border border-gray-100 rounded-[20px] p-4 shadow-sm active:scale-95 transition-all text-center opacity-60 hover:opacity-100 hover:border-[#5031E5]">
+                        <div class="w-14 h-14 bg-gray-50 rounded-2xl mb-3 flex items-center justify-center">
+                            <i data-lucide="monitor" class="w-7 h-7 text-gray-400"></i>
                         </div>
                         <p class="text-[15px] font-bold text-gray-900">일반 리모컨</p>
-                        <p class="text-[14px] font-bold text-gray-500 mt-1">11,000원</p>
+                        <p class="text-[13px] font-bold text-gray-500 mt-0.5">11,000원</p>
                     </button>
 
                     <button
-                        class="flex flex-col items-center bg-white border border-gray-100 rounded-[24px] p-5 shadow-sm active:scale-95 transition-all text-center opacity-60 hover:opacity-100 hover:border-[#5031E5]">
-                        <div class="w-20 h-20 bg-gray-50 rounded-2xl mb-4 flex items-center justify-center p-2">
-                            <img src="https://img.icons8.com/isometric/100/joystick.png" alt="Remote"
-                                class="w-full h-full object-contain">
+                        class="flex flex-col items-center bg-white border border-gray-100 rounded-[20px] p-4 shadow-sm active:scale-95 transition-all text-center opacity-60 hover:opacity-100 hover:border-[#5031E5]">
+                        <div class="w-14 h-14 bg-gray-50 rounded-2xl mb-3 flex items-center justify-center">
+                            <i data-lucide="bot" class="w-7 h-7 text-gray-400"></i>
                         </div>
                         <p class="text-[15px] font-bold text-gray-900">AI 2/3 리모컨</p>
-                        <p class="text-[14px] font-bold text-gray-500 mt-1">15,400원</p>
+                        <p class="text-[13px] font-bold text-gray-500 mt-0.5">15,400원</p>
                     </button>
 
                     <button
-                        class="flex flex-col items-center bg-white border border-gray-100 rounded-[24px] p-5 shadow-sm active:scale-95 transition-all text-center opacity-60 hover:opacity-100 hover:border-[#5031E5]">
-                        <div class="w-20 h-20 bg-gray-50 rounded-2xl mb-4 flex items-center justify-center p-2">
-                            <img src="https://img.icons8.com/isometric/100/game-controller.png" alt="Remote"
-                                class="w-full h-full object-contain">
+                        class="flex flex-col items-center bg-white border border-gray-100 rounded-[20px] p-4 shadow-sm active:scale-95 transition-all text-center opacity-60 hover:opacity-100 hover:border-[#5031E5]">
+                        <div class="w-14 h-14 bg-gray-50 rounded-2xl mb-3 flex items-center justify-center">
+                            <i data-lucide="gamepad-2" class="w-7 h-7 text-gray-400"></i>
                         </div>
                         <p class="text-[15px] font-bold text-gray-900">UHD 리모컨</p>
-                        <p class="text-[14px] font-bold text-gray-500 mt-1">13,200원</p>
+                        <p class="text-[13px] font-bold text-gray-500 mt-0.5">13,200원</p>
                     </button>
                 </div>
 
-                <div class="bg-indigo-50/50 rounded-2xl p-4 border border-indigo-100/30 mb-8">
-                    <p class="text-[12px] text-indigo-600/80 leading-relaxed font-medium">
+                <div class="mt-auto pt-2 pb-6">
+                    <button
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all mb-4"
+                        onclick="location.href='verification.html'">구매하기</button>
+
+                    <p class="text-[13px] text-gray-400 text-center leading-relaxed font-medium">
                         ※ 리모컨 구매 비용은 다음 달 이용 요금에 합산되어 청구됩니다.
                     </p>
                 </div>
-
-                <div class="mt-auto pt-4 pb-6">
-                    <button
-                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all"
-                        onclick="location.href='verification.html'">구매하기</button>
-                </div>
             </div>
         </div>
-        <div class="w-full h-80 shrink-0" id="bottom-spacer"></div>
+        <div class="w-full h-[120px] shrink-0" id="bottom-spacer"></div>
     </div>
 
     <script src="../js/agent_overlay.js"></script>
 
     <script src="../js/common_ui.js"></script>
     <script>
-        const pageText = "가장 많이 사용하시는 스마트 리모컨을 추천해 드려요. 다른 종류가 필요하시면 선택해 주세요.";
+        const pageText = "가장 많이 사용하는 스마트 리모컨이에요.";
         initCommonUI(pageText);
     </script>
 </body>

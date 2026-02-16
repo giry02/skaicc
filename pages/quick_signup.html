@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+    <style>
+        /* Zero Scrolling Optimization */
+        #main-scroll-container {
+            height: calc(100vh - 3.5rem - 100px);
+        }
+    </style>
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col font-['Noto Sans KR']">
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">바로가입</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="resetMain(true)">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">필요할때 언제든 바로가입 하는<br />상품을
+                        소개해드려요.</h2>
+                </div>
+
+                <div class="join-step-content join-section-gap small mb-4">
+                    <div class="bg-white border-[1.5px] border-gray-100 rounded-[20px] p-3.5 shadow-sm active:scale-[0.99] transition-all cursor-pointer"
+                        onclick="toggleAccordion('promo-content', 'promo-chevron', true)">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="category-pill">프로모션 Pick</div>
+                                <h3 class="text-[14px] font-black text-gray-900 leading-tight">Giga찬 속도, OTT도 B tv로
+                                    <span class="text-[#5031E5]">원-큐 Play!</span>
+                                </h3>
+                            </div>
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-gray-400 transition-transform duration-300" id="promo-chevron"></i>
+                        </div>
+                        <div class="accordion-content" id="promo-content">
+                            <div class="flex flex-col items-center bg-gray-50 rounded-xl p-3 border border-gray-100">
+                                <div class="flex items-center gap-4">
+                                    <div class="text-center"><i data-lucide="wifi"
+                                            class="w-5 h-5 text-[#5031E5] mx-auto"></i>
+                                        <p class="text-[9px] font-bold text-gray-500 leading-none">1G 인터넷</p>
+                                    </div>
+                                    <i data-lucide="plus" class="w-3 h-3 text-gray-300"></i>
+                                    <div class="text-center"><i data-lucide="tv"
+                                            class="w-5 h-5 text-[#5031E5] mx-auto"></i>
+                                        <p class="text-[9px] font-bold text-gray-500 leading-none">B tv All+</p>
+                                    </div>
+                                </div>
+                                <div class="mt-1 text-center font-black">
+                                    <span class="text-gray-400 text-[10px] line-through mr-2">6.6만</span>
+                                    <span class="text-[16px] text-red-500">월 37,400원</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative bg-white border-[1.5px] border-gray-100 rounded-[20px] p-3.5 shadow-sm active:scale-[0.99] transition-all cursor-pointer"
+                        onclick="toggleAccordion('discount-content', 'discount-chevron', true)">
+                        <div class="discount-badge"><span>최대</span><span>45%</span></div>
+                        <div class="flex items-center justify-between">
+                            <div class="pl-2">
+                                <div class="category-pill">할인 Pick</div>
+                                <h3 class="text-[14px] font-black text-gray-900 leading-tight">더 큰 할인, <span
+                                        class="text-blue-600">최대 만족</span></h3>
+                            </div>
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-gray-400 transition-transform duration-300"
+                                id="discount-chevron"></i>
+                        </div>
+                        <div class="accordion-content" id="discount-content">
+                            <div class="flex flex-col items-center bg-gray-50 rounded-xl p-3 border border-gray-100">
+                                <div class="flex items-center gap-4 mb-1Scale"><i data-lucide="zap"
+                                        class="w-5 h-5 text-blue-600"></i><i data-lucide="monitor"
+                                        class="w-5 h-5 text-blue-600"></i></div>
+                                <div class="font-black"><span
+                                        class="text-gray-400 text-[10px] line-through mr-2">5.5만</span><span
+                                        class="text-[16px] text-red-500">월 29,700원</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border-[1.5px] border-gray-100 rounded-[20px] p-3.5 shadow-sm active:scale-[0.99] transition-all cursor-pointer"
+                        onclick="toggleAccordion('saving-content', 'saving-chevron', true)">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="category-pill">절약 Pick</div>
+                                <h3 class="text-[14px] font-black text-gray-900 leading-tight">필요한 구성만 쏙, <span
+                                        class="text-green-600">통신비 절약</span></h3>
+                            </div>
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-gray-400 transition-transform duration-300" id="saving-chevron"></i>
+                        </div>
+                        <div class="accordion-content" id="saving-content">
+                            <div class="flex flex-col items-center bg-gray-50 rounded-xl p-3 border border-gray-100">
+                                <div class="flex items-center gap-4 mb-1Scale"><i data-lucide="activity"
+                                        class="w-5 h-5 text-green-600"></i><i data-lucide="smartphone"
+                                        class="w-5 h-5 text-green-600"></i></div>
+                                <div class="font-black"><span
+                                        class="text-gray-400 text-[10px] line-through mr-2">3.5만</span><span
+                                        class="text-[16px] text-red-500">월 26,950원</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-50 border-[1.5px] border-indigo-100 rounded-[20px] p-3.5 shadow-sm active:scale-[0.99] transition-all cursor-pointer group"
+                        onclick="location.href='../index.html'">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm"><i
+                                        data-lucide="settings" class="w-4 h-4 text-[#5031E5]"></i></div>
+                                <h3 class="text-[15px] font-black text-[#5031E5]">나만의 설계</h3>
+                            </div>
+                            <i data-lucide="arrow-right"
+                                class="w-5 h-5 text-[#5031E5] group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <!-- 하단 영역 및 모달 (Strictly Synchronized with move_service_intro.html) -->
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "나에 취향에 맞춘 혜택 콕, 상품 PICK";
+        initCommonUI(pageText);
+    </script>
+</body>
+
+</html>

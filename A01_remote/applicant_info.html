@@ -17,10 +17,10 @@
     <!-- 상단 헤더 -->
     <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
         <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
-            onclick="history.back()">
-            <i class="w-7 h-7" data-lucide="chevron-left"></i>
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
         </button>
-        <h1 class="text-[18px] font-bold text-gray-900">신청인 정보</h1>
+        <h1 class="text-[18px] font-bold text-gray-900">리모컨 구매</h1>
         <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
             <span class="text-sm font-bold text-gray-900">종료</span>
             <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
@@ -46,8 +46,7 @@
 
                 <div class="join-step-content join-section-gap">
                     <div class="relative group">
-                        <label
-                            class="absolute left-5 top-2.5 text-[11px] font-bold text-[#5031E5] opacity-0 group-focus-within:opacity-100 transition-opacity">성함</label>
+
                         <input type="text" id="name-input"
                             class="w-full bg-gray-50 border border-gray-100 rounded-[20px] px-6 py-5 text-[18px] font-bold text-gray-900 placeholder:text-gray-300 outline-none focus:bg-white focus:border-[#5031E5] focus:ring-4 focus:ring-indigo-50 transition-all"
                             placeholder="성함을 입력해 주세요" oninput="toggleBtn()" />
@@ -80,7 +79,7 @@
         const relation = urlParams.get('relation') || '가족';
         document.getElementById('relation-text').innerText = relation;
 
-        const pageText = "신청하시는 분이 " + relation + "이시군요. 본인 확인을 위해 성함을 입력해 주세요.";
+        const pageText = "본인 확인을 위해 성함을 입력해 주세요.";
         initCommonUI(pageText);
 
         function toggleBtn() {

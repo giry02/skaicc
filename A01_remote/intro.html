@@ -20,7 +20,7 @@
             onclick="location.href='../index.html'">
             <i class="w-7 h-7" data-lucide="home"></i>
         </button>
-        <h1 class="text-[18px] font-bold text-gray-900">리모컨 신청</h1>
+        <h1 class="text-[18px] font-bold text-gray-900">리모컨 구매</h1>
         <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
             <span class="text-sm font-bold text-gray-900">종료</span>
             <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
@@ -46,7 +46,7 @@
                 <!-- 관계 선택 리스트 -->
                 <div class="join-step-content join-section-gap small">
                     <button
-                        class="w-full flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[20px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
+                        class="w-full flex items-center justify-between p-4 bg-white border border-gray-100 rounded-[20px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
                         onclick="selectRelation('본인')">
                         <div class="flex items-center gap-4">
                             <div
@@ -59,7 +59,7 @@
                     </button>
 
                     <button
-                        class="w-full flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[20px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
+                        class="w-full flex items-center justify-between p-4 bg-white border border-gray-100 rounded-[20px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
                         onclick="selectRelation('배우자')">
                         <div class="flex items-center gap-4">
                             <div
@@ -72,7 +72,7 @@
                     </button>
 
                     <button
-                        class="w-full flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[20px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
+                        class="w-full flex items-center justify-between p-4 bg-white border border-gray-100 rounded-[20px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
                         onclick="selectRelation('자녀')">
                         <div class="flex items-center gap-4">
                             <div
@@ -85,7 +85,7 @@
                     </button>
 
                     <button
-                        class="w-full flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[20px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
+                        class="w-full flex items-center justify-between p-4 bg-white border border-gray-100 rounded-[20px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
                         onclick="selectRelation('부모')">
                         <div class="flex items-center gap-4">
                             <div
@@ -98,7 +98,7 @@
                     </button>
 
                     <button
-                        class="w-full flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[20px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
+                        class="w-full flex items-center justify-between p-4 bg-white border border-gray-100 rounded-[20px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
                         onclick="selectRelation('형제/자매')">
                         <div class="flex items-center gap-4">
                             <div
@@ -112,15 +112,21 @@
                 </div>
             </div>
         </div>
-        <div class="w-full h-80 shrink-0" id="bottom-spacer"></div>
+        <!-- 하단 스페이서 복원 (스크롤 유도) -->
+        <div class="w-full h-40 shrink-0" id="bottom-spacer"></div>
     </div>
 
     <!-- 하단 AI 네비게이션 영역 -->
     <script src="../js/agent_overlay.js"></script>
     <script src="../js/common_ui.js"></script>
     <script>
-        const pageText = "서비스 신청을 위해 신청인 정보를 확인하고 있어요. 명의자와의 관계를 선택해 주세요.";
+        const pageText = "서비스 신청을 위해 신청인 정보를 확인하고 있어요.";
         initCommonUI(pageText);
+
+        const introScrollContainer = document.getElementById('main-scroll-container');
+        const introTypingArea = document.getElementById('typing-area');
+
+        // JS 스크롤 이벤트 제거 (자연스러운 스크롤 사용)
 
         function selectRelation(rel) {
             if (rel === '본인') {
