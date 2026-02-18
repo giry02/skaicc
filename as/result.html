@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 조치 필요</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">고장진단</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#5031E5] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#5031E5] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <!-- 결과 카드 -->
+                <div class="bg-gray-50 border border-red-100 rounded-[24px] p-6 text-center shadow-sm mb-6">
+                    <p class="text-[15px] font-bold text-gray-800 mb-4">네트워크 연결 상태 <span class="text-red-500">비정상</span>
+                    </p>
+
+                    <div
+                        class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm relative">
+                        <i class="w-10 h-10 text-gray-300" data-lucide="wifi-off"></i>
+                        <div
+                            class="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center border-2 border-white text-white text-[12px] font-bold">
+                            !</div>
+                    </div>
+
+                    <p class="text-[15px] text-gray-900 font-bold leading-relaxed break-keep mb-1">
+                        인터넷 연결이 안되어 있거나<br>
+                        연결된 기기의 전원이 꺼져 있습니다.
+                    </p>
+                </div>
+
+                <!-- 조치 가이드 Section -->
+                <div class="space-y-4 mb-6">
+                    <div class="flex items-center gap-2">
+                        <span class="bg-[#5031E5] text-white text-[12px] px-2 py-0.5 rounded-md font-bold">STEP 1</span>
+                        <h3 class="text-[16px] font-bold text-gray-900">자가 조치 방법</h3>
+                    </div>
+
+                    <!-- Video Card -->
+                    <div
+                        class="w-full aspect-video bg-gray-900 rounded-[16px] relative overflow-hidden flex items-center justify-center group cursor-pointer shadow-md">
+                        <div class="absolute inset-0 bg-black/30"></div>
+                        <div
+                            class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/50">
+                            <i class="w-6 h-6 text-white ml-1" data-lucide="play"></i>
+                        </div>
+                        <div class="absolute bottom-3 left-4 text-white text-[13px] font-medium">조치 방법 가이드 영상</div>
+                    </div>
+
+                    <!-- Steps -->
+                    <div class="bg-white border border-gray-200 rounded-[20px] p-5 shadow-sm">
+                        <ul class="space-y-4">
+                            <li class="flex gap-3">
+                                <span class="text-[#5031E5] font-bold text-[14px] mt-0.5">1</span>
+                                <p class="text-[14px] text-gray-700 leading-snug"><span
+                                        class="font-bold text-gray-900">셋톱박스, 멀티탭</span> 전원을 확인해 주세요.</p>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="text-[#5031E5] font-bold text-[14px] mt-0.5">2</span>
+                                <p class="text-[14px] text-gray-700 leading-snug"><span
+                                        class="font-bold text-gray-900">랜선(UTP 케이블)</span>이 빠져있는지 확인 후 다시 꽂아주세요.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 하단 버튼 -->
+                <div class="mt-auto pt-4 pb-6 space-y-3">
+                    <button
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all"
+                        onclick="location.href='reset.html'">
+                        안내대로 조치했어요
+                    </button>
+                    <button
+                        class="w-full bg-white border border-gray-200 text-gray-500 py-4 rounded-xl text-[17px] font-bold active:scale-95 transition-all"
+                        onclick="location.href='visit_reserve.html'">
+                        잘 모르겠어요 (방문 신청)
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "진단 결과, 추가 조치가 필요합니다.";
+        initCommonUI(pageText);
+    </script>
+</body>
+
+</html>

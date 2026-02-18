@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 리셋 중</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+    <style>
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #5031E5;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">고장진단</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col items-center justify-center -mt-20 scroll-smooth"
+        id="main-scroll-container">
+
+        <!-- 리셋 카드 -->
+        <div
+            class="bg-white rounded-[30px] p-10 flex flex-col items-center justify-center w-full max-w-sm shadow-lg border border-gray-100 animate-pop-out">
+            <div class="relative mb-8">
+                <div class="loader"></div>
+                <!-- 아이콘 -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#5031E5]">
+                    <i class="w-6 h-6" data-lucide="refresh-cw"></i>
+                </div>
+            </div>
+
+            <h2 class="text-[22px] font-extrabold text-[#1a1a1a] mb-3 text-center">기기를 리셋하고 있어요.</h2>
+            <p class="text-[15px] text-gray-500 text-center leading-relaxed font-medium">
+                전원이 다시 켜질 때까지<br>
+                잠시만 기다려주세요.
+            </p>
+
+            <div class="w-full bg-gray-100 h-2 rounded-full mt-8 overflow-hidden">
+                <div class="bg-[#5031E5] h-full w-0 transition-all duration-[3000ms] ease-out" id="progress-bar"></div>
+            </div>
+        </div>
+
+        <div class="mt-8 text-[13px] text-gray-400 font-medium text-center">
+            약 2~5분 정도 소요될 수 있습니다.
+        </div>
+    </div>
+
+    <script>
+        // Start Progress
+        setTimeout(() => {
+            document.getElementById('progress-bar').style.width = '100%';
+        }, 100);
+
+        // Simulate completion
+        setTimeout(() => {
+            // Assume reset failed or issue persisted -> Visit
+            location.href = 'visit_reserve.html';
+        }, 3500);
+    </script>
+</body>
+
+</html>

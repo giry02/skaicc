@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 고장 유형 선택</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">고장진단</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#5031E5] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#5031E5] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header mb-6">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">
+                        어떤 문제가<br>있으신가요?
+                    </h2>
+                </div>
+
+                <div class="join-step-content flex-1 space-y-4">
+                    <!-- 인터넷 카드 -->
+                    <div class="border border-gray-200 rounded-[20px] overflow-hidden transition-all bg-white"
+                        id="cat-internet">
+                        <button class="w-full p-5 flex items-center justify-between active:bg-gray-50 transition-colors"
+                            onclick="toggleCategory('cat-internet')">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-blue-600">
+                                    <i class="w-6 h-6" data-lucide="globe"></i>
+                                </div>
+                                <span class="text-[16px] font-bold text-gray-900">인터넷</span>
+                            </div>
+                            <i class="w-5 h-5 text-gray-400 transition-transform duration-300"
+                                data-lucide="chevron-down"></i>
+                        </button>
+                        <div class="hidden bg-gray-50 px-5 pb-5 pt-0 flex-col gap-2" id="sub-internet">
+                            <div class="h-px w-full bg-gray-100 mb-2"></div>
+                            <label
+                                class="flex items-center gap-3 p-4 bg-white rounded-[16px] border border-gray-100 cursor-pointer active:scale-[0.98] transition-all shadow-sm">
+                                <input type="radio" name="symptom" value="connect_fail"
+                                    class="peer w-5 h-5 text-[#5031E5] focus:ring-[#5031E5]"
+                                    onchange="checkSelection()">
+                                <span
+                                    class="text-[15px] font-medium text-gray-700 peer-checked:text-[#5031E5] peer-checked:font-bold">접속이
+                                    안돼요</span>
+                            </label>
+                            <label
+                                class="flex items-center gap-3 p-4 bg-white rounded-[16px] border border-gray-100 cursor-pointer active:scale-[0.98] transition-all shadow-sm">
+                                <input type="radio" name="symptom" value="disconnect_often"
+                                    class="peer w-5 h-5 text-[#5031E5] focus:ring-[#5031E5]"
+                                    onchange="checkSelection()">
+                                <span
+                                    class="text-[15px] font-medium text-gray-700 peer-checked:text-[#5031E5] peer-checked:font-bold">자주
+                                    끊겨요</span>
+                            </label>
+                            <label
+                                class="flex items-center gap-3 p-4 bg-white rounded-[16px] border border-gray-100 cursor-pointer active:scale-[0.98] transition-all shadow-sm">
+                                <input type="radio" name="symptom" value="slow_speed"
+                                    class="peer w-5 h-5 text-[#5031E5] focus:ring-[#5031E5]"
+                                    onchange="checkSelection()">
+                                <span
+                                    class="text-[15px] font-medium text-gray-700 peer-checked:text-[#5031E5] peer-checked:font-bold">속도가
+                                    느려졌어요</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- B tv 카드 -->
+                    <div class="border border-gray-200 rounded-[20px] overflow-hidden transition-all bg-white"
+                        id="cat-tv">
+                        <button class="w-full p-5 flex items-center justify-between active:bg-gray-50 transition-colors"
+                            onclick="toggleCategory('cat-tv')">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center text-purple-600">
+                                    <i class="w-6 h-6" data-lucide="tv"></i>
+                                </div>
+                                <span class="text-[16px] font-bold text-gray-900">B tv</span>
+                            </div>
+                            <i class="w-5 h-5 text-gray-400 transition-transform duration-300"
+                                data-lucide="chevron-down"></i>
+                        </button>
+                        <div class="hidden bg-gray-50 px-5 pb-5 pt-0 flex-col gap-2" id="sub-tv">
+                            <div class="h-px w-full bg-gray-100 mb-2"></div>
+                            <label
+                                class="flex items-center gap-3 p-4 bg-white rounded-[16px] border border-gray-100 cursor-pointer active:scale-[0.98] transition-all shadow-sm">
+                                <input type="radio" name="symptom" value="tv_error"
+                                    class="peer w-5 h-5 text-[#5031E5] focus:ring-[#5031E5]"
+                                    onchange="checkSelection()">
+                                <span
+                                    class="text-[15px] font-medium text-gray-700 peer-checked:text-[#5031E5] peer-checked:font-bold">화면이
+                                    안나와요</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 하단 버튼 -->
+                <div class="mt-auto pt-4 pb-6">
+                    <button id="next-btn"
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all opacity-50 pointer-events-none"
+                        onclick="location.href='diagnosing.html'">
+                        진단 시작
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "고장 유형을 선택해 주세요.";
+        initCommonUI(pageText);
+
+        function toggleCategory(id) {
+            const container = document.getElementById(id);
+            const sub = container.querySelector('div[id^="sub-"]');
+            const icon = container.querySelector('i[data-lucide="chevron-down"]');
+
+            // Toggle visibility
+            if (sub.classList.contains('hidden')) {
+                // Open
+                sub.classList.remove('hidden');
+                sub.classList.add('flex');
+                icon.style.transform = 'rotate(180deg)';
+                container.classList.add('border-[#5031E5]', 'ring-1', 'ring-[#5031E5]');
+            } else {
+                // Close
+                sub.classList.add('hidden');
+                sub.classList.remove('flex');
+                icon.style.transform = 'rotate(0deg)';
+                container.classList.remove('border-[#5031E5]', 'ring-1', 'ring-[#5031E5]');
+            }
+        }
+
+        function checkSelection() {
+            const radios = document.querySelectorAll('input[name="symptom"]');
+            const btn = document.getElementById('next-btn');
+            let isChecked = false;
+            radios.forEach(r => {
+                if (r.checked) isChecked = true;
+            });
+
+            if (isChecked) {
+                btn.classList.remove('opacity-50', 'pointer-events-none');
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -16,20 +16,23 @@
 <body class="h-full w-full bg-white overflow-hidden flex flex-col">
     <!-- 상단 헤더 -->
     <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
-        <div class="w-10"></div>
-        <h1 class="text-[18px] font-bold text-gray-900">신청 완료</h1>
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">계좌 자동이체</h1>
         <div class="flex items-center gap-1 cursor-pointer px-2 py-1"
             onclick="location.href='../move_service_intro.html'">
             <span class="text-sm font-bold text-gray-900">종료</span>
-            <i class="text-gray-900 w-4 h-4" data-lucide="x"></i>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
         </div>
     </div>
 
     <!-- 메인 컨테이너 -->
     <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-2 relative flex flex-col scroll-smooth"
         id="main-scroll-container">
-        <!-- 타이핑 텍스트 영역 -->
-        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+        <!-- 타이핑 텍스트 영역 (숨김) -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0 hidden" id="typing-area">
             <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
             <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
         </div>
@@ -77,13 +80,13 @@
                 </div>
             </div>
         </div>
-        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+        <div class="w-full h-8 shrink-0" id="bottom-spacer"></div>
     </div>
 
     <script src="../js/agent_overlay.js"></script>
     <script src="../js/common_ui.js"></script>
     <script>
-        const pageText = "은행 자동납부 신청이 완료되었습니다.";
+        const pageText = "";
         initCommonUI(pageText);
     </script>
 </body>

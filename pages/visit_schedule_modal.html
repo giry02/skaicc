@@ -40,48 +40,50 @@
         <!-- 바운스 애니메이션 적용 컨테이너 -->
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1">
-                <div class="join-step-header mb-1" id="target-anchor">
-                    <h2 class="text-[17px] font-extrabold text-[#1a1a1a] leading-tight"><span class="text-black">{다른 방으로
+                <div class="join-step-header mb-4" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight"><span class="text-black">{다른 방으로
                             이동}</span>에 대한<br />방문 일정이에요.</h2>
                 </div>
                 <div class="join-step-content flex-1">
-                    <div class="join-section-gap relative mb-0">
-                        <div class="calendar-container border border-gray-200 rounded-2xl p-2 bg-white">
-                            <div class="flex items-center justify-between mb-0">
+                    <div class="join-section-gap relative mb-4">
+                        <div class="calendar-container border border-gray-200 rounded-[20px] p-4 bg-white shadow-sm">
+                            <div class="flex items-center justify-between mb-4 px-2">
                                 <button onclick="changeMonth(-1)"
                                     class="p-1 hover:bg-gray-100 rounded-full transition-colors">
                                     <i data-lucide="chevron-left" class="w-6 h-6 text-gray-600"></i>
                                 </button>
-                                <div class="font-bold text-lg text-[#1a1a1a]" id="current-month-display">2026년 2월</div>
+                                <div class="font-bold text-[16px] text-[#1a1a1a]" id="current-month-display">2026년 2월
+                                </div>
                                 <button onclick="changeMonth(1)"
                                     class="p-1 hover:bg-gray-100 rounded-full transition-colors">
                                     <i data-lucide="chevron-right" class="w-6 h-6 text-gray-600"></i>
                                 </button>
                             </div>
-                            <div class="grid grid-cols-7 gap-0 text-center mb-0">
-                                <div class="text-xs text-gray-400 font-medium">일</div>
-                                <div class="text-xs text-gray-400 font-medium">월</div>
-                                <div class="text-xs text-gray-400 font-medium">화</div>
-                                <div class="text-xs text-gray-400 font-medium">수</div>
-                                <div class="text-xs text-gray-400 font-medium">목</div>
-                                <div class="text-xs text-gray-400 font-medium">금</div>
-                                <div class="text-xs text-gray-400 font-medium">토</div>
+                            <div class="grid grid-cols-7 text-center mb-2">
+                                <div class="text-[13px] text-red-500 font-medium">일</div>
+                                <div class="text-[13px] text-gray-500 font-medium">월</div>
+                                <div class="text-[13px] text-gray-500 font-medium">화</div>
+                                <div class="text-[13px] text-gray-500 font-medium">수</div>
+                                <div class="text-[13px] text-gray-500 font-medium">목</div>
+                                <div class="text-[13px] text-gray-500 font-medium">금</div>
+                                <div class="text-[13px] text-gray-500 font-medium">토</div>
                             </div>
-                            <div class="grid grid-cols-7 gap-y-0 gap-x-0 text-center" id="calendar-grid">
+                            <div class="grid grid-cols-7 gap-y-1 text-center" id="calendar-grid">
                                 <!-- JS Generated -->
                             </div>
                         </div>
                     </div>
-                    <div class="mb-1">
+                    <div class="mb-3">
                         <button onclick="openTimeModal()" id="time-select-btn"
-                            class="w-full py-2.5 bg-white border border-gray-200 rounded-xl text-left px-4 flex justify-between items-center shadow-sm hover:border-[#5031E5] transition-colors group mb-1">
-                            <span class="text-gray-400 font-medium text-[15px]" id="selected-time-display">시간 선택</span>
+                            class="w-full py-4 bg-white border border-gray-200 rounded-xl text-left px-5 flex justify-between items-center shadow-sm hover:border-[#5031E5] transition-colors group mb-3">
+                            <span class="text-gray-400 font-medium text-[15px]" id="selected-time-display">방문 시간을 선택해
+                                주세요</span>
                             <i data-lucide="clock"
-                                class="w-4 h-4 text-gray-300 group-hover:text-[#5031E5] transition-colors"></i>
+                                class="w-5 h-5 text-gray-300 group-hover:text-[#5031E5] transition-colors"></i>
                         </button>
-                        <div class="mt-auto pt-1 pb-1">
+                        <div class="mt-auto pt-1 pb-4">
                             <button
-                                class="w-full bg-[#5031E5] text-white py-3 rounded-xl text-[17px] font-bold shadow-lg hover:bg-[#4020d0] transition-colors"
+                                class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg hover:bg-[#4020d0] transition-colors active:scale-95"
                                 id="submit-visit-btn">선택 완료</button>
                         </div>
                     </div>
@@ -397,7 +399,7 @@
             // Days
             for (let i = 1; i <= lastDay.getDate(); i++) {
                 const dateBtn = document.createElement('button');
-                dateBtn.className = "w-7 h-7 flex items-center justify-center rounded-full text-[13px] transition-colors mx-auto font-medium text-gray-700 hover:bg-gray-100";
+                dateBtn.className = "w-9 h-9 flex items-center justify-center rounded-full text-[14px] transition-colors mx-auto font-medium text-gray-700 hover:bg-gray-100";
                 dateBtn.textContent = i;
 
                 // Mark selected date
@@ -405,7 +407,7 @@
                     selectedDate.getFullYear() === year &&
                     selectedDate.getMonth() === month &&
                     selectedDate.getDate() === i) {
-                    dateBtn.className = "w-7 h-7 flex items-center justify-center rounded-full text-[13px] transition-colors mx-auto bg-[#5031E5] text-white font-bold shadow-md";
+                    dateBtn.className = "w-9 h-9 flex items-center justify-center rounded-full text-[14px] transition-colors mx-auto bg-[#5031E5] text-white font-bold shadow-md";
                 }
 
                 dateBtn.onclick = () => {
@@ -415,7 +417,7 @@
                 };
 
                 const wrapper = document.createElement('div');
-                wrapper.className = "flex justify-center py-1";
+                wrapper.className = "flex justify-center";
                 wrapper.appendChild(dateBtn);
                 calendarGrid.appendChild(wrapper);
             }

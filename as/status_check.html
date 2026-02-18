@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 예약 조회</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">고장진단</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#5031E5] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#5031E5] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header mb-6">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">
+                        현재 예약된 방문 일정이<br>있습니다.
+                    </h2>
+                </div>
+
+                <div class="join-step-content flex-1 space-y-6">
+                    <!-- 예약 정보 카드 -->
+                    <div class="bg-white border border-gray-200 rounded-[24px] overflow-hidden shadow-sm">
+                        <div class="bg-gray-50 px-5 py-4 border-b border-gray-100 flex justify-between items-center">
+                            <span class="text-[13px] font-bold text-gray-500">예약번호 20260216-123456</span>
+                            <span
+                                class="bg-[#5031E5] text-white text-[11px] px-2 py-1 rounded-full font-bold">예약확정</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <span class="text-gray-500 text-[14px] font-medium shrink-0 w-20">방문 일시</span>
+                                <span class="text-gray-900 font-bold text-[15px] text-right">2026. 02. 20 (금)<br>14시 ~
+                                    15시</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-500 text-[14px] font-medium">서비스매니저</span>
+                                <span class="text-gray-900 font-bold text-[15px]">김철수</span>
+                            </div>
+                            <div class="flex justify-between items-start">
+                                <span class="text-gray-500 text-[14px] font-medium shrink-0 w-20">주소</span>
+                                <span class="text-gray-900 font-bold text-[15px] text-right">서울 마포구 월드컵북로...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 안내 메세지 -->
+                    <div class="bg-[#FFF7ED] rounded-[16px] p-4 flex gap-3 text-left">
+                        <i class="w-5 h-5 text-[#FF7F00] shrink-0" data-lucide="alert-circle"></i>
+                        <p class="text-[13px] text-gray-600 leading-relaxed font-medium">
+                            방문 취소는 예약 시간 <span class="text-[#FF7F00] font-bold">2시간 전</span>까지만 가능합니다.<br>
+                            이후에는 고객센터로 문의해 주세요.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 하단 버튼 -->
+                <div class="mt-auto pt-4 pb-6 space-y-3">
+                    <button
+                        class="w-full bg-white border border-gray-300 text-gray-600 py-4 rounded-xl text-[17px] font-bold active:scale-95 transition-all"
+                        onclick="cancelReservation()">
+                        예약 취소하기
+                    </button>
+                    <button
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all"
+                        onclick="location.href='../index.html'">
+                        확인
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "방문 예약을 확인해 보세요.";
+        initCommonUI(pageText);
+
+        function cancelReservation() {
+            // Standard JS confirm or custom modal (using standard confirm for simplicity as per template)
+            if (confirm('정말로 예약을 취소하시겠습니까?')) {
+                location.href = 'cancel_complete.html';
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -44,15 +44,25 @@
                 </div>
                 <div class="join-step-content flex flex-col space-y-2 mb-4 flex-1">
                     <!-- 서비스 선택 리스트 (DNA 유지) -->
+                    <!-- 서비스 선택 리스트 (아이콘 추가) -->
                     <button
-                        class="py-4 rounded-lg border text-[17px] font-bold text-center transition-colors service-btn bg-white border-[#ddd] text-[#444] hover:border-[#bbb]"
-                        onclick="toggleService(this, 0)">인터넷/와이파이</button>
+                        class="py-5 rounded-xl border text-[17px] font-bold flex items-center justify-center gap-3 transition-all service-btn bg-white border-[#ddd] text-[#444] hover:border-[#bbb] hover:shadow-sm"
+                        onclick="toggleService(this, 0)">
+                        <i data-lucide="wifi" class="w-6 h-6 text-gray-400 icon-base"></i>
+                        <span>인터넷/와이파이</span>
+                    </button>
                     <button
-                        class="py-4 rounded-lg border text-[17px] font-bold text-center transition-colors service-btn bg-white border-[#ddd] text-[#444] hover:border-[#bbb]"
-                        onclick="toggleService(this, 1)">B tv</button>
+                        class="py-5 rounded-xl border text-[17px] font-bold flex items-center justify-center gap-3 transition-all service-btn bg-white border-[#ddd] text-[#444] hover:border-[#bbb] hover:shadow-sm"
+                        onclick="toggleService(this, 1)">
+                        <i data-lucide="tv" class="w-6 h-6 text-gray-400 icon-base"></i>
+                        <span>B tv</span>
+                    </button>
                     <button
-                        class="py-4 rounded-lg border text-[17px] font-bold text-center transition-colors service-btn bg-white border-[#ddd] text-[#444] hover:border-[#bbb]"
-                        onclick="toggleService(this, 2)">집전화</button>
+                        class="py-5 rounded-xl border text-[17px] font-bold flex items-center justify-center gap-3 transition-all service-btn bg-white border-[#ddd] text-[#444] hover:border-[#bbb] hover:shadow-sm"
+                        onclick="toggleService(this, 2)">
+                        <i data-lucide="phone" class="w-6 h-6 text-gray-400 icon-base"></i>
+                        <span>집전화</span>
+                    </button>
                 </div>
                 <div class="mt-auto pt-4 pb-6">
                     <button
@@ -69,14 +79,27 @@
         // 페이지 개별 기능: 서비스 선택 로직
         const selectedItems = new Set();
         function toggleService(el, idx) {
+            const icon = el.querySelector('.icon-base');
             if (selectedItems.has(idx)) {
                 selectedItems.delete(idx);
-                el.classList.remove('bg-[#eff6ff]', 'border-[#5031E5]', 'text-[#5031E5]');
+                // 버튼 스타일 해제
+                el.classList.remove('bg-[#eff6ff]', 'border-[#5031E5]', 'text-[#5031E5]', 'ring-1', 'ring-[#5031E5]');
                 el.classList.add('bg-white', 'border-[#ddd]', 'text-[#444]');
+                // 아이콘 스타일 해제
+                if (icon) {
+                    icon.classList.remove('text-[#5031E5]');
+                    icon.classList.add('text-gray-400');
+                }
             } else {
                 selectedItems.add(idx);
+                // 버튼 스타일 적용
                 el.classList.remove('bg-white', 'border-[#ddd]', 'text-[#444]');
-                el.classList.add('bg-[#eff6ff]', 'border-[#5031E5]', 'text-[#5031E5]');
+                el.classList.add('bg-[#eff6ff]', 'border-[#5031E5]', 'text-[#5031E5]', 'ring-1', 'ring-[#5031E5]');
+                // 아이콘 스타일 적용
+                if (icon) {
+                    icon.classList.remove('text-gray-400');
+                    icon.classList.add('text-[#5031E5]');
+                }
             }
 
             const btn = document.getElementById('apply-btn');

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 정보 동의</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">고장진단</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#5031E5] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#5031E5] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header mb-6">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">
+                        SKT 회선 정보 조회를 위해<br>동의가 필요해요.
+                    </h2>
+                </div>
+
+                <div class="join-step-content flex-1 space-y-4">
+                    <!-- 약관 동의 카드 (확장형) -->
+                    <div class="bg-white border border-gray-200 rounded-[20px] p-5 shadow-sm transition-all"
+                        id="consent-card">
+                        <div class="flex items-start justify-between">
+                            <!-- Left: Checkbox & Label -->
+                            <div class="flex items-center gap-3 flex-1 cursor-pointer select-none group"
+                                onclick="toggleConsent()">
+                                <div class="relative flex items-center justify-center shrink-0">
+                                    <input type="checkbox" id="consent-check" class="peer sr-only">
+                                    <div
+                                        class="w-6 h-6 border-2 border-gray-300 rounded-[8px] peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] flex items-center justify-center transition-all bg-white group-hover:border-[#5031E5]">
+                                        <i class="w-4 h-4 text-white" data-lucide="check"></i>
+                                    </div>
+                                </div>
+                                <h3 class="text-[16px] font-bold text-gray-900 leading-snug pt-0.5">유선정보 제공 및<br>양사 업무처리
+                                    동의</h3>
+                            </div>
+
+                            <!-- Right: Expand Button -->
+                            <button onclick="toggleDetails()"
+                                class="p-1 -mr-2 text-gray-400 hover:text-gray-600 active:scale-90 transition-transform ml-2 shrink-0">
+                                <i class="w-6 h-6 transition-transform duration-300" data-lucide="chevron-down"
+                                    id="chevron"></i>
+                            </button>
+                        </div>
+
+                        <!-- Details -->
+                        <div class="text-[13px] text-gray-500 leading-relaxed hidden mt-4 pt-4 border-t border-gray-100"
+                            id="term-details">
+                            <div class="h-40 overflow-y-auto scrollbar-hide pr-2 space-y-3">
+                                <p>SK텔레콤에서 인터넷을 가입한 고객님의 경우, 업무 처리를 위해서는 하단 동의가 필요합니다.</p>
+                                <div>
+                                    <strong class="text-gray-800 block mb-1">1. 유선정보 제공 동의</strong>
+                                    SK브로드밴드에서 업무 처리할 수 있도록 SK텔레콤에 가입되어 있는 유선서비스의 개인정보를 제공하는데 동의합니다.
+                                </div>
+                                <div>
+                                    <strong class="text-gray-800 block mb-1">2. 양사 업무처리 동의</strong>
+                                    SK텔레콤에서 가입한 유선서비스를 SK브로드밴드에서 업무처리를 하기 위해 양사간 정보를 공유하고 처리하는데 동의합니다.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 하단 버튼 -->
+                <div class="mt-auto pt-4 pb-6">
+                    <button id="next-btn"
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all opacity-50 pointer-events-none"
+                        onclick="openAuthModal()">
+                        동의하기
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <!-- 인증 모달 -->
+    <div id="auth-modal" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeAuthModal()"></div>
+        <div
+            class="absolute bottom-0 w-full bg-white rounded-t-[30px] p-6 animate-slide-up flex flex-col max-h-[90%] shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-[18px] font-bold text-gray-900">본인 인증</h2>
+                <button onclick="closeAuthModal()"
+                    class="p-2 bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200"><i class="w-5 h-5"
+                        data-lucide="x"></i></button>
+            </div>
+
+            <!-- 스텝 1: 정보 입력 -->
+            <div id="auth-step-1">
+                <div class="space-y-4 mb-8">
+                    <div>
+                        <label class="block text-[13px] text-gray-500 font-medium mb-1.5 ml-1">이름</label>
+                        <input type="text" value="홍길동"
+                            class="w-full bg-gray-50 border border-gray-200 rounded-[16px] px-5 py-4 text-[16px] font-bold text-gray-900 outline-none focus:border-[#5031E5]"
+                            readonly>
+                    </div>
+                    <div>
+                        <label class="block text-[13px] text-gray-500 font-medium mb-1.5 ml-1">생년월일</label>
+                        <div class="flex items-center gap-3">
+                            <input type="number" placeholder="6자리"
+                                class="flex-1 bg-white border border-gray-200 rounded-[16px] px-5 py-4 text-[16px] font-medium text-gray-900 outline-none focus:border-[#5031E5]">
+                            <span class="text-gray-400 text-lg">-</span>
+                            <div
+                                class="w-[100px] flex items-center justify-center bg-gray-50 rounded-[16px] py-4 border border-gray-100 px-4 gap-1">
+                                <span class="text-[16px] font-bold text-gray-900 mr-2">1</span>
+                                <div class="flex gap-1">
+                                    <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+                                    <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+                                    <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+                                    <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-[13px] text-gray-500 font-medium mb-1.5 ml-1">휴대폰 번호</label>
+                        <div class="flex gap-3">
+                            <select
+                                class="bg-white border border-gray-200 rounded-[16px] px-4 py-4 text-[16px] font-medium outline-none w-28 appearance-none focus:border-[#5031E5]">
+                                <option>SKT</option>
+                                <option>KT</option>
+                                <option>LGU+</option>
+                            </select>
+                            <input type="tel" placeholder="숫자만 입력"
+                                class="flex-1 bg-white border border-gray-200 rounded-[16px] px-5 py-4 text-[16px] font-medium text-gray-900 outline-none focus:border-[#5031E5]">
+                        </div>
+                    </div>
+                </div>
+                <button
+                    class="w-full bg-[#5031E5] text-white py-4 rounded-[16px] text-[18px] font-bold shadow-md active:scale-95 transition-all"
+                    onclick="requestAuth()">
+                    인증번호 요청
+                </button>
+            </div>
+
+            <!-- 스텝 2: 인증번호 입력 (Hidden) -->
+            <div id="auth-step-2" class="hidden">
+                <div class="bg-blue-50 rounded-[16px] p-5 text-center mb-8 border border-blue-100">
+                    <p class="text-[15px] text-gray-800 font-medium">인증번호가 발송되었습니다.</p>
+                    <p class="text-[13px] text-gray-500 mt-1">남은 시간 <span class="text-[#5031E5] font-bold">02:59</span>
+                    </p>
+                </div>
+                <div class="mb-8 px-4">
+                    <input type="number" placeholder="인증번호 6자리"
+                        class="w-full bg-white border-b-2 border-gray-200 px-2 py-4 text-[24px] font-bold text-center text-gray-900 outline-none focus:border-[#5031E5] tracking-widest placeholder:text-gray-300 placeholder:text-[20px] placeholder:font-normal placeholder:tracking-normal">
+                </div>
+                <button
+                    class="w-full bg-[#5031E5] text-white py-4 rounded-[16px] text-[18px] font-bold shadow-md active:scale-95 transition-all"
+                    onclick="completeAuth()">
+                    인증 완료
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "원활한 진단을 위해 동의가 필요합니다.";
+        initCommonUI(pageText);
+
+        function toggleDetails() {
+            const details = document.getElementById('term-details');
+            const icon = document.getElementById('chevron');
+            const card = document.getElementById('consent-card');
+
+            if (details.classList.contains('hidden')) {
+                details.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+                card.classList.add('bg-gray-50'); // Slight highlight when expanded
+            } else {
+                details.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+                card.classList.remove('bg-gray-50');
+            }
+        }
+
+        function toggleConsent() {
+            const checkbox = document.getElementById('consent-check');
+            checkbox.checked = !checkbox.checked;
+
+            const btn = document.getElementById('next-btn');
+            if (checkbox.checked) {
+                btn.classList.remove('opacity-50', 'pointer-events-none');
+            } else {
+                btn.classList.add('opacity-50', 'pointer-events-none');
+            }
+        }
+
+        function openAuthModal() {
+            document.getElementById('auth-modal').classList.remove('hidden');
+        }
+
+        function closeAuthModal() {
+            document.getElementById('auth-modal').classList.add('hidden');
+            setTimeout(() => {
+                document.getElementById('auth-step-1').classList.remove('hidden');
+                document.getElementById('auth-step-2').classList.add('hidden');
+            }, 300);
+        }
+
+        function requestAuth() {
+            // Fake loading or just swap
+            document.getElementById('auth-step-1').classList.add('hidden');
+            document.getElementById('auth-step-2').classList.remove('hidden');
+        }
+
+        function completeAuth() {
+            closeAuthModal();
+            // Go to next page
+            setTimeout(() => {
+                location.href = 'symptom_select.html';
+            }, 500);
+        }
+    </script>
+</body>
+
+</html>

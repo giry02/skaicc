@@ -1,6 +1,6 @@
 const AGENT_OVERLAY_HTML = `
     <!-- [컴포넌트 주입 영역] -->
-    <div class="w-full bg-white flex flex-col items-center relative z-20 pb-4 pt-2 cursor-grab active:cursor-grabbing select-none shadow-[0_-10px_30px_rgba(0,0,0,0.03)] rounded-t-[20px]"
+    <div class="w-full bg-white flex flex-col items-center relative z-20 pb-4 pt-2 cursor-grab active:cursor-grabbing select-none rounded-t-[20px]"
         id="swipe-area">
         <!-- 스와이프 가이드 -->
         <div class="absolute -top-12 left-1/2 -translate-x-1/2 pointer-events-none opacity-0 flex flex-col items-center z-30"

@@ -36,7 +36,7 @@
             onclick="location.href='../index.html'">
             <i class="w-7 h-7" data-lucide="home"></i>
         </button>
-        <h1 class="text-[18px] font-bold text-gray-900">명의 변경</h1>
+        <h1 class="text-[18px] font-bold text-gray-900">가정 내 PC/TV 이동</h1>
         <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
             <span class="text-sm font-bold text-gray-900">종료</span>
             <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
@@ -46,7 +46,7 @@
     <!-- 메인 컨테이너 -->
     <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
         id="main-scroll-container">
-        <!-- 타이핑 텍스트 영역 (숨김) -->
+        <!-- 타이핑 텍스트 영역 (표준 규격에 따라 생성하되 숨김) -->
         <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0 hidden" id="typing-area">
             <span class="text-[#5031E5] font-bold text-[17px]" id="typing-text"></span>
             <span class="inline-block w-[2px] h-5 bg-[#5031E5] ml-1 cursor-blink" id="cursor"></span>
@@ -55,32 +55,36 @@
         <!-- 바운스 콘텐츠 -->
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1 relative">
+                <!-- 꽃가루 컨테이너 -->
                 <div id="confetti-container" class="absolute inset-0 pointer-events-none overflow-hidden h-[300px]">
                 </div>
 
-                <div class="flex flex-col items-center justify-center pt-4 pb-6">
+                <!-- 히어로 섹션 (표준 심볼 적용) -->
+                <div class="flex flex-col items-center justify-center pt-8 pb-6">
                     <div class="w-20 h-20 bg-indigo-50 rounded-full flex items-center justify-center mb-4 relative">
                         <div class="absolute inset-0 bg-[#5031E5] opacity-20 rounded-full animate-ping"></div>
                         <i data-lucide="check-circle" class="w-12 h-12 text-[#5031E5] relative z-10"></i>
                     </div>
-                    <h2 class="text-[22px] font-black text-gray-900 text-center leading-tight">명의 변경 신청이<br />정상적으로
-                        완료되었습니다.</h2>
+                    <h2 class="text-[22px] font-black text-gray-900 text-center leading-tight">이동 신청이<br />접수되었습니다.</h2>
                     <p class="mt-3 text-gray-500 text-[14px] font-medium text-center leading-relaxed">
-                        신규 명의자가 인증을 완료하면<br />최종적으로 변경이 처리됩니다.
+                        서비스 매니저가 기재하신 일정에 맞춰<br />방문하여 도움드릴 예정입니다.
                     </p>
                 </div>
 
+                <!-- 요약 카드 (표준 그레이 카드 적용) -->
                 <div class="space-y-3 mb-4">
-                    <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100">
-                        <h4 class="text-[13px] font-bold text-gray-400 mb-2">신청 요약</h4>
-                        <div class="space-y-2">
+                    <div class="bg-gray-50 rounded-2xl p-5 border border-gray-100 shadow-sm">
+                        <h4 class="text-[13px] font-bold text-gray-400 mb-3">신청 내역 요약</h4>
+                        <div class="space-y-2.5">
                             <div class="flex justify-between items-center text-[14px]">
                                 <span class="text-gray-500">신청 서비스</span>
-                                <span class="font-black text-gray-800">인터넷 + IPTV</span>
+                                <span class="font-black text-gray-800">인터넷 + B tv</span>
                             </div>
-                            <div class="flex justify-between items-center text-[14px]">
-                                <span class="text-gray-500">접수 일자</span>
-                                <span class="font-black text-gray-800 text-right">2026.02.16</span>
+                            <div
+                                class="flex justify-between items-center text-[14px] pt-2.5 border-t border-gray-200/50">
+                                <span class="text-gray-500">방문 예정 일시</span>
+                                <span class="font-black text-[#5031E5] text-right">2025.10.10 (월)<br>13:00 ~
+                                    16:00</span>
                             </div>
                         </div>
                     </div>
@@ -90,23 +94,26 @@
                 <div class="mt-auto pt-4 pb-6">
                     <button
                         class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg hover:bg-[#4020d0] transition-all"
-                        onclick="location.href='../index.html'">메인으로 돌아가기</button>
+                        onclick="location.href='../index.html'">확인</button>
                 </div>
             </div>
         </div>
+        <!-- 하단 오버레이 영역 확보용 스페이서 (표준) -->
         <div class="w-full h-8 shrink-0" id="bottom-spacer"></div>
     </div>
 
+    <!-- 에이전트 오버레이 및 공통 UI 스크립트 -->
     <script src="../js/agent_overlay.js"></script>
     <script src="../js/common_ui.js"></script>
     <script>
-        // 페이지 개별 설정 및 UI 초기화
+        // 페이지 초기화: 타이핑 없이 즉시 콘텐츠 노출 및 오버레이 주입
         const pageText = "";
         initCommonUI(pageText);
 
-        // 꽃가루 효과
+        // 꽃가루 효과 (표준 로직)
         function createConfetti() {
             const container = document.getElementById('confetti-container');
+            if (!container) return;
             for (let i = 0; i < 50; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';

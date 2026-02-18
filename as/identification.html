@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 본인 확인</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+    <style>
+        .relation-btn.selected {
+            background-color: #5031E5;
+            color: white;
+            border-color: #5031E5;
+        }
+    </style>
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="text-[18px] font-bold text-gray-900">고장진단</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#5031E5] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#5031E5] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="join-step-header mb-6">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">
+                        명의자와의 관계를<br>선택해 주세요.
+                    </h2>
+                </div>
+
+                <div class="join-step-content flex-1 space-y-6">
+                    <!-- 관계 선택 그리드 -->
+                    <div class="grid grid-cols-2 gap-3">
+                        <button
+                            class="relation-btn w-full py-4 rounded-[16px] border border-gray-200 text-[15px] font-medium text-gray-600 transition-all active:scale-95"
+                            onclick="selectRelation(this, '본인')">명의자 본인</button>
+                        <button
+                            class="relation-btn w-full py-4 rounded-[16px] border border-gray-200 text-[15px] font-medium text-gray-600 transition-all active:scale-95"
+                            onclick="selectRelation(this, '배우자')">배우자</button>
+                        <button
+                            class="relation-btn w-full py-4 rounded-[16px] border border-gray-200 text-[15px] font-medium text-gray-600 transition-all active:scale-95"
+                            onclick="selectRelation(this, '자녀')">자녀</button>
+                        <button
+                            class="relation-btn w-full py-4 rounded-[16px] border border-gray-200 text-[15px] font-medium text-gray-600 transition-all active:scale-95"
+                            onclick="selectRelation(this, '기타')">그 외 가족</button>
+                    </div>
+
+                    <!-- 이름 입력 (조건부 표시 아님 / 항상 표시하되 비활성화) -->
+                    <div class="opacity-50 pointer-events-none transition-all duration-300" id="name-section">
+                        <label class="block text-[13px] font-bold text-gray-500 mb-2">신청자 성함</label>
+                        <input type="text" id="name-input"
+                            class="w-full bg-gray-50 border border-gray-200 rounded-[16px] px-5 py-4 text-[16px] font-medium placeholder:text-gray-400 focus:bg-white focus:border-[#5031E5] outline-none transition-colors"
+                            placeholder="이름을 입력해주세요" oninput="checkSubmit()" />
+                    </div>
+                </div>
+
+                <!-- 하단 버튼 -->
+                <div class="mt-auto pt-4 pb-6">
+                    <button id="next-btn"
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all opacity-50 pointer-events-none"
+                        onclick="location.href='select_target.html'">
+                        확인
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "안녕하세요 홍길동 고객님.\n먼저 본인 확인을 진행할게요.";
+        initCommonUI(pageText);
+
+        function selectRelation(btn, type) {
+            document.querySelectorAll('.relation-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+
+            const nameSection = document.getElementById('name-section');
+            const nameInput = document.getElementById('name-input');
+
+            nameSection.classList.remove('opacity-50', 'pointer-events-none');
+
+            if (type === '본인') {
+                nameInput.value = '홍길동'; // Simulated data
+            } else {
+                nameInput.value = '';
+                nameInput.focus();
+            }
+            checkSubmit();
+        }
+
+        function checkSubmit() {
+            const nameInput = document.getElementById('name-input');
+            const btn = document.getElementById('next-btn');
+
+            if (nameInput.value.trim().length > 0) {
+                btn.classList.remove('opacity-50', 'pointer-events-none');
+            } else {
+                btn.classList.add('opacity-50', 'pointer-events-none');
+            }
+        }
+    </script>
+</body>
+
+</html>
