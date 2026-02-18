@@ -39,58 +39,155 @@
         <!-- 바운스 콘텐츠 -->
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1">
-                <div class="join-step-header" id="target-anchor">
+                <div class="join-step-header mt-1 mb-4" id="target-anchor">
                     <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">
                         편하신 방법으로<br /><span class="text-[#5031E5]">본인 인증</span>을 진행해 주세요.
                     </h2>
                 </div>
 
-                <div class="join-step-content grid grid-cols-2 gap-3">
-                    <button
-                        class="rounded-xl border-2 border-gray-100 bg-white hover:border-gray-200 active:scale-[0.98] transition-all flex flex-col items-center justify-center gap-2 p-3 shadow-sm"
-                        onclick="selectAuth(this)">
-                        <div class="w-10 h-10 rounded-full bg-yellow-300 flex items-center justify-center shadow-sm">
-                            <span class="font-black text-[11px] text-[#3C1E1E]">TALK</span>
-                        </div>
-                        <span class="text-[14px] font-bold text-gray-700">카카오톡</span>
-                    </button>
+                <div class="join-step-content flex flex-col gap-2.5">
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <label
+                            class="group relative flex flex-col items-center justify-center py-5 px-4 bg-white border border-gray-100 rounded-[20px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                            <input type="radio" name="auth_method" class="peer sr-only" onchange="selectAuth(this)">
+                            <div
+                                class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[20px] transition-all pointer-events-none z-10">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/5 transition-all pointer-events-none">
+                            </div>
 
-                    <button
-                        class="rounded-xl border-2 border-gray-100 bg-white hover:border-gray-200 active:scale-[0.98] transition-all flex flex-col items-center justify-center gap-2 p-3 shadow-sm"
-                        onclick="selectAuth(this)">
-                        <div class="w-10 h-10 rounded-full bg-[#E60000] flex items-center justify-center shadow-sm">
-                            <span class="font-black text-[11px] text-white">PASS</span>
-                        </div>
-                        <span class="text-[14px] font-bold text-gray-700">PASS 앱</span>
-                    </button>
+                            <div class="flex flex-col items-center gap-3 relative z-10">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-yellow-300 flex items-center justify-center shadow-sm">
+                                    <span class="font-black text-[12px] text-[#3C1E1E]">TALK</span>
+                                </div>
+                                <span
+                                    class="text-[16px] font-bold text-gray-900 peer-checked:text-[#5031E5]">카카오톡</span>
+                            </div>
 
-                    <button
-                        class="rounded-xl border-2 border-gray-100 bg-white hover:border-gray-200 active:scale-[0.98] transition-all flex flex-col items-center justify-center gap-2 p-3 shadow-sm"
-                        onclick="selectAuth(this)">
-                        <div class="w-10 h-10 rounded-full bg-[#03C75A] flex items-center justify-center shadow-sm">
-                            <span class="font-black text-[15px] text-white">N</span>
-                        </div>
-                        <span class="text-[14px] font-bold text-gray-700">네이버</span>
-                    </button>
+                            <div
+                                class="absolute right-3 top-3 w-5 h-5 border-2 border-gray-100 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                            </div>
+                            <div
+                                class="absolute right-3 top-3 w-5 h-5 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-white"></i>
+                            </div>
+                        </label>
 
-                    <button
-                        class="rounded-xl border-2 border-gray-100 bg-white hover:border-gray-200 active:scale-[0.98] transition-all flex flex-col items-center justify-center gap-2 p-3 shadow-sm"
-                        onclick="selectAuth(this)">
-                        <div class="w-10 h-10 rounded-full bg-[#000] flex items-center justify-center shadow-sm">
-                            <span class="font-black text-[15px] text-white">T</span>
-                        </div>
-                        <span class="text-[14px] font-bold text-gray-700">TOSS</span>
-                    </button>
+                        <label
+                            class="group relative flex flex-col items-center justify-center py-5 px-4 bg-white border border-gray-100 rounded-[20px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                            <input type="radio" name="auth_method" class="peer sr-only" onchange="selectAuth(this)">
+                            <div
+                                class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[20px] transition-all pointer-events-none z-10">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/5 transition-all pointer-events-none">
+                            </div>
 
-                    <button
-                        class="col-span-2 py-3.5 rounded-xl border border-gray-200 text-gray-500 font-medium text-[14px] hover:bg-gray-50 flex items-center justify-center gap-2"
-                        onclick="selectAuth(this)">
-                        <i data-lucide="smartphone" class="w-4 h-4"></i>
-                        문자로 인증하기
-                    </button>
+                            <div class="flex flex-col items-center gap-3 relative z-10">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-[#E60000] flex items-center justify-center shadow-sm">
+                                    <span class="font-black text-[12px] text-white">PASS</span>
+                                </div>
+                                <span class="text-[16px] font-bold text-gray-900 peer-checked:text-[#5031E5]">PASS
+                                    앱</span>
+                            </div>
+
+                            <div
+                                class="absolute right-3 top-3 w-5 h-5 border-2 border-gray-100 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                            </div>
+                            <div
+                                class="absolute right-3 top-3 w-5 h-5 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-white"></i>
+                            </div>
+                        </label>
+
+                        <label
+                            class="group relative flex flex-col items-center justify-center py-5 px-4 bg-white border border-gray-100 rounded-[20px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                            <input type="radio" name="auth_method" class="peer sr-only" onchange="selectAuth(this)">
+                            <div
+                                class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[20px] transition-all pointer-events-none z-10">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/5 transition-all pointer-events-none">
+                            </div>
+
+                            <div class="flex flex-col items-center gap-3 relative z-10">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-[#03C75A] flex items-center justify-center shadow-sm">
+                                    <span class="font-black text-[18px] text-white">N</span>
+                                </div>
+                                <span class="text-[16px] font-bold text-gray-900 peer-checked:text-[#5031E5]">네이버</span>
+                            </div>
+
+                            <div
+                                class="absolute right-3 top-3 w-5 h-5 border-2 border-gray-100 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                            </div>
+                            <div
+                                class="absolute right-3 top-3 w-5 h-5 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-white"></i>
+                            </div>
+                        </label>
+
+                        <label
+                            class="group relative flex flex-col items-center justify-center py-5 px-4 bg-white border border-gray-100 rounded-[20px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                            <input type="radio" name="auth_method" class="peer sr-only" onchange="selectAuth(this)">
+                            <div
+                                class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[20px] transition-all pointer-events-none z-10">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/5 transition-all pointer-events-none">
+                            </div>
+
+                            <div class="flex flex-col items-center gap-3 relative z-10">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-[#000] flex items-center justify-center shadow-sm">
+                                    <span class="font-black text-[18px] text-white">T</span>
+                                </div>
+                                <span
+                                    class="text-[16px] font-bold text-gray-900 peer-checked:text-[#5031E5]">TOSS</span>
+                            </div>
+
+                            <div
+                                class="absolute right-3 top-3 w-5 h-5 border-2 border-gray-100 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                            </div>
+                            <div
+                                class="absolute right-3 top-3 w-5 h-5 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-white"></i>
+                            </div>
+                        </label>
+                    </div>
+
+                    <label
+                        class="group relative flex items-center justify-center p-4 bg-white border border-gray-100 rounded-[16px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                        <input type="radio" name="auth_method" class="peer sr-only" onchange="selectAuth(this)">
+                        <div
+                            class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[16px] transition-all pointer-events-none z-10">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/5 transition-all pointer-events-none">
+                        </div>
+
+                        <div
+                            class="flex items-center gap-2 relative z-10 text-gray-500 peer-checked:text-[#5031E5] peer-checked:font-bold">
+                            <i data-lucide="smartphone" class="w-4 h-4"></i>
+                            <span class="text-[15px]">문자로 인증하기</span>
+                        </div>
+
+                        <!-- Circle Background (Sibling) -->
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 border-2 border-gray-100 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                        </div>
+                        <!-- Check Icon (Sibling) -->
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-3.5 h-3.5 text-white"></i>
+                        </div>
+                    </label>
                 </div>
 
-                <div class="mt-auto pt-4 pb-6">
+                <div class="mt-auto pt-3 pb-4">
                     <button id="next-btn"
                         class="w-full bg-gray-200 text-gray-400 py-4 rounded-xl text-[19px] font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-none"
                         disabled onclick="location.href='step06_auth_form.html'">
@@ -109,27 +206,14 @@
         initCommonUI(pageText);
 
         function selectAuth(el) {
-            document.querySelectorAll('button.border-2, button.border').forEach(btn => {
-                btn.classList.remove('border-[#5031E5]', 'bg-blue-50', 'ring-2', 'ring-[#5031E5]/20');
-                if (btn.classList.contains('col-span-2')) {
-                    btn.classList.add('border-gray-200', 'bg-white', 'text-gray-500');
-                    btn.classList.remove('text-[#5031E5]', 'font-bold');
-                } else {
-                    btn.classList.add('border-gray-100', 'bg-white');
-                }
-            });
-
-            if (el.classList.contains('col-span-2')) {
-                el.classList.remove('border-gray-200', 'bg-white', 'text-gray-500');
-                el.classList.add('border-[#5031E5]', 'bg-blue-50', 'text-[#5031E5]', 'font-bold');
-            } else {
-                el.classList.remove('border-gray-100', 'bg-white');
-                el.classList.add('border-[#5031E5]', 'bg-blue-50', 'ring-2', 'ring-[#5031E5]/20');
-            }
-
             const nextBtn = document.getElementById('next-btn');
             nextBtn.disabled = false;
             nextBtn.className = "w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all";
+
+            // Re-render icons
+            setTimeout(() => {
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }, 0);
         }
     </script>
 </body>

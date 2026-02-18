@@ -46,49 +46,75 @@
                 </div>
 
                 <div class="join-step-content flex-1 space-y-4">
-                    <p class="text-[13px] text-gray-500 text-right w-full mb-2">* 개인정보 보호를 위해 동까지만 표시됩니다.</p>
 
                     <!-- 주소 1 -->
                     <label
-                        class="flex items-center justify-between p-5 bg-white border border-gray-200 rounded-[20px] shadow-sm cursor-pointer hover:border-[#5031E5] transition-all group">
-                        <div class="flex items-center gap-4">
+                        class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[20px] shadow-sm cursor-pointer hover:border-[#5031E5] transition-all overflow-hidden active:scale-[0.98]">
+                        <input type="radio" name="address" class="peer sr-only" onchange="toggleBtn()" />
+
+                        <!-- 배경 및 테두리 -->
+                        <div
+                            class="absolute inset-0 border-2 border-transparent peer-checked:border-[#5031E5] rounded-[20px] transition-all pointer-events-none z-10">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-indigo-50/0 peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                        </div>
+
+                        <div class="flex items-center gap-4 relative z-10">
                             <div
-                                class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-blue-600">
+                                class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 transition-colors group-hover:bg-blue-100">
                                 <i class="w-6 h-6" data-lucide="map-pin"></i>
                             </div>
                             <div>
-                                <p class="text-[16px] font-bold text-gray-900">전라도 장성현 아곡리 아치실</p>
+                                <p class="text-[16px] font-bold text-gray-900 peer-checked:text-[#5031E5]">전라도 장성현 아곡리
+                                    아치실</p>
                                 <p class="text-[13px] text-gray-400 mt-0.5">인터넷 + IPTV 결합</p>
                             </div>
                         </div>
-                        <div class="relative">
-                            <input type="radio" name="address" class="peer sr-only" onchange="toggleBtn()" />
-                            <div
-                                class="w-6 h-6 border-2 border-gray-300 rounded-full peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] flex items-center justify-center transition-all">
-                                <i class="w-4 h-4 text-white" data-lucide="check"></i>
-                            </div>
+
+                        <!-- Circle Check Background (Peer Sibling) -->
+                        <div
+                            class="relative w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                        </div>
+
+                        <!-- Check Icon (Peer Sibling) -->
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
                         </div>
                     </label>
 
                     <!-- 주소 2 -->
                     <label
-                        class="flex items-center justify-between p-5 bg-white border border-gray-200 rounded-[20px] shadow-sm cursor-pointer hover:border-[#5031E5] transition-all group">
-                        <div class="flex items-center gap-4">
+                        class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[20px] shadow-sm cursor-pointer hover:border-[#5031E5] transition-all overflow-hidden active:scale-[0.98]">
+                        <input type="radio" name="address" class="peer sr-only" onchange="toggleBtn()" />
+                        <div
+                            class="absolute inset-0 border-2 border-transparent peer-checked:border-[#5031E5] rounded-[20px] transition-all pointer-events-none z-10">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-indigo-50/0 peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                        </div>
+
+                        <div class="flex items-center gap-4 relative z-10">
                             <div
-                                class="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center text-gray-600">
+                                class="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center text-gray-600 transition-colors group-hover:bg-gray-100">
                                 <i class="w-6 h-6" data-lucide="map-pin"></i>
                             </div>
                             <div>
-                                <p class="text-[16px] font-bold text-gray-900">경기도 파주군 적성</p>
+                                <p class="text-[16px] font-bold text-gray-900 peer-checked:text-[#5031E5]">경기도 파주군 적성
+                                </p>
                                 <p class="text-[13px] text-gray-400 mt-0.5">IPTV 단독</p>
                             </div>
                         </div>
-                        <div class="relative">
-                            <input type="radio" name="address" class="peer sr-only" onchange="toggleBtn()" />
-                            <div
-                                class="w-6 h-6 border-2 border-gray-300 rounded-full peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] flex items-center justify-center transition-all">
-                                <i class="w-4 h-4 text-white" data-lucide="check"></i>
-                            </div>
+                        <!-- Circle Check Background (Peer Sibling) -->
+                        <div
+                            class="relative w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                        </div>
+
+                        <!-- Check Icon (Peer Sibling) -->
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
                         </div>
                     </label>
                 </div>
@@ -100,6 +126,7 @@
                         onclick="location.href='consent.html'">
                         선택 완료
                     </button>
+                    <p class="text-[12px] text-gray-400 mt-3 px-2 text-left">* 개인정보 보호를 위해 동까지만 표시됩니다.</p>
                 </div>
             </div>
         </div>

@@ -29,8 +29,22 @@
             }
         }
 
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
         .scanner-line {
             animation: scan 2s infinite linear;
+        }
+
+        .animate-spin-slow {
+            animation: spin 3s infinite linear;
         }
     </style>
 </head>
@@ -59,7 +73,7 @@
         <!-- 바운스 콘텐츠 -->
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1">
-                <div class="join-step-header" id="target-anchor">
+                <div class="join-step-header mb-8" id="target-anchor">
                     <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight" id="status-title">확인중이예요.<br>잠시만
                         기다려 주세요.</h2>
                 </div>
@@ -67,9 +81,12 @@
                 <div class="join-step-content flex-1 flex flex-col items-center justify-center min-h-[150px]"
                     id="loading-view">
                     <div
-                        class="relative w-24 h-24 bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden flex items-center justify-center">
-                        <i data-lucide="search" class="w-8 h-8 text-[#5031E5] opacity-20"></i>
-                        <div class="absolute inset-x-0 top-0 h-1 bg-[#5031E5] scanner-line shadow-[0_0_10px_#5031E5]">
+                        class="relative w-24 h-24 bg-gray-50 rounded-2xl border border-gray-100 flex items-center justify-center overflow-hidden">
+                        <div class="relative z-10 flex items-center justify-center">
+                            <i data-lucide="refresh-cw" class="w-10 h-10 text-[#5031E5] animate-spin-slow"></i>
+                        </div>
+                        <!-- 광택 효과 -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent">
                         </div>
                     </div>
                 </div>

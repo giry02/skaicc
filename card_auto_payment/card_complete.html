@@ -40,9 +40,11 @@
         <!-- 바운스 콘텐츠 -->
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1">
-                <div class="mt-4 mb-6 flex flex-col items-center justify-center">
-                    <div class="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mb-4 animate-bounce">
-                        <i data-lucide="check-circle-2" class="w-14 h-14 text-[#5031E5]"></i>
+                <div class="flex flex-col items-center justify-center pt-8 pb-8 text-center px-4">
+                    <div
+                        class="w-20 h-20 bg-indigo-50 rounded-full flex items-center justify-center mb-6 relative animate-bounce">
+                        <div class="absolute inset-0 bg-[#5031E5] opacity-20 rounded-full animate-ping"></div>
+                        <i data-lucide="check-circle" class="w-12 h-12 text-[#5031E5] relative z-10"></i>
                     </div>
                     <h2 class="text-[22px] font-extrabold text-[#1a1a1a] text-center leading-tight">카드 자동납부
                         변경이<br />완료되었습니다!</h2>
@@ -51,41 +53,31 @@
                     </p>
                 </div>
 
-                <div class="space-y-3">
-                    <div
-                        class="p-4 bg-[#F8F9FA] rounded-[24px] border border-gray-100 flex justify-between items-center group active:scale-95 transition-all">
-                        <div class="flex items-center gap-4">
-                            <div class="w-9 h-9 bg-white rounded-xl shadow-sm flex items-center justify-center">
-                                <i data-lucide="phone" class="w-4 h-4 text-green-500"></i>
+                <div class="mb-8 px-1">
+                    <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                        <div class="flex flex-col">
+                            <div
+                                class="flex justify-between items-center text-[15px] pb-4 border-b border-gray-100/60 group active:scale-[0.98] transition-all cursor-pointer">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                                        <i data-lucide="phone" class="w-4 h-4 text-green-500"></i>
+                                    </div>
+                                    <span class="font-bold text-gray-800">요금납부 ARS 연결</span>
+                                </div>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300"></i>
                             </div>
-                            <div>
-                                <p class="text-[14px] font-bold text-gray-800">요금납부 ARS 연결</p>
-                                <p class="text-[12px] text-gray-400 mt-0.5">실시간 요금 납부가 필요하신가요?</p>
-                            </div>
-                        </div>
-                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300"></i>
-                    </div>
-
-                    <div
-                        class="p-4 bg-[#F8F9FA] rounded-[24px] border border-gray-100 flex justify-between items-center group active:scale-95 transition-all">
-                        <div class="flex items-center gap-4">
-                            <div class="w-9 h-9 bg-white rounded-xl shadow-sm flex items-center justify-center">
-                                <i data-lucide="message-square" class="w-4 h-4 text-blue-500"></i>
-                            </div>
-                            <div>
-                                <p class="text-[14px] font-bold text-gray-800">요금납부 사이트 연결</p>
-                                <p class="text-[12px] text-gray-400 mt-0.5">납부 링크를 문자로 보내드릴게요.</p>
+                            <div
+                                class="flex justify-between items-center text-[15px] pt-4 group active:scale-[0.98] transition-all cursor-pointer">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                                        <i data-lucide="message-square" class="w-4 h-4 text-blue-500"></i>
+                                    </div>
+                                    <span class="font-bold text-gray-800">요금납부 사이트 연결</span>
+                                </div>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300"></i>
                             </div>
                         </div>
-                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-300"></i>
                     </div>
-                </div>
-
-                <!-- 만족도 조사 버튼 -->
-                <div class="mt-auto pt-4 pb-6">
-                    <button
-                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg hover:bg-[#4020d0] transition-colors"
-                        onclick="location.href='../move_service_intro.html'">홈으로 이동</button>
                 </div>
             </div>
         </div>

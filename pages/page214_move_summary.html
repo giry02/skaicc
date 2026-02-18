@@ -38,7 +38,7 @@
         <!-- 바운스 콘텐츠 -->
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1">
-                <div class="join-step-header" id="target-anchor">
+                <div class="join-step-header mb-8" id="target-anchor">
                     <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">신청을 완료해<br />주시기 바랍니다.</h2>
                 </div>
                 <div class="join-step-content flex-1">
@@ -53,26 +53,27 @@
                             <div class="flex justify-between items-start">
                                 <span class="text-gray-500 font-medium">상세 안내</span>
                                 <div class="text-right">
-                                    <p class="text-gray-900 font-bold text-[15px]">댁내 거실 -&gt; 침실 1</p>
+                                    <p class="text-gray-900 font-bold text-[15px]">댁내 거실 -> 침실 1</p>
                                     <p class="text-gray-400 text-[13px] mt-1">전문 엔지니어 방문 설치</p>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <!-- 하단 버튼 및 안내 -->
+                <div class="mt-auto pt-4 pb-1">
+                    <button
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg hover:bg-[#4020d0] transition-colors"
+                        onclick="location.href='visit_schedule_modal.html'">신청하기</button>
+
                     <!-- 안내 및 유의사항 -->
-                    <div class="flex gap-2 items-start bg-blue-50/50 rounded-xl p-4 border border-blue-100/50">
-                        <i class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" data-lucide="info"></i>
+                    <div class="flex gap-2 items-start bg-blue-50/50 rounded-xl p-4 border border-blue-100/50 mt-4">
+                        <i class="w-5 h-5 text-blue-500 shrink-0 mt-0.3" data-lucide="info"></i>
                         <div class="text-[14px] text-blue-800 leading-relaxed font-medium">
                             <p>전문 기사가 방문하여 기기 이동 및 배선 정리를 도와드립니다.</p>
                             <p class="mt-1 opacity-70">※ 셋톱박스 및 공유기 등 장비 이동 포함</p>
                         </div>
                     </div>
-                </div>
-                <!-- 하단 버튼 -->
-                <div class="mt-auto pt-4 pb-6">
-                    <button
-                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg hover:bg-[#4020d0] transition-colors"
-                        onclick="location.href='visit_schedule_modal.html'">신청하기</button>
                 </div>
             </div>
         </div>

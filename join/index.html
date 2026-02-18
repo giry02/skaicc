@@ -39,36 +39,116 @@
         <!-- 바운스 콘텐츠 -->
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1">
-                <div class="join-step-header" id="target-anchor">
+                <div class="join-step-header mt-2 mb-8" id="target-anchor">
                     <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">
                         원하시는 <span class="text-[#5031E5]">가입 유형</span>을<br />선택해 주세요.
                     </h2>
                 </div>
 
-                <div class="join-step-content join-section-gap small flex flex-col flex-1">
-                    <button
-                        class="py-5 rounded-xl border-2 text-[17px] font-bold text-center transition-all bg-white border-gray-200 text-gray-600 hover:border-gray-300 active:scale-[0.98]"
-                        onclick="selectType(this)">
-                        인터넷 + B tv
-                        <span class="block text-[13px] font-medium text-gray-400 mt-1">결합할인으로 더 저렴하게</span>
-                    </button>
-                    <button
-                        class="py-5 rounded-xl border-2 text-[17px] font-bold text-center transition-all bg-white border-gray-200 text-gray-600 hover:border-gray-300 active:scale-[0.98]"
-                        onclick="selectType(this)">
-                        인터넷
-                        <span class="block text-[13px] font-medium text-gray-400 mt-1">빠르고 안정적인 GiGA 인터넷</span>
-                    </button>
-                    <button
-                        class="py-5 rounded-xl border-2 text-[17px] font-bold text-center transition-all bg-white border-gray-200 text-gray-600 hover:border-gray-300 active:scale-[0.98]"
-                        onclick="selectType(this)">
-                        B tv (단독)
-                        <span class="block text-[13px] font-medium text-gray-400 mt-1">다양한 콘텐츠를 한눈에</span>
-                    </button>
+                <div class="join-step-content flex flex-col space-y-3 mb-4 flex-1">
+                    <label
+                        class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[20px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                        <input type="radio" name="join_type" class="peer sr-only" onchange="selectType(this)">
+
+                        <!-- 배경 및 테두리 (Peer Sibling) -->
+                        <div
+                            class="absolute inset-0 border-2 border-transparent peer-checked:border-[#5031E5] rounded-[20px] transition-all pointer-events-none z-10">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-indigo-50/0 peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                        </div>
+
+                        <div class="flex items-center gap-4 relative z-10">
+                            <div class="w-10 h-10 bg-indigo-50 rounded-full flex items-center justify-center shrink-0">
+                                <i data-lucide="monitor-play" class="w-6 h-6 text-[#5031E5]"></i>
+                            </div>
+                            <div class="text-left">
+                                <p class="text-[17px] font-bold text-gray-900 peer-checked:text-[#5031E5]">인터넷 + B tv
+                                </p>
+                                <span
+                                    class="block text-[13px] font-medium text-gray-400 mt-0.5 peer-checked:text-[#5031E5]/80">결합할인으로
+                                    더 저렴하게</span>
+                            </div>
+                        </div>
+
+                        <!-- Circle Check Background (Peer Sibling) -->
+                        <div
+                            class="relative w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                        </div>
+
+                        <!-- Check Icon (Peer Sibling) -->
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                    </label>
+
+                    <label
+                        class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[20px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                        <input type="radio" name="join_type" class="peer sr-only" onchange="selectType(this)">
+                        <div
+                            class="absolute inset-0 border-2 border-transparent peer-checked:border-[#5031E5] rounded-[20px] transition-all pointer-events-none z-10">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-indigo-50/0 peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                        </div>
+
+                        <div class="flex items-center gap-4 relative z-10">
+                            <div class="w-10 h-10 bg-indigo-50 rounded-full flex items-center justify-center shrink-0">
+                                <i data-lucide="wifi" class="w-6 h-6 text-[#5031E5]"></i>
+                            </div>
+                            <div class="text-left">
+                                <p class="text-[17px] font-bold text-gray-900 peer-checked:text-[#5031E5]">인터넷</p>
+                                <span
+                                    class="block text-[13px] font-medium text-gray-400 mt-0.5 peer-checked:text-[#5031E5]/80">빠르고
+                                    안정적인 GiGA 인터넷</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="relative w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                        </div>
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                    </label>
+
+                    <label
+                        class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[20px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                        <input type="radio" name="join_type" class="peer sr-only" onchange="selectType(this)">
+                        <div
+                            class="absolute inset-0 border-2 border-transparent peer-checked:border-[#5031E5] rounded-[20px] transition-all pointer-events-none z-10">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-indigo-50/0 peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                        </div>
+
+                        <div class="flex items-center gap-4 relative z-10">
+                            <div class="w-10 h-10 bg-indigo-50 rounded-full flex items-center justify-center shrink-0">
+                                <i data-lucide="tv" class="w-6 h-6 text-[#5031E5]"></i>
+                            </div>
+                            <div class="text-left">
+                                <p class="text-[17px] font-bold text-gray-900 peer-checked:text-[#5031E5]">B tv (단독)</p>
+                                <span
+                                    class="block text-[13px] font-medium text-gray-400 mt-0.5 peer-checked:text-[#5031E5]/80">다양한
+                                    콘텐츠를 한눈에</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="relative w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                        </div>
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                    </label>
                 </div>
 
                 <div class="mt-auto pt-4 pb-6">
                     <button id="next-btn"
-                        class="w-full bg-gray-200 text-gray-400 py-4 rounded-xl text-[19px] font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-none"
+                        class="w-full bg-gray-200 text-white py-4 rounded-xl text-[19px] font-bold transition-all opacity-50 cursor-not-allowed shadow-none"
                         disabled onclick="location.href='step02_mobile.html'">
                         다음으로
                     </button>
@@ -85,22 +165,15 @@
         initCommonUI(pageText);
 
         function selectType(el) {
-            // 초기화
-            document.querySelectorAll('button.border-2').forEach(btn => {
-                btn.className = "py-5 rounded-xl border-2 text-[17px] font-bold text-center transition-all bg-white border-gray-200 text-gray-600 hover:border-gray-300 active:scale-[0.98]";
-                const span = btn.querySelector('span');
-                if (span) span.className = "block text-[13px] font-medium text-gray-400 mt-1";
-            });
-
-            // 선택 스타일 적용
-            el.className = "py-5 rounded-xl border-2 text-[17px] font-bold text-center transition-all bg-blue-50 border-[#5031E5] text-[#5031E5] shadow-sm active:scale-[0.98]";
-            const span = el.querySelector('span');
-            if (span) span.className = "block text-[13px] font-medium text-[#5031E5]/80 mt-1";
-
-            // 다음 버튼 활성화
             const nextBtn = document.getElementById('next-btn');
             nextBtn.disabled = false;
-            nextBtn.className = "w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all";
+            nextBtn.classList.remove('bg-gray-200', 'text-white', 'opacity-50', 'cursor-not-allowed');
+            nextBtn.classList.add('bg-[#5031E5]', 'text-white', 'shadow-lg', 'active:scale-95');
+
+            // Re-render icons for check stability
+            setTimeout(() => {
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }, 0);
         }
     </script>
 </body>

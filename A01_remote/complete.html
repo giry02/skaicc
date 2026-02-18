@@ -5,28 +5,12 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
         name="viewport" />
-    <title>SK브로드밴드 AI상담사 콜비 - 예약 완료</title>
+    <title>SK브로드밴드 AI상담사 콜비 - 신청 완료</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
         rel="stylesheet" />
     <link href="../css/common.css" rel="stylesheet" />
-    <style>
-        .confetti {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: #5031E5;
-            border-radius: 50%;
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(500px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-    </style>
 </head>
 
 <body class="h-full w-full bg-white overflow-hidden flex flex-col">
@@ -36,7 +20,7 @@
             onclick="location.href='../index.html'">
             <i class="w-7 h-7" data-lucide="home"></i>
         </button>
-        <h1 class="text-[18px] font-bold text-gray-900">예약 완료</h1>
+        <h1 class="text-[18px] font-bold text-gray-900">리모컨 구매</h1>
         <div class="flex items-center gap-1 cursor-pointer px-2 py-1" onclick="location.href='../index.html'">
             <span class="text-sm font-bold text-gray-900">종료</span>
             <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
@@ -48,24 +32,22 @@
         id="main-scroll-container">
         <!-- 타이핑 텍스트 영역 (숨김) -->
         <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0 hidden" id="typing-area">
-            <span class="text-[#5031E5] font-bold text-[17px]" id="typing-text"></span>
-            <span class="inline-block w-[2px] h-5 bg-[#5031E5] ml-1 cursor-blink" id="cursor"></span>
+            <span class="text-[#2563EB] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#2563EB] ml-1 cursor-blink" id="cursor"></span>
         </div>
 
         <!-- 바운스 콘텐츠 -->
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1 relative">
-                <div id="confetti-container" class="absolute inset-0 pointer-events-none overflow-hidden h-[300px]">
-                </div>
-
                 <div class="flex flex-col items-center justify-center pt-8 pb-8">
                     <div class="w-20 h-20 bg-indigo-50 rounded-full flex items-center justify-center mb-6 relative">
                         <div class="absolute inset-0 bg-[#5031E5] opacity-20 rounded-full animate-ping"></div>
                         <i data-lucide="check-circle" class="w-12 h-12 text-[#5031E5] relative z-10"></i>
                     </div>
-                    <h2 class="text-[22px] font-black text-gray-900 text-center leading-tight">방문 예약이<br />완료되었습니다.</h2>
+                    <h2 class="text-[22px] font-black text-gray-900 text-center leading-tight">리모컨 신청이<br />정상적으로
+                        완료되었습니다.</h2>
                     <p class="mt-3 text-gray-500 text-[14px] font-medium text-center leading-relaxed">
-                        예약 번호: 20260216-123456
+                        영업일 기준 1~2일 내에<br />선택하신 주소로 배송이 시작됩니다.
                     </p>
                 </div>
 
@@ -73,20 +55,17 @@
                     <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
                         <div class="flex flex-col">
                             <div class="flex justify-between items-center text-[15px] pb-3">
-                                <span class="text-gray-500">방문 일시</span>
-                                <span class="font-black text-gray-800">2026.02.20 (금) 14시</span>
+                                <span class="text-gray-500">신청 서비스</span>
+                                <span class="font-black text-gray-800">스마트 리모컨</span>
                             </div>
                             <div class="flex justify-between items-center text-[15px] py-3">
-                                <span class="text-gray-500">담당 매니저</span>
-                                <span class="font-black text-gray-800 text-right">김철수</span>
+                                <span class="text-gray-500">납부 방법</span>
+                                <span class="font-black text-gray-800">익월 요금 합산</span>
                             </div>
-                        </div>
-                        <div class="mt-4 bg-white rounded-xl p-4 border border-gray-100 flex gap-2 items-start">
-                            <i class="w-4 h-4 text-orange-500 mt-0.5 shrink-0" data-lucide="info"></i>
-                            <p class="text-[12px] text-gray-600 leading-snug">
-                                방문 전 매니저가 연락드릴 예정입니다.<br>
-                                변경/취소는 예약 조회에서 가능합니다.
-                            </p>
+                            <div class="flex justify-between items-center text-[15px] pt-3 border-t border-gray-100/60">
+                                <span class="text-gray-500">신청 일자</span>
+                                <span class="font-black text-gray-800">2026.02.18</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -98,26 +77,8 @@
     <script src="../js/agent_overlay.js"></script>
     <script src="../js/common_ui.js"></script>
     <script>
-        // 페이지 개별 설정 및 UI 초기화
         const pageText = "";
         initCommonUI(pageText);
-
-        // 꽃가루 효과 (initCommonUI와 별도로 실행)
-        function createConfetti() {
-            const container = document.getElementById('confetti-container');
-            if (!container) return;
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.top = '-20px';
-                confetti.style.backgroundColor = ['#5031E5', '#A855F7', '#3B82F6', '#10B981'][Math.floor(Math.random() * 4)];
-                confetti.style.animation = `fall ${Math.random() * 2 + 1}s linear forwards`;
-                container.appendChild(confetti);
-                setTimeout(() => confetti.remove(), 2000);
-            }
-        }
-        setTimeout(createConfetti, 800);
     </script>
 </body>
 

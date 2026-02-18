@@ -38,11 +38,11 @@
         <!-- 바운스 콘텐츠 -->
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1">
-                <div class="join-step-header" id="target-anchor">
+                <div class="join-step-header mb-8" id="target-anchor">
                     <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">예상되는 할인 혜택을<br />확인해 보세요.</h2>
                 </div>
 
-                <div class="join-step-content join-section-gap small flex-1">
+                <div class="join-step-content flex-1 space-y-6">
                     <!-- 총 할인 요약 -->
                     <div
                         class="bg-gradient-to-br from-[#5031E5] to-[#7C3AED] rounded-[24px] p-5 text-white shadow-lg overflow-hidden relative">
@@ -100,18 +100,20 @@
                         </div>
                     </div>
 
-                    <div class="bg-blue-50/50 rounded-xl p-3 border border-blue-100/50">
-                        <p class="text-[11px] text-blue-600/70 leading-relaxed font-medium">
-                            ※ 상기 금액은 부가세 포함 기준이며, 요금제 변경 시 할인 금액이 변동될 수 있습니다.
-                        </p>
-                    </div>
+
                 </div>
 
-                <!-- 다음 버튼 -->
+                <!-- 하단 버튼 및 안내 -->
                 <div class="mt-auto pt-4 pb-6">
                     <button
                         class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg hover:bg-[#4020d0] transition-all active:scale-95"
                         id="apply-btn" onclick="location.href='terms.html'">확인했습니다</button>
+
+                    <div class="bg-blue-50/50 rounded-xl p-4 border border-blue-100/50 mt-4">
+                        <p class="text-[13px] text-blue-800/80 leading-relaxed font-medium">
+                            ※ 상기 금액은 부가세 포함 기준이며, 요금제 변경 시 할인 금액이 변동될 수 있습니다.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

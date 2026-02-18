@@ -90,7 +90,7 @@
                 <div class="mt-auto pt-4 pb-6">
                     <button
                         class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold opacity-50 pointer-events-none transition-all shadow-lg shadow-indigo-200 active:scale-95"
-                        id="confirm-btn" onclick="showCompleteModal()">구매 확정하기</button>
+                        id="confirm-btn" onclick="location.href='complete.html'">구매 확정하기</button>
                 </div>
             </div>
         </div>
@@ -98,29 +98,6 @@
     </div>
 
     <script src="../js/agent_overlay.js"></script>
-
-    <!-- 완료 모달 (Slide 186 대응) -->
-    <div class="hidden fixed inset-0 z-[100] flex items-center justify-center px-6" id="complete-modal">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-        <div
-            class="relative bg-white rounded-[32px] w-full max-w-sm overflow-hidden animate-pop-in text-center p-8 pt-10 shadow-2xl">
-            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i class="w-10 h-10 text-green-600" data-lucide="check-circle-2"></i>
-            </div>
-            <h2 class="text-[24px] font-black text-gray-900 mb-3 leading-tight">신청 완료!</h2>
-            <div class="text-[15px] text-gray-500 font-medium leading-relaxed mb-8 px-2">
-                <p>리모컨 신청이 정상적으로 접수되었습니다.</p>
-                <div
-                    class="mt-5 text-[13px] bg-green-50 p-4 rounded-2xl border border-green-100/50 text-green-700 font-bold">
-                    <p>고객님은 <span class="text-orange-600">2월 15일 방문 일정</span>이 있으시네요!</p>
-                    <p class="mt-1">택배 배송 대신 기사님이 직접 챙겨가서<br>설정까지 도와드릴게요.</p>
-                </div>
-            </div>
-            <button
-                class="w-full bg-[#1a1a1a] text-white py-4 rounded-2xl text-[17px] font-bold active:scale-95 transition-transform"
-                onclick="location.href='../index.html'">확인</button>
-        </div>
-    </div>
 
     <script src="../js/common_ui.js"></script>
     <script>
@@ -140,10 +117,6 @@
                 checkbox.classList.remove('bg-[#5031E5]', 'border-[#5031E5]');
                 confirmBtn.classList.add('opacity-50', 'pointer-events-none');
             }
-        }
-
-        function showCompleteModal() {
-            document.getElementById('complete-modal').classList.remove('hidden');
         }
     </script>
 </body>

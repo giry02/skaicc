@@ -43,34 +43,87 @@
                     <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">리모컨을 신청하실<br />주소를 선택해 주세요.</h2>
                 </div>
 
-                <div class="join-step-content join-section-gap small">
-                    <button
-                        class="w-full text-left p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
-                        onclick="location.href='model_selection.html'">
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="bg-indigo-50 text-[#5031E5] text-[10px] font-bold px-2 py-0.5 rounded-full">기본
-                                주소</span>
+                <div class="join-step-content join-section-gap small space-y-3">
+                    <label
+                        class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                        <input type="radio" name="address" class="peer sr-only" onchange="selectAddress()">
+                        <div
+                            class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[24px] transition-all pointer-events-none z-10">
                         </div>
-                        <p class="text-[17px] font-bold text-gray-900 mb-0.5 group-hover:text-[#5031E5]">서울시 중구 퇴계로 24
-                        </p>
-                        <p class="text-[14px] text-gray-500 font-medium tracking-tight">B타워 15층 (남대문로5가)</p>
-                    </button>
+                        <div
+                            class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/5 transition-all pointer-events-none">
+                        </div>
 
-                    <button
-                        class="w-full text-left p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
-                        onclick="location.href='model_selection.html'">
-                        <p class="text-[17px] font-bold text-gray-900 mb-0.5 group-hover:text-[#5031E5]">서울시 강남구 테헤란로
-                            123</p>
-                        <p class="text-[14px] text-gray-500 font-medium tracking-tight">에이아이빌딩 5층 (역삼동)</p>
-                    </button>
+                        <div class="relative z-10 flex-1 pr-10">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span
+                                    class="bg-indigo-50 text-[#5031E5] text-[10px] font-bold px-2 py-0.5 rounded-full peer-checked:bg-[#5031E5] peer-checked:text-white transition-colors">기본
+                                    주소</span>
+                            </div>
+                            <p
+                                class="text-[17px] font-bold text-gray-900 mb-0.5 peer-checked:text-[#5031E5] transition-colors">
+                                서울시 중구 퇴계로 24</p>
+                            <p
+                                class="text-[14px] text-gray-500 font-medium tracking-tight peer-checked:text-[#5031E5]/70 transition-colors">
+                                B타워 15층 (남대문로5가)</p>
+                        </div>
+
+                        <!-- Circle Background (Sibling) -->
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                        </div>
+                        <!-- Check Icon (Sibling) -->
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                    </label>
+
+                    <label
+                        class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                        <input type="radio" name="address" class="peer sr-only" onchange="selectAddress()">
+                        <div
+                            class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[24px] transition-all pointer-events-none z-10">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/5 transition-all pointer-events-none">
+                        </div>
+
+                        <div class="relative z-10 flex-1 pr-10">
+                            <p
+                                class="text-[17px] font-bold text-gray-900 mb-0.5 peer-checked:text-[#5031E5] transition-colors">
+                                서울시 강남구 테헤란로 123</p>
+                            <p
+                                class="text-[14px] text-gray-500 font-medium tracking-tight peer-checked:text-[#5031E5]/70 transition-colors">
+                                에이아이빌딩 5층 (역삼동)</p>
+                        </div>
+
+                        <!-- Circle Background (Sibling) -->
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                        </div>
+                        <!-- Check Icon (Sibling) -->
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                    </label>
                 </div>
 
                 <button
-                    class="mt-4 flex items-center justify-center gap-2 py-4 bg-gray-50 border border-gray-100 rounded-[20px] text-[14px] font-bold text-gray-500 active:scale-95 transition-transform"
+                    class="mt-3 flex items-center justify-center gap-2 py-4 bg-gray-50 border border-gray-100 rounded-[20px] text-[14px] font-bold text-gray-500 active:scale-95 transition-transform"
                     onclick="showRestrictedModal()">
                     <i data-lucide="help-circle" class="w-4 h-4 text-gray-400"></i>
                     <span>원하는 주소가 없으신가요?</span>
                 </button>
+
+                <div class="mt-auto pt-4 pb-4">
+                    <button id="next-btn"
+                        class="w-full bg-gray-200 text-gray-400 py-4 rounded-xl text-[19px] font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-none"
+                        disabled onclick="location.href='model_selection.html'">
+                        다음으로
+                    </button>
+                </div>
             </div>
         </div>
         <div class="w-full h-80 shrink-0" id="bottom-spacer"></div>
@@ -110,6 +163,17 @@
     <script>
         const pageText = "주소가 여러개로 확인되었어요.";
         initCommonUI(pageText);
+
+        function selectAddress() {
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.disabled = false;
+            nextBtn.className = "w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all";
+
+            // Re-render icons
+            setTimeout(() => {
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }, 0);
+        }
 
         function showRestrictedModal() {
             document.getElementById('restricted-modal').classList.remove('hidden');

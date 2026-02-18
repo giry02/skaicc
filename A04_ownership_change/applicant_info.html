@@ -39,53 +39,90 @@
         <!-- 바운스 콘텐츠 -->
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1">
-                <div class="join-step-header" id="target-anchor">
+                <div class="join-step-header mb-5" id="target-anchor">
                     <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">신규 명의자의 정보를<br />입력해 주세요.</h2>
                 </div>
 
-                <div class="join-step-content join-section-gap flex-1 space-y-4">
+                <div class="join-step-content space-y-3 flex-1">
                     <!-- 이름 입력 -->
                     <div>
-                        <label class="block text-[14px] font-bold text-gray-700 mb-2">이름</label>
+                        <label class="block text-[14px] font-bold text-gray-700 mb-1.5">이름</label>
                         <input type="text"
-                            class="w-full bg-gray-50 border border-gray-200 rounded-[16px] px-5 py-4 text-[16px] font-medium placeholder:text-gray-400 focus:bg-white focus:border-[#5031E5] outline-none transition-colors validate-input"
+                            class="w-full bg-gray-50 border border-gray-200 rounded-[16px] px-5 py-3.5 text-[16px] font-medium placeholder:text-gray-400 focus:bg-white focus:border-[#5031E5] outline-none transition-colors validate-input"
                             placeholder="이름을 입력하세요" oninput="checkInputs()" />
                     </div>
 
                     <!-- 생년월일 입력 -->
                     <div>
-                        <label class="block text-[14px] font-bold text-gray-700 mb-2">생년월일 (6자리)</label>
+                        <label class="block text-[14px] font-bold text-gray-700 mb-1.5">생년월일 (6자리)</label>
                         <input type="number"
-                            class="w-full bg-gray-50 border border-gray-200 rounded-[16px] px-5 py-4 text-[16px] font-medium placeholder:text-gray-400 focus:bg-white focus:border-[#5031E5] outline-none transition-colors validate-input"
+                            class="w-full bg-gray-50 border border-gray-200 rounded-[16px] px-5 py-3.5 text-[16px] font-medium placeholder:text-gray-400 focus:bg-white focus:border-[#5031E5] outline-none transition-colors validate-input"
                             placeholder="예: 800101" maxlength="6" oninput="checkInputs()" />
                     </div>
 
                     <!-- 휴대폰 번호 입력 -->
                     <div>
-                        <label class="block text-[14px] font-bold text-gray-700 mb-2">휴대폰 번호</label>
+                        <label class="block text-[14px] font-bold text-gray-700 mb-1.5">휴대폰 번호</label>
                         <input type="tel"
-                            class="w-full bg-gray-50 border border-gray-200 rounded-[16px] px-5 py-4 text-[16px] font-medium placeholder:text-gray-400 focus:bg-white focus:border-[#5031E5] outline-none transition-colors validate-input"
+                            class="w-full bg-gray-50 border border-gray-200 rounded-[16px] px-5 py-3.5 text-[16px] font-medium placeholder:text-gray-400 focus:bg-white focus:border-[#5031E5] outline-none transition-colors validate-input"
                             placeholder="숫자만 입력하세요" oninput="checkInputs()" />
                     </div>
 
                     <!-- 가족 관계 여부 -->
                     <div>
-                        <label class="block text-[14px] font-bold text-gray-700 mb-3">신규 명의자와 가족 관계인가요?</label>
+                        <label class="block text-[14px] font-bold text-gray-700 mb-2">신규 명의자와 가족 관계인가요?</label>
                         <div class="flex gap-3">
-                            <label class="flex-1 cursor-pointer">
+                            <label
+                                class="group relative flex-1 flex items-center justify-between py-4 px-5 bg-white border border-gray-100 rounded-[16px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
                                 <input type="radio" name="family" value="yes" class="peer sr-only"
                                     onchange="checkInputs()">
+
+                                <!-- 배경 및 테두리 -->
                                 <div
-                                    class="w-full py-3.5 rounded-[16px] bg-gray-50 text-center text-[15px] font-medium text-gray-600 peer-checked:bg-[#5031E5] peer-checked:text-white transition-all">
-                                    예
+                                    class="absolute inset-0 border-2 border-transparent peer-checked:border-[#5031E5] rounded-[16px] transition-all pointer-events-none z-10">
+                                </div>
+                                <div
+                                    class="absolute inset-0 bg-indigo-50/0 peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                                </div>
+
+                                <span
+                                    class="text-[15px] font-bold text-gray-600 peer-checked:text-[#5031E5] relative z-10 transition-colors">예</span>
+
+                                <!-- Circle Check Background (Peer Sibling) -->
+                                <div
+                                    class="absolute top-1/2 -translate-y-1/2 right-4 w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                                </div>
+
+                                <!-- Check Icon (Peer Sibling) -->
+                                <div
+                                    class="absolute top-1/2 -translate-y-1/2 right-4 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                                    <i data-lucide="check" class="w-4 h-4 text-white"></i>
                                 </div>
                             </label>
-                            <label class="flex-1 cursor-pointer">
+
+                            <label
+                                class="group relative flex-1 flex items-center justify-between py-4 px-5 bg-white border border-gray-100 rounded-[16px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
                                 <input type="radio" name="family" value="no" class="peer sr-only"
                                     onchange="checkInputs()">
                                 <div
-                                    class="w-full py-3.5 rounded-[16px] bg-gray-50 text-center text-[15px] font-medium text-gray-600 peer-checked:bg-[#5031E5] peer-checked:text-white transition-all">
-                                    아니오
+                                    class="absolute inset-0 border-2 border-transparent peer-checked:border-[#5031E5] rounded-[16px] transition-all pointer-events-none z-10">
+                                </div>
+                                <div
+                                    class="absolute inset-0 bg-indigo-50/0 peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                                </div>
+
+                                <span
+                                    class="text-[15px] font-bold text-gray-600 peer-checked:text-[#5031E5] relative z-10 transition-colors">아니오</span>
+
+                                <!-- Circle Check Background (Peer Sibling) -->
+                                <div
+                                    class="absolute top-1/2 -translate-y-1/2 right-4 w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                                </div>
+
+                                <!-- Check Icon (Peer Sibling) -->
+                                <div
+                                    class="absolute top-1/2 -translate-y-1/2 right-4 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                                    <i data-lucide="check" class="w-4 h-4 text-white"></i>
                                 </div>
                             </label>
                         </div>
@@ -93,7 +130,7 @@
                 </div>
 
                 <!-- 하단 버튼 -->
-                <div class="mt-auto pt-4 pb-6">
+                <div class="mt-auto pt-3 pb-4">
                     <button id="next-btn"
                         class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all opacity-50 pointer-events-none"
                         onclick="location.href='confirmation.html'">다음</button>

@@ -72,14 +72,14 @@
         <!-- 바운스 콘텐츠 -->
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1">
-                <div class="join-step-header" id="target-anchor">
+                <div class="join-step-header mt-2 mb-8" id="target-anchor">
                     <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">
                         <span class="text-[#5031E5]">설치 장소</span>와<br /><span class="text-[#5031E5]">희망 일정</span>을
                         알려주세요.
                     </h2>
                 </div>
 
-                <div class="join-step-content join-section-gap">
+                <div class="join-step-content flex flex-col space-y-6 flex-1">
                     <!-- 주소 -->
                     <div>
                         <label class="block text-[13px] font-bold text-gray-500 mb-1.5 ml-1">설치 주소</label>
@@ -189,7 +189,7 @@
     <div id="date-modal" class="fixed inset-0 z-[100] hidden items-end justify-center">
         <div class="absolute inset-0 bg-black/60 transition-opacity" onclick="closeDateModal()"></div>
         <div
-            class="bg-white w-full rounded-t-[24px] overflow-hidden relative z-10 animate-slide-up-bottom h-[60vh] flex flex-col shadow-2xl">
+            class="bg-white w-full rounded-t-[24px] overflow-hidden relative z-10 animate-slide-up-bottom h-auto max-h-[90vh] flex flex-col shadow-2xl">
             <div class="h-8 flex items-center justify-center shrink-0" onclick="closeDateModal()">
                 <div class="w-10 h-1 bg-gray-300 rounded-full"></div>
             </div>

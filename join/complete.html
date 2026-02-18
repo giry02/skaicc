@@ -38,50 +38,38 @@
 
         <!-- 바운스 콘텐츠 -->
         <div class="w-full opacity-0" id="main-content-body">
-            <div class="flex flex-col h-full bg-white px-1 items-center text-center pt-2">
-
-                <div
-                    class="w-20 h-20 bg-[#5031E5] rounded-full flex items-center justify-center mb-5 shadow-xl shadow-indigo-200 animate-bounce">
-                    <i data-lucide="check" class="w-10 h-10 text-white"></i>
+            <div class="flex flex-col items-center justify-center pt-8 pb-8">
+                <div class="w-20 h-20 bg-indigo-50 rounded-full flex items-center justify-center mb-6 relative">
+                    <div class="absolute inset-0 bg-[#5031E5] opacity-20 rounded-full animate-ping"></div>
+                    <i data-lucide="check-circle" class="w-12 h-12 text-[#5031E5] relative z-10"></i>
                 </div>
 
-                <h2 class="text-[22px] font-extrabold text-[#1a1a1a] leading-tight mb-2">
+                <h2 class="text-[22px] font-extrabold text-[#1a1a1a] leading-tight mb-3 text-center">
                     가입 신청이<br /><span class="text-[#5031E5]">완료되었습니다!</span>
                 </h2>
 
-                <p class="text-gray-500 text-[14px] mb-8 leading-relaxed">
-                    B 다이렉트샵을 이용해 주셔서 감사합니다.<br>
+                <p class="text-gray-500 text-[14px] mb-8 leading-relaxed text-center">
                     전문 상담사가 빠른 설치를 위해<br>
                     곧 연락드리겠습니다.
                 </p>
 
-                <div class="w-full bg-gray-50 rounded-[20px] p-5 text-left space-y-3 mb-4">
-                    <div class="flex justify-between items-start">
-                        <span class="text-gray-500 font-bold text-[13px]">설치 희망일</span>
-                        <span class="text-gray-900 font-bold text-[14px]">2026.02.16 (월) 13:00</span>
+                <div class="mb-10 px-1 w-full text-left">
+                    <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                        <div class="flex flex-col">
+                            <div class="flex justify-between items-center text-[15px] pb-3">
+                                <span class="text-gray-500">설치 희망일</span>
+                                <span class="font-black text-gray-800">2026.02.16 (월) 13:00</span>
+                            </div>
+                            <div class="flex justify-between items-center text-[15px] py-3">
+                                <span class="text-gray-500">납부 방법</span>
+                                <span class="font-black text-gray-800">신용카드 (자동납부)</span>
+                            </div>
+                            <div class="flex justify-between items-end text-[15px] pt-3 border-t border-gray-100/60">
+                                <span class="text-gray-500">월 납부금액</span>
+                                <span class="text-[#5031E5] font-black text-[18px]">31,350원</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex justify-between items-start">
-                        <span class="text-gray-500 font-bold text-[13px]">납부 방법</span>
-                        <span class="text-gray-900 font-bold text-[14px]">신용카드 (자동납부)</span>
-                    </div>
-                    <div class="border-t border-gray-200 my-1"></div>
-                    <div class="flex justify-between items-end">
-                        <span class="text-gray-500 font-bold text-[13px]">월 납부금액</span>
-                        <span class="text-[#5031E5] font-black text-[18px]">31,350원</span>
-                    </div>
-                </div>
-
-                <div class="mt-auto pt-2 pb-6 w-full space-y-2.5">
-                    <button
-                        class="w-full bg-[#5031E5] text-white py-3.5 rounded-xl text-[17px] font-bold shadow-lg active:scale-95 transition-all"
-                        onclick="alert('신청 내역 조회 페이지로 이동합니다.')">
-                        나의 신청 내역 조회
-                    </button>
-                    <button
-                        class="w-full bg-white text-gray-500 py-3.5 rounded-xl text-[15px] font-bold active:bg-gray-50 transition-all"
-                        onclick="location.href='../index.html'">
-                        메인으로 돌아가기
-                    </button>
                 </div>
             </div>
         </div>

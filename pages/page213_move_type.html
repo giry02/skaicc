@@ -39,41 +39,118 @@
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1">
                 <!-- 타이틀 영역 (이미지의 보이스 내용을 텍스트로 반영) -->
-                <div class="join-step-header" id="target-anchor">
+                <div class="join-step-header mb-8" id="target-anchor">
                     <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">원하시는 이동 유형을<br />선택해 주세요.</h2>
                 </div>
-                <div class="join-step-content join-section-gap small mb-4 flex-1">
-                    <!-- 이동 유형 버튼 (화이트 테마) -->
-                    <div class="relative group">
-                        <button
-                            class="w-full py-4 px-6 rounded-xl border-2 text-[17px] font-bold transition-all flex items-center justify-start bg-white border-gray-100 text-gray-700 hover:border-gray-200 active:scale-[0.98] type-btn"
-                            onclick="selectType(this, 'same')">같은 방에서 재연결</button>
-                        <button
-                            class="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-blue-500 active:bg-blue-50 rounded-full"
-                            onclick="showInfo('same')">
-                            <i class="w-5 h-5" data-lucide="info"></i>
-                        </button>
-                    </div>
-                    <div class="relative group">
-                        <button
-                            class="w-full py-4 px-6 rounded-xl border-2 text-[17px] font-bold transition-all flex items-center justify-start bg-white border-gray-100 text-gray-700 hover:border-gray-200 active:scale-[0.98] type-btn"
-                            onclick="selectType(this, 'other')">다른 방으로 이동</button>
-                        <button
-                            class="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-blue-500 active:bg-blue-50 rounded-full"
-                            onclick="showInfo('other')">
-                            <i class="w-5 h-5" data-lucide="info"></i>
-                        </button>
-                    </div>
-                    <div class="relative group">
-                        <button
-                            class="w-full py-4 px-6 rounded-xl border-2 text-[17px] font-bold transition-all flex items-center justify-start bg-white border-gray-100 text-gray-700 hover:border-gray-200 active:scale-[0.98] type-btn"
-                            onclick="selectType(this, 'interior')">인테리어 공사 재연결</button>
-                        <button
-                            class="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-blue-500 active:bg-blue-50 rounded-full"
-                            onclick="showInfo('interior')">
-                            <i class="w-5 h-5" data-lucide="info"></i>
-                        </button>
-                    </div>
+                <!-- 이동 유형 버튼 (표준화 UI 적용) -->
+                <div class="space-y-3">
+                    <label
+                        class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                        <input type="radio" name="move_type" class="peer sr-only" onchange="selectType(this, 'same')">
+
+                        <!-- 배경 및 테두리 -->
+                        <div
+                            class="absolute inset-0 border-2 border-transparent peer-checked:border-[#5031E5] rounded-[24px] transition-all pointer-events-none z-10">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-indigo-50/0 peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                        </div>
+
+                        <div class="flex items-center gap-4 relative z-10">
+                            <div
+                                class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 transition-colors group-hover:bg-blue-100 peer-checked:bg-indigo-50">
+                                <i class="w-6 h-6" data-lucide="refresh-cw"></i>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="text-[17px] font-bold text-gray-900 peer-checked:text-[#5031E5]">같은 방에서
+                                    재연결</span>
+                                <button class="p-1 text-blue-500 hover:bg-blue-50 rounded-full z-20"
+                                    onclick="event.preventDefault(); showInfo('same')">
+                                    <i class="w-4 h-4" data-lucide="info"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Circle Check Background -->
+                        <div
+                            class="relative w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                        </div>
+
+                        <!-- Check Icon -->
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                    </label>
+
+                    <label
+                        class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                        <input type="radio" name="move_type" class="peer sr-only" onchange="selectType(this, 'other')">
+                        <div
+                            class="absolute inset-0 border-2 border-transparent peer-checked:border-[#5031E5] rounded-[24px] transition-all pointer-events-none z-10">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-indigo-50/0 peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                        </div>
+
+                        <div class="flex items-center gap-4 relative z-10">
+                            <div
+                                class="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center text-purple-600 transition-colors group-hover:bg-purple-100">
+                                <i class="w-6 h-6" data-lucide="door-open"></i>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="text-[17px] font-bold text-gray-900 peer-checked:text-[#5031E5]">다른 방으로
+                                    이동</span>
+                                <button class="p-1 text-blue-500 hover:bg-blue-50 rounded-full z-20"
+                                    onclick="event.preventDefault(); showInfo('other')">
+                                    <i class="w-4 h-4" data-lucide="info"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div
+                            class="relative w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                        </div>
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                    </label>
+
+                    <label
+                        class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                        <input type="radio" name="move_type" class="peer sr-only"
+                            onchange="selectType(this, 'interior')">
+                        <div
+                            class="absolute inset-0 border-2 border-transparent peer-checked:border-[#5031E5] rounded-[24px] transition-all pointer-events-none z-10">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-indigo-50/0 peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                        </div>
+
+                        <div class="flex items-center gap-4 relative z-10">
+                            <div
+                                class="w-12 h-12 bg-orange-50 rounded-full flex items-center justify-center text-orange-600 transition-colors group-hover:bg-orange-100">
+                                <i class="w-6 h-6" data-lucide="hammer"></i>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="text-[17px] font-bold text-gray-900 peer-checked:text-[#5031E5]">인테리어 공사
+                                    재연결</span>
+                                <button class="p-1 text-blue-500 hover:bg-blue-50 rounded-full z-20"
+                                    onclick="event.preventDefault(); showInfo('interior')">
+                                    <i class="w-4 h-4" data-lucide="info"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div
+                            class="relative w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                        </div>
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                    </label>
                 </div>
                 <div class="mt-auto pt-4 pb-6">
                     <button
@@ -124,20 +201,16 @@
     <script>
         let selectedType = null;
         function selectType(el, type) {
-            document.querySelectorAll('.type-btn').forEach(btn => {
-                btn.classList.remove('bg-[#F0F7FF]', 'border-[#2563EB]', 'text-[#2563EB]');
-                btn.classList.add('bg-white', 'border-gray-100', 'text-gray-700');
-            });
-
-            el.classList.remove('bg-white', 'border-gray-100', 'text-gray-700');
-            el.classList.add('bg-[#F0F7FF]', 'border-[#2563EB]', 'text-[#2563EB]');
             selectedType = type;
+            const applyBtn = document.getElementById('apply-btn');
+            applyBtn.disabled = false;
+            applyBtn.classList.remove('bg-[#E9ECEF]', 'text-[#ADB5BD]', 'cursor-not-allowed');
+            applyBtn.classList.add('bg-[#5031E5]', 'text-white', 'shadow-lg', 'active:scale-[0.98]');
 
-            const btn = document.getElementById('apply-btn');
-            btn.disabled = false;
-            btn.classList.remove('bg-[#E9ECEF]', 'text-[#ADB5BD]', 'cursor-not-allowed');
-            btn.classList.add('bg-[#5031E5]', 'text-white', 'shadow-lg');
-            btn.classList.add('active:scale-[0.98]');
+            // Re-render icons
+            setTimeout(() => {
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }, 0);
         }
 
         function showInfo(type) {

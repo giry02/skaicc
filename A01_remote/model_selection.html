@@ -39,64 +39,162 @@
         <!-- 바운스 콘텐츠 -->
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1">
-                <div class="join-step-header" id="target-anchor">
+                <div class="join-step-header mt-1 mb-2" id="target-anchor">
                     <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">구매하실 리모컨을<br />선택해 주세요.</h2>
                 </div>
 
-                <div class="join-step-content grid grid-cols-2 gap-3 mb-4">
-                    <button
-                        class="flex flex-col items-center bg-white border-2 border-[#5031E5] rounded-[20px] p-4 shadow-sm transition-all text-center relative overflow-hidden group">
-                        <div class="absolute top-3 right-3">
-                            <i data-lucide="check-circle-2" class="w-5 h-5 text-[#5031E5]"></i>
+                <div class="join-step-content grid grid-cols-2 gap-3 mb-2">
+                    <!-- 스마트 리모컨 -->
+                    <label
+                        class="group relative flex flex-col items-center justify-center p-3.5 bg-white border border-gray-100 rounded-[24px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                        <input type="radio" name="model" class="peer sr-only" onchange="updateSelection()" checked />
+
+                        <!-- 1. 카드 선택 테두리/배경 (Peer Sibling) -->
+                        <div
+                            class="absolute inset-0 border-2 border-transparent peer-checked:border-[#5031E5] rounded-[24px] transition-all pointer-events-none z-10">
                         </div>
                         <div
-                            class="w-14 h-14 bg-indigo-50 rounded-2xl mb-3 flex items-center justify-center group-hover:scale-110 transition-transform">
-                            <i data-lucide="tv-2" class="w-7 h-7 text-[#5031E5]"></i>
+                            class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
                         </div>
-                        <p class="text-[15px] font-bold text-gray-900">스마트 리모컨</p>
-                        <p class="text-[13px] font-extrabold text-[#5031E5] mt-0.5">15,400원</p>
-                    </button>
 
-                    <button
-                        class="flex flex-col items-center bg-white border border-gray-100 rounded-[20px] p-4 shadow-sm active:scale-95 transition-all text-center opacity-60 hover:opacity-100 hover:border-[#5031E5]">
-                        <div class="w-14 h-14 bg-gray-50 rounded-2xl mb-3 flex items-center justify-center">
-                            <i data-lucide="monitor" class="w-7 h-7 text-gray-400"></i>
+                        <!-- 2. 선택 원 배경 (Peer Sibling) -->
+                        <div
+                            class="absolute top-2.5 right-2.5 w-5 h-5 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
                         </div>
-                        <p class="text-[15px] font-bold text-gray-900">일반 리모컨</p>
-                        <p class="text-[13px] font-bold text-gray-500 mt-0.5">11,000원</p>
-                    </button>
 
-                    <button
-                        class="flex flex-col items-center bg-white border border-gray-100 rounded-[20px] p-4 shadow-sm active:scale-95 transition-all text-center opacity-60 hover:opacity-100 hover:border-[#5031E5]">
-                        <div class="w-14 h-14 bg-gray-50 rounded-2xl mb-3 flex items-center justify-center">
-                            <i data-lucide="bot" class="w-7 h-7 text-gray-400"></i>
+                        <!-- 3. 체크 아이콘 (Peer Sibling - ON일 때만 표시) -->
+                        <div
+                            class="absolute top-2.5 right-2.5 w-5 h-5 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-3.5 h-3.5 text-white"></i>
                         </div>
-                        <p class="text-[15px] font-bold text-gray-900">AI 2/3 리모컨</p>
-                        <p class="text-[13px] font-bold text-gray-500 mt-0.5">15,400원</p>
-                    </button>
 
-                    <button
-                        class="flex flex-col items-center bg-white border border-gray-100 rounded-[20px] p-4 shadow-sm active:scale-95 transition-all text-center opacity-60 hover:opacity-100 hover:border-[#5031E5]">
-                        <div class="w-14 h-14 bg-gray-50 rounded-2xl mb-3 flex items-center justify-center">
-                            <i data-lucide="gamepad-2" class="w-7 h-7 text-gray-400"></i>
+                        <!-- 내용 -->
+                        <div class="flex flex-col items-center gap-1.5 relative z-10 py-1">
+                            <div
+                                class="w-11 h-11 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 peer-checked:bg-indigo-50 peer-checked:text-[#5031E5] transition-colors">
+                                <i class="w-5.5 h-5.5" data-lucide="tv-2"></i>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-[16px] font-bold text-gray-900 leading-tight">스마트</p>
+                                <p
+                                    class="text-[14px] font-bold text-gray-400 mt-0.5 group-has-[:checked]:text-[#5031E5] group-has-[:checked]:font-extrabold transition-all">
+                                    15,400원</p>
+                            </div>
                         </div>
-                        <p class="text-[15px] font-bold text-gray-900">UHD 리모컨</p>
-                        <p class="text-[13px] font-bold text-gray-500 mt-0.5">13,200원</p>
-                    </button>
+                    </label>
+
+                    <!-- 일반 리모컨 -->
+                    <label
+                        class="group relative flex flex-col items-center justify-center p-3.5 bg-white border border-gray-100 rounded-[24px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                        <input type="radio" name="model" class="peer sr-only" onchange="updateSelection()" />
+                        <div
+                            class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[24px] transition-all pointer-events-none z-10">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                        </div>
+
+                        <div
+                            class="absolute top-2.5 right-2.5 w-5 h-5 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                        </div>
+                        <div
+                            class="absolute top-2.5 right-2.5 w-5 h-5 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-3.5 h-3.5 text-white"></i>
+                        </div>
+
+                        <div class="flex flex-col items-center gap-1.5 relative z-10 py-1">
+                            <div
+                                class="w-11 h-11 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 peer-checked:bg-indigo-50 peer-checked:text-[#5031E5] transition-colors">
+                                <i class="w-5.5 h-5.5" data-lucide="monitor"></i>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-[16px] font-bold text-gray-900 leading-tight">일반</p>
+                                <p
+                                    class="text-[14px] font-bold text-gray-400 mt-0.5 group-has-[:checked]:text-[#5031E5] group-has-[:checked]:font-extrabold transition-all">
+                                    11,000원</p>
+                            </div>
+                        </div>
+                    </label>
+
+                    <!-- AI 2/3 리모컨 -->
+                    <label
+                        class="group relative flex flex-col items-center justify-center p-3.5 bg-white border border-gray-100 rounded-[24px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                        <input type="radio" name="model" class="peer sr-only" onchange="updateSelection()" />
+                        <div
+                            class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[24px] transition-all pointer-events-none z-10">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                        </div>
+
+                        <div
+                            class="absolute top-2.5 right-2.5 w-5 h-5 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                        </div>
+                        <div
+                            class="absolute top-2.5 right-2.5 w-5 h-5 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-3.5 h-3.5 text-white"></i>
+                        </div>
+
+                        <div class="flex flex-col items-center gap-1.5 relative z-10 py-1">
+                            <div
+                                class="w-11 h-11 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 peer-checked:bg-indigo-50 peer-checked:text-[#5031E5] transition-colors">
+                                <i class="w-5.5 h-5.5" data-lucide="bot"></i>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-[16px] font-bold text-gray-900 leading-tight">AI 2/3</p>
+                                <p
+                                    class="text-[14px] font-bold text-gray-400 mt-0.5 group-has-[:checked]:text-[#5031E5] group-has-[:checked]:font-extrabold transition-all">
+                                    15,400원</p>
+                            </div>
+                        </div>
+                    </label>
+
+                    <!-- UHD 리모컨 -->
+                    <label
+                        class="group relative flex flex-col items-center justify-center p-3.5 bg-white border border-gray-100 rounded-[24px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                        <input type="radio" name="model" class="peer sr-only" onchange="updateSelection()" />
+                        <div
+                            class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[24px] transition-all pointer-events-none z-10">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                        </div>
+
+                        <div
+                            class="absolute top-2.5 right-2.5 w-5 h-5 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                        </div>
+                        <div
+                            class="absolute top-2.5 right-2.5 w-5 h-5 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-3.5 h-3.5 text-white"></i>
+                        </div>
+
+                        <div class="flex flex-col items-center gap-1.5 relative z-10 py-1">
+                            <div
+                                class="w-11 h-11 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 peer-checked:bg-indigo-50 peer-checked:text-[#5031E5] transition-colors">
+                                <i class="w-5.5 h-5.5" data-lucide="gamepad-2"></i>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-[16px] font-bold text-gray-900 leading-tight">UHD</p>
+                                <p
+                                    class="text-[14px] font-bold text-gray-400 mt-0.5 group-has-[:checked]:text-[#5031E5] group-has-[:checked]:font-extrabold transition-all">
+                                    13,200원</p>
+                            </div>
+                        </div>
+                    </label>
                 </div>
 
-                <div class="mt-auto pt-2 pb-6">
+                <div class="mt-auto pt-2 pb-2">
                     <button
-                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all mb-4"
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all mb-3"
                         onclick="location.href='verification.html'">구매하기</button>
 
-                    <p class="text-[13px] text-gray-400 text-center leading-relaxed font-medium">
+                    <p class="text-[12px] text-gray-400 text-center leading-relaxed font-medium">
                         ※ 리모컨 구매 비용은 다음 달 이용 요금에 합산되어 청구됩니다.
                     </p>
                 </div>
             </div>
         </div>
-        <div class="w-full h-[120px] shrink-0" id="bottom-spacer"></div>
+        <div class="w-full h-2 shrink-0" id="bottom-spacer"></div>
     </div>
 
     <script src="../js/agent_overlay.js"></script>
@@ -105,6 +203,23 @@
     <script>
         const pageText = "가장 많이 사용하는 스마트 리모컨이에요.";
         initCommonUI(pageText);
+
+        function updateSelection() {
+            // Re-render icons just in case or handle vibracy
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+            if (window.navigator.vibrate) {
+                window.navigator.vibrate(5);
+            }
+        }
+
+        // Final icons check
+        window.addEventListener('load', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
     </script>
 </body>
 

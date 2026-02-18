@@ -38,11 +38,11 @@
         <!-- 바운스 콘텐츠 -->
         <div class="w-full opacity-0 flex-1 flex flex-col" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1">
-                <div class="join-step-header" id="target-anchor">
+                <div class="join-step-header mb-8" id="target-anchor">
                     <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">결합하실 휴대폰 회선을<br />선택해 주세요.</h2>
                 </div>
 
-                <div class="join-step-content join-section-gap small">
+                <div class="join-step-content flex flex-col space-y-3 mb-4">
                     <!-- 회선 카드 1 -->
                     <div class="line-card relative bg-white border border-gray-100 rounded-[20px] p-5 shadow-sm active:scale-[0.98] transition-all cursor-pointer overflow-hidden border-2"
                         data-selected="false" onclick="toggleLine(this)">
@@ -93,17 +93,19 @@
                     </div>
                 </div>
 
-                <div class="p-3 bg-blue-50/50 rounded-xl mb-4">
-                    <p class="text-[12px] text-blue-600/70 font-medium leading-relaxed">
-                        ※ 선택하신 휴대폰 회선의 명의자에게 결합 동의를 위한 SMS가 발송됩니다.
-                    </p>
-                </div>
 
-                <!-- 다음 버튼 -->
+
+                <!-- 다음 버튼 및 안내 -->
                 <div class="mt-auto pt-4 pb-6">
                     <button
                         class="w-full bg-gray-200 text-white py-4 rounded-xl text-[19px] font-bold transition-all cursor-not-allowed"
                         id="apply-btn" disabled onclick="location.href='fee_confirm.html'">선택 완료 (0개 선택됨)</button>
+
+                    <div class="p-4 bg-blue-50/50 rounded-xl mt-4 border border-blue-100/50">
+                        <p class="text-[13px] text-blue-800/80 font-medium leading-relaxed">
+                            ※ 선택하신 휴대폰 회선의 명의자에게 결합 동의를 위한 SMS가 발송됩니다.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

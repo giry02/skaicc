@@ -61,34 +61,72 @@
                             <i class="w-5 h-5 text-gray-400 transition-transform duration-300"
                                 data-lucide="chevron-down"></i>
                         </button>
-                        <div class="hidden bg-gray-50 px-5 pb-5 pt-0 flex-col gap-2" id="sub-internet">
-                            <div class="h-px w-full bg-gray-100 mb-2"></div>
+                        <div class="hidden bg-gray-50 px-4 pb-4 pt-0 flex-col gap-1.5" id="sub-internet">
+                            <div class="h-px w-full bg-gray-100/60 mb-1.5"></div>
                             <label
-                                class="flex items-center gap-3 p-4 bg-white rounded-[16px] border border-gray-100 cursor-pointer active:scale-[0.98] transition-all shadow-sm">
-                                <input type="radio" name="symptom" value="connect_fail"
-                                    class="peer w-5 h-5 text-[#5031E5] focus:ring-[#5031E5]"
+                                class="group relative flex items-center justify-between p-4 bg-white rounded-[16px] border border-gray-100 cursor-pointer active:scale-[0.98] transition-all shadow-sm overflow-hidden">
+                                <input type="radio" name="symptom_internet" value="connect_fail" class="peer sr-only"
                                     onchange="checkSelection()">
+                                <div
+                                    class="absolute inset-0 border-2 border-transparent peer-checked:border-[#5031E5] rounded-[16px] transition-all pointer-events-none z-10">
+                                </div>
+                                <div
+                                    class="absolute inset-0 bg-indigo-50/0 peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                                </div>
                                 <span
-                                    class="text-[15px] font-medium text-gray-700 peer-checked:text-[#5031E5] peer-checked:font-bold">접속이
+                                    class="text-[15px] font-medium text-gray-700 peer-checked:text-[#5031E5] peer-checked:font-bold relative z-20 transition-colors">접속이
                                     안돼요</span>
+                                <div
+                                    class="absolute top-1/2 -translate-y-1/2 right-4 w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                                </div>
+                                <div
+                                    class="absolute top-1/2 -translate-y-1/2 right-4 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                                    <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                                </div>
                             </label>
+
                             <label
-                                class="flex items-center gap-3 p-4 bg-white rounded-[16px] border border-gray-100 cursor-pointer active:scale-[0.98] transition-all shadow-sm">
-                                <input type="radio" name="symptom" value="disconnect_often"
-                                    class="peer w-5 h-5 text-[#5031E5] focus:ring-[#5031E5]"
-                                    onchange="checkSelection()">
+                                class="group relative flex items-center justify-between p-4 bg-white rounded-[16px] border border-gray-100 cursor-pointer active:scale-[0.98] transition-all shadow-sm overflow-hidden">
+                                <input type="radio" name="symptom_internet" value="disconnect_often"
+                                    class="peer sr-only" onchange="checkSelection()">
+                                <div
+                                    class="absolute inset-0 border-2 border-transparent peer-checked:border-[#5031E5] rounded-[16px] transition-all pointer-events-none z-10">
+                                </div>
+                                <div
+                                    class="absolute inset-0 bg-indigo-50/0 peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                                </div>
                                 <span
-                                    class="text-[15px] font-medium text-gray-700 peer-checked:text-[#5031E5] peer-checked:font-bold">자주
+                                    class="text-[15px] font-medium text-gray-700 peer-checked:text-[#5031E5] peer-checked:font-bold relative z-20 transition-colors">자주
                                     끊겨요</span>
+                                <div
+                                    class="absolute top-1/2 -translate-y-1/2 right-4 w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                                </div>
+                                <div
+                                    class="absolute top-1/2 -translate-y-1/2 right-4 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                                    <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                                </div>
                             </label>
+
                             <label
-                                class="flex items-center gap-3 p-4 bg-white rounded-[16px] border border-gray-100 cursor-pointer active:scale-[0.98] transition-all shadow-sm">
-                                <input type="radio" name="symptom" value="slow_speed"
-                                    class="peer w-5 h-5 text-[#5031E5] focus:ring-[#5031E5]"
+                                class="group relative flex items-center justify-between p-4 bg-white rounded-[16px] border border-gray-100 cursor-pointer active:scale-[0.98] transition-all shadow-sm overflow-hidden">
+                                <input type="radio" name="symptom_internet" value="slow_speed" class="peer sr-only"
                                     onchange="checkSelection()">
+                                <div
+                                    class="absolute inset-0 border-2 border-transparent peer-checked:border-[#5031E5] rounded-[16px] transition-all pointer-events-none z-10">
+                                </div>
+                                <div
+                                    class="absolute inset-0 bg-indigo-50/0 peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                                </div>
                                 <span
-                                    class="text-[15px] font-medium text-gray-700 peer-checked:text-[#5031E5] peer-checked:font-bold">속도가
+                                    class="text-[15px] font-medium text-gray-700 peer-checked:text-[#5031E5] peer-checked:font-bold relative z-20 transition-colors">속도가
                                     느려졌어요</span>
+                                <div
+                                    class="absolute top-1/2 -translate-y-1/2 right-4 w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                                </div>
+                                <div
+                                    class="absolute top-1/2 -translate-y-1/2 right-4 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                                    <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                                </div>
                             </label>
                         </div>
                     </div>
@@ -108,16 +146,28 @@
                             <i class="w-5 h-5 text-gray-400 transition-transform duration-300"
                                 data-lucide="chevron-down"></i>
                         </button>
-                        <div class="hidden bg-gray-50 px-5 pb-5 pt-0 flex-col gap-2" id="sub-tv">
-                            <div class="h-px w-full bg-gray-100 mb-2"></div>
+                        <div class="hidden bg-gray-50 px-4 pb-4 pt-0 flex-col gap-1.5" id="sub-tv">
+                            <div class="h-px w-full bg-gray-100/60 mb-1.5"></div>
                             <label
-                                class="flex items-center gap-3 p-4 bg-white rounded-[16px] border border-gray-100 cursor-pointer active:scale-[0.98] transition-all shadow-sm">
-                                <input type="radio" name="symptom" value="tv_error"
-                                    class="peer w-5 h-5 text-[#5031E5] focus:ring-[#5031E5]"
+                                class="group relative flex items-center justify-between p-4 bg-white rounded-[16px] border border-gray-100 cursor-pointer active:scale-[0.98] transition-all shadow-sm overflow-hidden">
+                                <input type="radio" name="symptom_tv" value="tv_error" class="peer sr-only"
                                     onchange="checkSelection()">
+                                <div
+                                    class="absolute inset-0 border-2 border-transparent peer-checked:border-[#5031E5] rounded-[16px] transition-all pointer-events-none z-10">
+                                </div>
+                                <div
+                                    class="absolute inset-0 bg-indigo-50/0 peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                                </div>
                                 <span
-                                    class="text-[15px] font-medium text-gray-700 peer-checked:text-[#5031E5] peer-checked:font-bold">화면이
+                                    class="text-[15px] font-medium text-gray-700 peer-checked:text-[#5031E5] peer-checked:font-bold relative z-20 translation-colors">화면이
                                     안나와요</span>
+                                <div
+                                    class="absolute top-1/2 -translate-y-1/2 right-4 w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                                </div>
+                                <div
+                                    class="absolute top-1/2 -translate-y-1/2 right-4 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                                    <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                                </div>
                             </label>
                         </div>
                     </div>
@@ -164,15 +214,17 @@
         }
 
         function checkSelection() {
-            const radios = document.querySelectorAll('input[name="symptom"]');
+            const internetRadios = document.querySelectorAll('input[name="symptom_internet"]');
+            const tvRadios = document.querySelectorAll('input[name="symptom_tv"]');
             const btn = document.getElementById('next-btn');
-            let isChecked = false;
-            radios.forEach(r => {
-                if (r.checked) isChecked = true;
-            });
 
-            if (isChecked) {
+            const isInternetChecked = Array.from(internetRadios).some(r => r.checked);
+            const isTvChecked = Array.from(tvRadios).some(r => r.checked);
+
+            if (isInternetChecked || isTvChecked) {
                 btn.classList.remove('opacity-50', 'pointer-events-none');
+            } else {
+                btn.classList.add('opacity-50', 'pointer-events-none');
             }
         }
     </script>

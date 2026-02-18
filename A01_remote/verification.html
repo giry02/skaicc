@@ -43,57 +43,114 @@
                     <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">인증 수단을<br />선택해 주세요.</h2>
                 </div>
 
-                <div class="space-y-3">
-                    <button
-                        class="w-full flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
-                        onclick="startLoading()">
-                        <div class="flex items-center gap-4">
+                <div class="join-step-content flex-1 space-y-3">
+                    <label
+                        class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                        <input type="radio" name="auth" value="pass" class="peer sr-only" onchange="checkSelection()">
+                        <div
+                            class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[24px] transition-all pointer-events-none z-10">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/5 transition-all pointer-events-none">
+                        </div>
+
+                        <div class="flex items-center gap-4 relative z-10">
                             <div class="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
                                 <span class="text-red-600 font-black text-xs">PASS</span>
                             </div>
                             <div class="text-left">
-                                <p class="text-[17px] font-bold text-gray-900">PASS / 문자(SMS) 인증</p>
-                                <p class="text-[13px] text-gray-400 font-medium">휴대폰 본인 확인</p>
+                                <p class="text-[17px] font-bold text-gray-900 peer-checked:text-[#5031E5]">PASS /
+                                    문자(SMS)
+                                    인증</p>
+                                <p class="text-[13px] text-gray-400 font-medium peer-checked:text-[#5031E5]/70">휴대폰 본인
+                                    확인</p>
                             </div>
                         </div>
-                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-300"></i>
-                    </button>
 
-                    <button
-                        class="w-full flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
-                        onclick="startLoading()">
-                        <div class="flex items-center gap-4">
+                        <!-- Circle Check -->
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                        </div>
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                    </label>
+
+                    <label
+                        class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                        <input type="radio" name="auth" value="card" class="peer sr-only" onchange="checkSelection()">
+                        <div
+                            class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[24px] transition-all pointer-events-none z-10">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/5 transition-all pointer-events-none">
+                        </div>
+
+                        <div class="flex items-center gap-4 relative z-10">
                             <div
                                 class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600">
                                 <i data-lucide="credit-card" class="w-6 h-6"></i>
                             </div>
                             <div class="text-left">
-                                <p class="text-[17px] font-bold text-gray-900">신용카드 인증</p>
-                                <p class="text-[13px] text-gray-400 font-medium">본인 명의 카드 확인</p>
+                                <p class="text-[17px] font-bold text-gray-900 peer-checked:text-[#5031E5]">신용카드 인증</p>
+                                <p class="text-[13px] text-gray-400 font-medium peer-checked:text-[#5031E5]/70">본인 명의 카드
+                                    확인</p>
                             </div>
                         </div>
-                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-300"></i>
-                    </button>
 
-                    <button
-                        class="w-full flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm active:scale-95 transition-all hover:border-[#5031E5] group"
-                        onclick="startLoading()">
-                        <div class="flex items-center gap-4">
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                        </div>
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                    </label>
+
+                    <label
+                        class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                        <input type="radio" name="auth" value="kakao" class="peer sr-only" onchange="checkSelection()">
+                        <div
+                            class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[24px] transition-all pointer-events-none z-10">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/5 transition-all pointer-events-none">
+                        </div>
+
+                        <div class="flex items-center gap-4 relative z-10">
                             <div
                                 class="w-12 h-12 bg-yellow-50 rounded-2xl flex items-center justify-center text-yellow-600">
                                 <i data-lucide="message-circle" class="w-6 h-6"></i>
                             </div>
                             <div class="text-left">
-                                <p class="text-[17px] font-bold text-gray-900">카카오페이 인증</p>
-                                <p class="text-[13px] text-gray-400 font-medium">카카오톡 간편 인증</p>
+                                <p class="text-[17px] font-bold text-gray-900 peer-checked:text-[#5031E5]">카카오페이 인증</p>
+                                <p class="text-[13px] text-gray-400 font-medium peer-checked:text-[#5031E5]/70">카카오톡 간편
+                                    인증</p>
                             </div>
                         </div>
-                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-300"></i>
+
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                        </div>
+                        <div
+                            class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- 하단 버튼 -->
+                <div class="mt-auto pt-3 pb-6">
+                    <button id="next-btn"
+                        class="w-full bg-gray-200 text-gray-400 py-4 rounded-xl text-[19px] font-bold shadow-none opacity-50 pointer-events-none transition-all"
+                        onclick="startLoading()">
+                        다음으로
                     </button>
                 </div>
             </div>
         </div>
-        <div class="w-full h-[120px] shrink-0" id="bottom-spacer"></div>
+        <div class="w-full h-8 shrink-0" id="bottom-spacer"></div>
     </div>
 
     <!-- 로딩 모달 -->
@@ -116,8 +173,22 @@
 
     <script src="../js/common_ui.js"></script>
     <script>
-        const pageText = "신청하신 정보와 할인 혜택을 확인해 주세요.";
+        const pageText = "인증 수단을 선택해 주세요.";
         initCommonUI(pageText);
+
+        function checkSelection() {
+            const radios = document.querySelectorAll('input[name="auth"]');
+            const btn = document.getElementById('next-btn');
+            let isChecked = false;
+            radios.forEach(r => {
+                if (r.checked) isChecked = true;
+            });
+
+            if (isChecked) {
+                btn.classList.remove('opacity-50', 'pointer-events-none', 'bg-gray-200', 'text-gray-400');
+                btn.classList.add('bg-[#5031E5]', 'text-white', 'shadow-lg', 'active:scale-95');
+            }
+        }
 
         function startLoading() {
             document.getElementById('loading-modal').classList.remove('hidden');

@@ -51,64 +51,192 @@
                     <!-- 인터넷 섹션 -->
                     <div class="space-y-3">
                         <h3 class="text-sm font-bold text-gray-800 ml-1">인터넷</h3>
-                        <button
-                            class="w-full py-4 px-5 rounded-xl border text-left transition-all bg-white border-gray-200 text-gray-600 hover:border-gray-300 active:scale-[0.98] flex justify-between items-center"
-                            onclick="selectInternet(this)">
-                            <div>
-                                <span class="text-[17px] font-bold">광랜 (100M)</span>
-                                <span class="block text-[13px] font-medium text-gray-400 mt-0.5">가장 합리적인 요금</span>
+                        <label
+                            class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                            <input type="radio" name="internet_speed" class="peer sr-only"
+                                onchange="selectInternet(this)">
+
+                            <!-- 배경 및 테두리 (Peer Sibling) -->
+                            <div
+                                class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[24px] transition-all pointer-events-none z-10">
                             </div>
-                            <span class="text-[15px] font-bold text-[#5031E5]">22,000원</span>
-                        </button>
-                        <button
-                            class="w-full py-4 px-5 rounded-xl border text-left transition-all bg-blue-50 border-[#5031E5] text-[#5031E5] shadow-sm active:scale-[0.98] flex justify-between items-center"
-                            onclick="selectInternet(this)">
-                            <div>
-                                <span class="text-[17px] font-bold">기가라이트 (500M)</span>
-                                <span class="block text-[13px] font-medium text-[#5031E5]/80 mt-0.5">가장 많이 선택하는
-                                    상품</span>
+                            <div
+                                class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
                             </div>
-                            <span class="text-[15px] font-bold">33,000원</span>
-                        </button>
-                        <button
-                            class="w-full py-4 px-5 rounded-xl border text-left transition-all bg-white border-gray-200 text-gray-600 hover:border-gray-300 active:scale-[0.98] flex justify-between items-center"
-                            onclick="selectInternet(this)">
-                            <div>
-                                <span class="text-[17px] font-bold">기가 (1G)</span>
-                                <span class="block text-[13px] font-medium text-gray-400 mt-0.5">끊김 없는 빠른 속도</span>
+
+                            <div class="relative z-10">
+                                <span class="text-[17px] font-bold text-gray-900 peer-checked:text-[#5031E5]">광랜
+                                    (100M)</span>
+                                <span
+                                    class="block text-[13px] font-medium text-gray-400 mt-0.5 peer-checked:text-[#5031E5]/80">가장
+                                    합리적인 요금</span>
                             </div>
-                            <span class="text-[15px] font-bold text-[#5031E5]">38,500원</span>
-                        </button>
+
+                            <div class="flex items-center gap-3 relative z-10 mr-10">
+                                <span
+                                    class="text-[15px] font-bold text-[#5031E5] peer-checked:text-[#5031E5]">22,000원</span>
+                                <!-- Circle Check Background (Peer Sibling) - Moved outside nested div later but keep in flex for alignment if possible -->
+                                <!-- Actually, to be safe, I will use absolute positioning for the check icons over the circle which is a sibling -->
+                            </div>
+
+                            <!-- Circle Background (Sibling) -->
+                            <div
+                                class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                            </div>
+                            <!-- Check Icon (Sibling) -->
+                            <div
+                                class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                                <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </label>
+
+                        <label
+                            class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                            <input type="radio" name="internet_speed" class="peer sr-only" checked
+                                onchange="selectInternet(this)">
+                            <div
+                                class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[24px] transition-all pointer-events-none z-10">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                            </div>
+
+                            <div class="relative z-10">
+                                <span class="text-[17px] font-bold text-gray-900 peer-checked:text-[#5031E5]">기가라이트
+                                    (500M)</span>
+                                <span
+                                    class="block text-[13px] font-medium text-gray-400 mt-0.5 peer-checked:text-[#5031E5]/80">가장
+                                    많이 선택하는 상품</span>
+                            </div>
+
+                            <div class="flex items-center gap-3 relative z-10 mr-10">
+                                <span
+                                    class="text-[15px] font-bold text-[#5031E5] peer-checked:text-[#5031E5]">33,000원</span>
+                            </div>
+
+                            <div
+                                class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                            </div>
+                            <div
+                                class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                                <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </label>
+
+                        <label
+                            class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                            <input type="radio" name="internet_speed" class="peer sr-only"
+                                onchange="selectInternet(this)">
+                            <div
+                                class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[24px] transition-all pointer-events-none z-10">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                            </div>
+
+                            <div class="relative z-10">
+                                <span class="text-[17px] font-bold text-gray-900 peer-checked:text-[#5031E5]">기가
+                                    (1G)</span>
+                                <span
+                                    class="block text-[13px] font-medium text-gray-400 mt-0.5 peer-checked:text-[#5031E5]/80">끊김
+                                    없는 빠른 속도</span>
+                            </div>
+
+                            <div class="flex items-center gap-3 relative z-10 mr-10">
+                                <span
+                                    class="text-[15px] font-bold text-[#5031E5] peer-checked:text-[#5031E5]">38,500원</span>
+                            </div>
+
+                            <div
+                                class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                            </div>
+                            <div
+                                class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                                <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </label>
                     </div>
 
                     <!-- TV 섹션 -->
                     <div class="space-y-3">
                         <h3 class="text-sm font-bold text-gray-800 ml-1">B tv</h3>
-                        <button
-                            class="w-full py-4 px-5 rounded-xl border text-left transition-all bg-white border-gray-200 text-gray-600 hover:border-gray-300 active:scale-[0.98] flex justify-between items-center"
-                            onclick="selectTv(this)">
-                            <div>
-                                <span class="text-[17px] font-bold">B tv 이코노미</span>
-                                <span class="block text-[13px] font-medium text-gray-400 mt-0.5">184채널 (스포츠 특화)</span>
+                        <label
+                            class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                            <input type="radio" name="tv_channel" class="peer sr-only" onchange="selectTv(this)">
+
+                            <div
+                                class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[24px] transition-all pointer-events-none z-10">
                             </div>
-                            <span class="text-[15px] font-bold text-[#5031E5]">13,200원</span>
-                        </button>
-                        <button
-                            class="w-full py-4 px-5 rounded-xl border text-left transition-all bg-blue-50 border-[#5031E5] text-[#5031E5] shadow-sm active:scale-[0.98] flex justify-between items-center"
-                            onclick="selectTv(this)">
-                            <div>
-                                <span class="text-[17px] font-bold">B tv All</span>
-                                <span class="block text-[13px] font-medium text-[#5031E5]/80 mt-0.5">257채널 (모든
-                                    채널)</span>
+                            <div
+                                class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
                             </div>
-                            <span class="text-[15px] font-bold">16,500원</span>
-                        </button>
+
+                            <div class="relative z-10">
+                                <span class="text-[17px] font-bold text-gray-900 peer-checked:text-[#5031E5]">B tv
+                                    이코노미</span>
+                                <span
+                                    class="block text-[13px] font-medium text-gray-400 mt-0.5 peer-checked:text-[#5031E5]/80">184채널
+                                    (스포츠 특화)</span>
+                            </div>
+
+                            <div class="flex items-center gap-3 relative z-10 mr-10">
+                                <span
+                                    class="text-[15px] font-bold text-[#5031E5] peer-checked:text-[#5031E5]">13,200원</span>
+                            </div>
+
+                            <div
+                                class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                            </div>
+                            <div
+                                class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                                <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </label>
+
+                        <label
+                            class="group relative flex items-center justify-between p-5 bg-white border border-gray-100 rounded-[24px] shadow-sm cursor-pointer transition-all active:scale-[0.98] overflow-hidden">
+                            <input type="radio" name="tv_channel" class="peer sr-only" checked
+                                onchange="selectTv(this)">
+                            <div
+                                class="absolute inset-0 border border-transparent peer-checked:border-2 peer-checked:border-[#5031E5] rounded-[24px] transition-all pointer-events-none z-10">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-transparent peer-checked:bg-indigo-50/10 transition-all pointer-events-none">
+                            </div>
+
+                            <div class="relative z-10">
+                                <span class="text-[17px] font-bold text-gray-900 peer-checked:text-[#5031E5]">B tv
+                                    All</span>
+                                <span
+                                    class="block text-[13px] font-medium text-gray-400 mt-0.5 peer-checked:text-[#5031E5]/80">257채널
+                                    (모든 채널)</span>
+                            </div>
+
+                            <div class="flex items-center gap-3 relative z-10 mr-10">
+                                <span
+                                    class="text-[15px] font-bold text-[#5031E5] peer-checked:text-[#5031E5]">16,500원</span>
+                            </div>
+
+                            <div
+                                class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 border-2 border-gray-200 rounded-full bg-white transition-all peer-checked:bg-[#5031E5] peer-checked:border-[#5031E5] z-20">
+                            </div>
+                            <div
+                                class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity z-30 pointer-events-none">
+                                <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </label>
                     </div>
 
                     <!-- 요금 합계 -->
-                    <div class="bg-gray-900 rounded-xl p-5 text-white flex justify-between items-end mt-4">
-                        <span class="text-sm text-gray-400">월 예상 납부금액</span>
-                        <span class="text-2xl font-bold">49,500원</span>
+                    <div
+                        class="bg-gray-900 rounded-2xl p-6 text-white flex justify-between items-end mt-4 shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl">
+                        </div>
+                        <span class="text-sm font-bold text-gray-400 relative z-10">월 예상 납부금액</span>
+                        <div class="relative z-10 flex items-baseline gap-1">
+                            <span class="text-2xl font-black">49,500</span>
+                            <span class="text-lg font-bold">원</span>
+                        </div>
                     </div>
 
                 </div>
@@ -132,33 +260,17 @@
         initCommonUI(pageText);
 
         function selectInternet(el) {
-            // 인터넷 버튼 초기화
-            const parent = el.closest('.space-y-3');
-            parent.querySelectorAll('button').forEach(btn => {
-                btn.className = "w-full py-4 px-5 rounded-xl border text-left transition-all bg-white border-gray-200 text-gray-600 hover:border-gray-300 active:scale-[0.98] flex justify-between items-center";
-                btn.querySelector('span.text-\\[15px\\]').className = "text-[15px] font-bold text-[#5031E5]";
-                btn.querySelector('span.block').className = "block text-[13px] font-medium text-gray-400 mt-0.5";
-            });
-
-            // 선택 스타일
-            el.className = "w-full py-4 px-5 rounded-xl border text-left transition-all bg-blue-50 border-[#5031E5] text-[#5031E5] shadow-sm active:scale-[0.98] flex justify-between items-center";
-            el.querySelector('span.text-\\[15px\\]').className = "text-[15px] font-bold";
-            el.querySelector('span.block').className = "block text-[13px] font-medium text-[#5031E5]/80 mt-0.5";
+            // Re-render icons
+            setTimeout(() => {
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }, 0);
         }
 
         function selectTv(el) {
-            // TV 버튼 초기화
-            const parent = el.closest('.space-y-3');
-            parent.querySelectorAll('button').forEach(btn => {
-                btn.className = "w-full py-4 px-5 rounded-xl border text-left transition-all bg-white border-gray-200 text-gray-600 hover:border-gray-300 active:scale-[0.98] flex justify-between items-center";
-                btn.querySelector('span.text-\\[15px\\]').className = "text-[15px] font-bold text-[#5031E5]";
-                btn.querySelector('span.block').className = "block text-[13px] font-medium text-gray-400 mt-0.5";
-            });
-
-            // 선택 스타일
-            el.className = "w-full py-4 px-5 rounded-xl border text-left transition-all bg-blue-50 border-[#5031E5] text-[#5031E5] shadow-sm active:scale-[0.98] flex justify-between items-center";
-            el.querySelector('span.text-\\[15px\\]').className = "text-[15px] font-bold";
-            el.querySelector('span.block').className = "block text-[13px] font-medium text-[#5031E5]/80 mt-0.5";
+            // Re-render icons
+            setTimeout(() => {
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }, 0);
         }
     </script>
 </body>
