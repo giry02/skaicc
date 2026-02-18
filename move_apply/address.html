@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 이사 주소 입력</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0 relative">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors z-10"
+            onclick="history.back()">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="absolute left-1/2 -translate-x-1/2 text-[18px] font-bold text-gray-900">간편이사 신청</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1 z-10" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-2 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#5031E5] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#5031E5] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col bg-white px-1 pb-10">
+                <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight mb-6">
+                    이사 가시는 주소를<br>입력해 주세요.
+                </h2>
+
+                <!-- 주소 입력 영역 -->
+                <div class="mb-8">
+                    <!-- 주소 미입력 상태 -->
+                    <div id="address-empty"
+                        class="w-full py-8 bg-gray-50 border border-dashed border-gray-200 rounded-[24px] flex flex-col items-center justify-center gap-3 cursor-pointer active:scale-[0.98] transition-all"
+                        onclick="mockPostcode()">
+                        <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-sm">
+                            <i data-lucide="map-pin" class="w-7 h-7 text-gray-300"></i>
+                        </div>
+                        <p class="text-[15px] font-bold text-gray-400">주소찾기를 눌러 입력해 주세요.</p>
+                        <button
+                            class="mt-1 bg-gray-900 text-white px-8 py-3 rounded-xl font-bold text-[15px] active:scale-95 transition-all shadow-sm">
+                            주소찾기
+                        </button>
+                    </div>
+
+                    <!-- 주소 입력 완료 상태 -->
+                    <div id="address-filled" class="hidden space-y-3">
+                        <div class="bg-white border border-[#5031E5] rounded-[20px] p-5">
+                            <div class="flex items-start justify-between gap-2">
+                                <div class="flex-1">
+                                    <p class="text-[12px] text-gray-400 font-medium mb-1">도로명 주소</p>
+                                    <p class="text-[16px] font-bold text-gray-900" id="filled-address">경기도 성남시 분당구 양현로
+                                        100</p>
+                                    <p class="text-[13px] text-gray-400 mt-1">한신 209동</p>
+                                </div>
+                                <button onclick="clearAddress()"
+                                    class="p-2 text-gray-300 hover:text-gray-600 transition-colors shrink-0 -mt-1 -mr-1">
+                                    <i data-lucide="x" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- 상세 주소 -->
+                        <input type="text" id="detail-address"
+                            class="w-full bg-white border border-gray-100 rounded-[20px] px-5 py-4 text-[15px] font-bold placeholder:text-gray-300 placeholder:font-normal focus:border-[#5031E5] outline-none transition-all"
+                            placeholder="동/호수 등 상세 주소 입력 (예: 102호)" oninput="checkSubmit()" />
+                        <!-- 주소 변경 버튼 -->
+                        <button onclick="clearAddress()"
+                            class="w-full py-3 bg-gray-50 border border-gray-100 rounded-[16px] text-[14px] font-bold text-gray-500 flex items-center justify-center gap-2 active:scale-[0.98] transition-all">
+                            <i data-lucide="search" class="w-4 h-4"></i>
+                            주소 다시 찾기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 다음 버튼 -->
+                <button id="next-btn"
+                    class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all opacity-50 pointer-events-none"
+                    onclick="location.href='date.html'">
+                    다음
+                </button>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "이사 가시는 주소를 입력해 주세요.";
+        initCommonUI(pageText);
+
+        let addressSelected = false;
+
+        function mockPostcode() {
+            document.getElementById('address-empty').classList.add('hidden');
+            document.getElementById('address-filled').classList.remove('hidden');
+            addressSelected = true;
+            lucide.createIcons();
+            checkSubmit();
+        }
+
+        function clearAddress() {
+            document.getElementById('address-empty').classList.remove('hidden');
+            document.getElementById('address-filled').classList.add('hidden');
+            document.getElementById('detail-address').value = '';
+            addressSelected = false;
+            checkSubmit();
+        }
+
+        function checkSubmit() {
+            const detail = document.getElementById('detail-address').value.trim();
+            const btn = document.getElementById('next-btn');
+            if (addressSelected && detail.length > 0) {
+                btn.classList.remove('opacity-50', 'pointer-events-none');
+            } else {
+                btn.classList.add('opacity-50', 'pointer-events-none');
+            }
+        }
+    </script>
+</body>
+
+</html>

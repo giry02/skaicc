@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 우편물 수령 주소 및 연락처</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0 relative">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors z-10"
+            onclick="history.back()">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="absolute left-1/2 -translate-x-1/2 text-[18px] font-bold text-gray-900">간편이사 신청</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1 z-10" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-2 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#5031E5] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#5031E5] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col bg-white px-1 pb-10">
+                <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight mb-6">
+                    설치 방문 시 연락 가능한<br>번호를 입력해 주세요.
+                </h2>
+
+
+
+                <!-- 연락처 -->
+                <div class="mb-8">
+                    <label class="block text-[13px] font-bold text-gray-500 mb-3">
+                        설치 방문 시 연락 가능한 번호 <span class="text-red-400">*</span>
+                    </label>
+                    <div class="flex gap-2 min-w-0">
+                        <div
+                            class="w-16 shrink-0 bg-gray-50 border border-gray-100 rounded-[14px] px-2 py-4 text-center text-[15px] font-bold text-gray-700">
+                            010
+                        </div>
+                        <input type="tel" id="phone-mid" maxlength="4" inputmode="numeric" pattern="\d*"
+                            class="flex-1 min-w-0 bg-white border border-gray-100 rounded-[14px] px-2 py-4 text-[15px] font-bold text-center placeholder:text-gray-300 focus:border-[#5031E5] outline-none transition-all"
+                            placeholder="0000" oninput="validatePhone(this, 4, 'phone-end')" />
+                        <input type="tel" id="phone-end" maxlength="4" inputmode="numeric" pattern="\d*"
+                            class="flex-1 min-w-0 bg-white border border-gray-100 rounded-[14px] px-2 py-4 text-[15px] font-bold text-center placeholder:text-gray-300 focus:border-[#5031E5] outline-none transition-all"
+                            placeholder="0000" oninput="validatePhone(this, 4, null)" />
+                    </div>
+                </div>
+
+                <!-- 다음 버튼 -->
+                <button id="next-btn"
+                    class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all opacity-50 pointer-events-none"
+                    onclick="location.href='memo.html'">
+                    다음
+                </button>
+                <p class="text-[12px] text-gray-400 font-medium text-left mt-3">※ 요금안내서(Bill Letter, 이메일 등) 확인 방법은 변경되지
+                    않습니다.</p>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "설치 방문 시 연락 가능한 번호를 입력해 주세요.";
+        initCommonUI(pageText);
+
+        function validatePhone(input, maxLen, nextId) {
+            if (input.value.length > maxLen) {
+                input.value = input.value.slice(0, maxLen);
+            }
+            if (input.value.length === maxLen && nextId) {
+                document.getElementById(nextId).focus();
+            }
+            checkSubmit();
+        }
+
+        function checkSubmit() {
+            const mid = document.getElementById('phone-mid').value;
+            const end = document.getElementById('phone-end').value;
+            const btn = document.getElementById('next-btn');
+            if (mid.length === 4 && end.length === 4) {
+                btn.classList.remove('opacity-50', 'pointer-events-none');
+            } else {
+                btn.classList.add('opacity-50', 'pointer-events-none');
+            }
+        }
+    </script>
+</body>
+
+</html>

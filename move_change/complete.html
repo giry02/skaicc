@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 처리 완료</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0 relative">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors z-10"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="absolute left-1/2 -translate-x-1/2 text-[18px] font-bold text-gray-900">간편이사 조회/변경</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1 z-10" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 (숨김) -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0 hidden" id="typing-area">
+            <span class="text-[#5031E5] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#5031E5] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full" id="main-content-body">
+
+            <!-- 히어로 섹션 -->
+            <div class="flex flex-col items-center justify-center pt-8 pb-8">
+                <div class="w-20 h-20 bg-indigo-50 rounded-full flex items-center justify-center mb-6 relative">
+                    <div class="absolute inset-0 bg-[#5031E5] opacity-20 rounded-full animate-ping"></div>
+                    <i data-lucide="check-circle" class="w-12 h-12 text-[#5031E5] relative z-10"></i>
+                </div>
+                <h2 class="text-[22px] font-black text-gray-900 text-center leading-tight" id="complete-title">
+                    설치 일정 변경이<br>정상적으로 완료되었습니다.
+                </h2>
+                <p class="mt-3 text-gray-500 text-[14px] font-medium text-center leading-relaxed" id="complete-desc">
+                    변경하신 일시에 서비스매니저가<br>방문하여 설치를 도와드리겠습니다.
+                </p>
+            </div>
+
+            <!-- 요약 정보 카드 -->
+            <div class="bg-gray-50 rounded-[24px] p-6 mb-8 border border-gray-100" id="summary-card">
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center text-[15px] pb-3">
+                        <span class="text-gray-500 font-medium">처리 종류</span>
+                        <span class="text-gray-900 font-bold" id="type-text">설치 일정 변경</span>
+                    </div>
+                    <div class="flex justify-between items-center text-[15px] pt-3 border-t border-gray-200/50"
+                        id="date-row">
+                        <span class="text-gray-500 font-medium">변경 일시</span>
+                        <span class="text-[#5031E5] font-black">2026-02-23 11:00</span>
+                    </div>
+                    <div class="flex justify-between items-center text-[15px] pt-3 border-t border-gray-200/50 hidden"
+                        id="cancel-row">
+                        <span class="text-gray-500 font-medium">취소 접수일</span>
+                        <span class="text-red-500 font-black">2026-02-18</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 안내 사항 -->
+            <div class="px-2 mb-10">
+                <div class="flex items-start gap-3 mb-4">
+                    <div class="w-1.5 h-1.5 bg-gray-300 rounded-full mt-2"></div>
+                    <p class="text-[13px] text-gray-500 leading-relaxed" id="footer-msg">
+                        변경하신 일정은 MMS로 다시 한번 안내해 드립니다.
+                    </p>
+                </div>
+            </div>
+
+        </div><!-- /main-content-body -->
+
+        <div class="w-full h-8 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        // URL Parameter 처리
+        const urlParams = new URLSearchParams(window.location.search);
+        const type = urlParams.get('type');
+
+        if (type === 'cancel') {
+            document.getElementById('complete-title').innerHTML = "설치 장소 변경 신청이<br>취소되었습니다.";
+            document.getElementById('complete-desc').innerHTML = "신청하신 내역이 정상적으로 취소되었습니다.<br>이용해 주셔서 감사합니다.";
+            document.getElementById('type-text').textContent = "접수 취소";
+            document.getElementById('date-row').classList.add('hidden');
+            document.getElementById('cancel-row').classList.remove('hidden');
+            document.getElementById('footer-msg').textContent = "취소 내역은 시스템에 즉시 반영됩니다.";
+            initCommonUI(" ");
+        } else {
+            initCommonUI(" ");
+        }
+    </script>
+</body>
+
+</html>

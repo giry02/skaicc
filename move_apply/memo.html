@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 서비스 매니저 전달 사항</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0 relative">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors z-10"
+            onclick="history.back()">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="absolute left-1/2 -translate-x-1/2 text-[18px] font-bold text-gray-900">간편이사 신청</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1 z-10" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-2 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#5031E5] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#5031E5] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col bg-white px-1 pb-10">
+                <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight mb-2">
+                    서비스 매니저에게<br>전달할 사항이 있으신가요?
+                </h2>
+
+
+                <!-- 메모 입력 -->
+                <div class="mb-4">
+                    <textarea id="memo-input"
+                        class="w-full bg-gray-50 border border-gray-100 rounded-[20px] px-5 py-4 text-[15px] font-medium text-gray-700 placeholder:text-gray-300 placeholder:font-normal focus:border-[#5031E5] focus:bg-white outline-none transition-all resize-none"
+                        rows="6" placeholder="예) 전화주시고 방문해 주세요.&#10;예) 현관 비밀번호는 방문 당일 알려드리겠습니다."
+                        oninput="updateCharCount()"></textarea>
+                    <div class="flex justify-end mt-2 px-1">
+                        <span class="text-[12px] text-gray-400"><span id="char-count">0</span> / 200자</span>
+                    </div>
+                </div>
+
+                <!-- 빠른 입력 버튼 -->
+                <div class="flex flex-wrap gap-2 mb-8">
+                    <button onclick="appendText('전화주시고 방문해 주세요.')"
+                        class="px-4 py-2 bg-gray-50 border border-gray-100 rounded-full text-[13px] font-bold text-gray-600 active:scale-95 transition-all">
+                        📞 전화 후 방문
+                    </button>
+                    <button onclick="appendText('인터폰으로 연락 주세요.')"
+                        class="px-4 py-2 bg-gray-50 border border-gray-100 rounded-full text-[13px] font-bold text-gray-600 active:scale-95 transition-all">
+                        🔔 인터폰 연락
+                    </button>
+                    <button onclick="appendText('주차는 지하 1층에 가능합니다.')"
+                        class="px-4 py-2 bg-gray-50 border border-gray-100 rounded-full text-[13px] font-bold text-gray-600 active:scale-95 transition-all">
+                        🚗 주차 안내
+                    </button>
+                </div>
+
+                <!-- 다음 버튼 (선택 사항이므로 항상 활성화) -->
+                <button
+                    class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all"
+                    onclick="location.href='confirm.html'">
+                    다음
+                </button>
+                <p class="text-[13px] text-gray-400 font-medium text-left mt-3">선택 사항입니다. 없으시면 바로 다음으로 넘어가세요.</p>
+            </div>
+        </div>
+        <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "서비스 매니저에게 전달할 사항을 입력해 주세요.";
+        initCommonUI(pageText);
+
+        function updateCharCount() {
+            const memo = document.getElementById('memo-input');
+            const count = document.getElementById('char-count');
+            if (memo.value.length > 200) {
+                memo.value = memo.value.slice(0, 200);
+            }
+            count.textContent = memo.value.length;
+        }
+
+        function appendText(text) {
+            const memo = document.getElementById('memo-input');
+            const current = memo.value;
+            memo.value = current ? current + '\n' + text : text;
+            updateCharCount();
+            memo.focus();
+        }
+    </script>
+</body>
+
+</html>

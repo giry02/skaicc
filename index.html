@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SK브로드밴드 서비스 시나리오 통합 인덱스</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
         rel="stylesheet">
     <style>
@@ -42,28 +43,61 @@
 
         <!-- 링크 버튼 섹션 -->
         <div class="space-y-3">
-            <!-- 1. 이전 설치 서비스 -->
+            <!-- 1. 이전 설치 서비스 (간편이사) -->
+            <div class="space-y-3">
+                <a href="move_apply/intro.html"
+                    class="btn-card block bg-white p-5 rounded-[20px] border border-gray-100 shadow-sm group">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                                <i data-lucide="truck" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-[16px] font-bold text-gray-900">간편이사 신청</h3>
+                                <p class="text-[13px] text-gray-400 font-medium">새로운 장소로 이전 설치 신청</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right"
+                            class="w-5 h-5 text-gray-300 group-hover:text-blue-600 transition-colors"></i>
+                    </div>
+                </a>
+
+                <a href="move_change/verify.html"
+                    class="btn-card block bg-white p-5 rounded-[20px] border border-gray-100 shadow-sm group">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-[#5031E5] group-hover:bg-[#5031E5] group-hover:text-white transition-colors">
+                                <i data-lucide="search" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-[16px] font-bold text-gray-900">간편이사 조회/변경</h3>
+                                <p class="text-[13px] text-gray-400 font-medium">신청 내역 확인 및 일정 변경/취소</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right"
+                            class="w-5 h-5 text-gray-300 group-hover:text-[#5031E5] transition-colors"></i>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 가정내 PC/TV 이전 -->
             <a href="pages/move_service_intro.html"
                 class="btn-card block bg-white p-5 rounded-[20px] border border-gray-100 shadow-sm group">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-4">
                         <div
-                            class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
-                                </path>
-                            </svg>
+                            class="w-12 h-12 bg-teal-50 rounded-2xl flex items-center justify-center text-teal-600 group-hover:bg-teal-600 group-hover:text-white transition-colors">
+                            <i data-lucide="monitor" class="w-6 h-6"></i>
                         </div>
                         <div>
-                            <h3 class="text-[16px] font-bold text-gray-900">이전 설치 서비스</h3>
-                            <p class="text-[13px] text-gray-400 font-medium">서비스 위치 이동 신청 시나리오</p>
+                            <h3 class="text-[16px] font-bold text-gray-900">가정내 PC/TV 이전</h3>
+                            <p class="text-[13px] text-gray-400 font-medium">가정 내 장비 위치 변경 신청</p>
                         </div>
                     </div>
-                    <svg class="w-5 h-5 text-gray-300 group-hover:text-blue-600 transition-colors" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
+                    <i data-lucide="chevron-right"
+                        class="w-5 h-5 text-gray-300 group-hover:text-teal-600 transition-colors"></i>
                 </div>
             </a>
 
@@ -197,6 +231,7 @@
         <p class="text-center mt-6 text-[12px] text-gray-400 font-medium">© 2026 SK Broadband AI Agent Collaboration
         </p>
     </div>
+    <script>lucide.createIcons();</script>
 </body>
 
 </html>

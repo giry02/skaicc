@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html class="h-full" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>SK브로드밴드 AI상담사 콜비 - 바로약정갱신</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet" />
+</head>
+
+<body class="h-full w-full bg-white overflow-hidden flex flex-col">
+    <!-- 상단 헤더 -->
+    <div class="pt-4 px-4 pb-2 bg-white z-30 flex justify-between items-center h-14 shrink-0 relative">
+        <button class="p-2 -ml-2 text-gray-800 active:bg-gray-100 rounded-full transition-colors z-10"
+            onclick="location.href='../index.html'">
+            <i class="w-7 h-7" data-lucide="home"></i>
+        </button>
+        <h1 class="absolute left-1/2 -translate-x-1/2 text-[18px] font-bold text-gray-900">바로약정갱신</h1>
+        <div class="flex items-center gap-1 cursor-pointer px-2 py-1 z-10" onclick="location.href='../index.html'">
+            <span class="text-sm font-bold text-gray-900">종료</span>
+            <i class="text-gray-900 w-4 h-4" data-lucide="phone-off"></i>
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="flex-1 overflow-y-auto scrollbar-hide px-6 pt-4 relative flex flex-col scroll-smooth"
+        id="main-scroll-container">
+        <!-- 타이핑 텍스트 영역 -->
+        <div class="min-h-[30px] flex items-center justify-start join-typing-area shrink-0" id="typing-area">
+            <span class="text-[#5031E5] font-bold text-[17px]" id="typing-text"></span>
+            <span class="inline-block w-[2px] h-5 bg-[#5031E5] ml-1 cursor-blink" id="cursor"></span>
+        </div>
+
+        <!-- 바운스 콘텐츠 -->
+        <div class="w-full opacity-0" id="main-content-body">
+            <div class="flex flex-col h-full bg-white px-1">
+                <div class="mb-6">
+                    <h2 class="text-[22px] font-extrabold text-[#1a1a1a] leading-tight px-1">
+                        약정 종료일이 다가오고 있어요!<br>지금 바로 갱신해 보세요.
+                    </h2>
+                    <p class="text-[14px] text-gray-500 mt-3 px-1">
+                        약정을 갱신하시면 사은품 또는 다양한 요금 할인 혜택을 드립니다.
+                    </p>
+                </div>
+
+                <!-- 혜택 카드 섹션 -->
+                <div class="space-y-4 mb-8">
+                    <div class="p-5 bg-indigo-50 rounded-[24px] border border-indigo-100 flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm">
+                            <i class="text-[#5031E5] w-6 h-6" data-lucide="gift"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-[16px] text-gray-900">푸짐한 사은품 증정</h3>
+                            <p class="text-[13px] text-gray-500">백화점 상품권 등 다양한 혜택</p>
+                        </div>
+                    </div>
+                    <div class="p-5 bg-teal-50 rounded-[24px] border border-teal-100 flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm">
+                            <i class="text-teal-600 w-6 h-6" data-lucide="calculator"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-[16px] text-gray-900">매월 요금 할인 혜택</h3>
+                            <p class="text-[13px] text-gray-500">더슬림요금제 등 추가 할인 연장</p>
+                        </div>
+                    </div>
+                    <div class="p-5 bg-orange-50 rounded-[24px] border border-orange-100 flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm">
+                            <i class="text-orange-600 w-6 h-6" data-lucide="shield-check"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-[16px] text-gray-900">중단 없는 안심 이용</h3>
+                            <p class="text-[13px] text-gray-500">별도 서류 없이 간편하게 갱신</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 하단 버튼 -->
+                <div class="mt-auto pt-4 pb-10">
+                    <button
+                        class="w-full bg-[#5031E5] text-white py-4 rounded-xl text-[19px] font-bold shadow-lg active:scale-95 transition-all"
+                        onclick="location.href='verify.html'">
+                        약정 갱신 신청 시작
+                    </button>
+                    <p class="text-[12px] text-gray-400 text-center mt-4">
+                        ※ 약정 기간 내 해지 시 할인반환금이 부과될 수 있습니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-8 shrink-0" id="bottom-spacer"></div>
+    </div>
+
+    <script src="../js/agent_overlay.js"></script>
+    <script src="../js/common_ui.js"></script>
+    <script>
+        const pageText = "약정 갱신 혜택을 확인하고 신청해 보세요.";
+        initCommonUI(pageText);
+    </script>
+</body>
+
+</html>
