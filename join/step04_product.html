@@ -40,6 +40,18 @@
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1">
                 <div class="join-step-header">
+                    <div class="flex justify-end mb-2">
+                        <div class="flex gap-1.5 bg-gray-50 rounded-lg p-1">
+                            <button onclick="adjustFontSize(-1)"
+                                class="w-8 h-8 flex items-center justify-center rounded-md bg-white border border-gray-200 shadow-sm active:scale-95 transition-all">
+                                <i class="w-4 h-4 text-gray-600" data-lucide="minus"></i>
+                            </button>
+                            <button onclick="adjustFontSize(1)"
+                                class="w-8 h-8 flex items-center justify-center rounded-md bg-white border border-gray-200 shadow-sm active:scale-95 transition-all">
+                                <i class="w-4 h-4 text-gray-600" data-lucide="plus"></i>
+                            </button>
+                        </div>
+                    </div>
                     <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">
                         원하시는 <span class="text-[#5031E5]">인터넷 상품</span>을<br />선택해 주세요.
                     </h2>

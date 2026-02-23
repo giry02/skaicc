@@ -99,6 +99,18 @@
     <main class="max-w-6xl mx-auto px-4 pb-20 grid grid-cols-1 lg:grid-cols-12 gap-8">
         <!-- 왼쪽 입력 폼 영역 -->
         <div class="lg:col-span-8 space-y-8">
+            <div class="flex justify-end mb-2">
+                <div class="flex gap-1.5 bg-gray-50 rounded-lg p-1">
+                    <button onclick="adjustFontSize(-1)"
+                        class="w-8 h-8 flex items-center justify-center rounded-md bg-white border border-gray-200 shadow-sm active:scale-95 transition-all">
+                        <i class="w-4 h-4 text-gray-600" data-lucide="minus"></i>
+                    </button>
+                    <button onclick="adjustFontSize(1)"
+                        class="w-8 h-8 flex items-center justify-center rounded-md bg-white border border-gray-200 shadow-sm active:scale-95 transition-all">
+                        <i class="w-4 h-4 text-gray-600" data-lucide="plus"></i>
+                    </button>
+                </div>
+            </div>
 
             <!-- 인증 수단 선택 -->
             <section class="bg-white rounded-2xl border border-[#5031E5] p-6 shadow-sm">

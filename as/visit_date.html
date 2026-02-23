@@ -44,7 +44,19 @@
     <div class="flex-1 overflow-y-auto scrollbar-hide px-4 pt-4 relative flex flex-col scroll-smooth"
         id="main-scroll-container">
 
-        <div class="mb-6">
+        <div class="mb-6 relative">
+            <div class="absolute right-0 top-0 z-10">
+                <div class="flex gap-1.5 bg-gray-50 rounded-lg p-1">
+                    <button onclick="adjustFontSize(-1)"
+                        class="w-8 h-8 flex items-center justify-center rounded-md bg-white border border-gray-200 shadow-sm active:scale-95 transition-all">
+                        <i class="w-4 h-4 text-gray-600" data-lucide="minus"></i>
+                    </button>
+                    <button onclick="adjustFontSize(1)"
+                        class="w-8 h-8 flex items-center justify-center rounded-md bg-white border border-gray-200 shadow-sm active:scale-95 transition-all">
+                        <i class="w-4 h-4 text-gray-600" data-lucide="plus"></i>
+                    </button>
+                </div>
+            </div>
             <h2 class="text-[16px] font-bold text-gray-900 mb-4">방문 희망일 선택</h2>
 
             <!-- Calendar Header -->

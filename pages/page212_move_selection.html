@@ -41,9 +41,20 @@
         <!-- 바운스 애니메이션 적용 컨테이너 -->
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white">
-                <div class="join-step-header" id="target-anchor">
-                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight"><span
+                <div class="join-step-header relative" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight pr-14"><span
                             class="text-black font-bold">이동 필요 서비스를</span><br />선택하고 신청해 주세요.</h2>
+                    <!-- Minimalist Font Control -->
+                    <div class="absolute right-0 top-1 flex gap-1.5 pointer-events-auto">
+                        <button onclick="adjustFontSize(-1)"
+                            class="w-7 h-7 bg-white rounded-full border border-gray-200 shadow-sm flex items-center justify-center text-gray-500 hover:text-blue-600 hover:border-blue-200 active:scale-90 transition-all">
+                            <i data-lucide="minus" class="w-3.5 h-3.5"></i>
+                        </button>
+                        <button onclick="adjustFontSize(1)"
+                            class="w-7 h-7 bg-white rounded-full border border-gray-200 shadow-sm flex items-center justify-center text-gray-500 hover:text-blue-600 hover:border-blue-200 active:scale-90 transition-all">
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="join-step-content grid grid-cols-2 gap-3 mb-4">
                     <div class="service-option relative flex flex-col items-center justify-center p-5 rounded-2xl border border-gray-100 bg-gray-50 cursor-pointer transition-all active:scale-95"

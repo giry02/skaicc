@@ -39,6 +39,18 @@
         <!-- 메인 콘텐츠 -->
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1">
+                <div class="flex justify-end mb-4">
+                    <div class="flex gap-1.5 bg-gray-50 rounded-lg p-1">
+                        <button onclick="adjustFontSize(-1)"
+                            class="w-8 h-8 flex items-center justify-center rounded-md bg-white border border-gray-200 shadow-sm active:scale-95 transition-all">
+                            <i class="w-4 h-4 text-gray-600" data-lucide="minus"></i>
+                        </button>
+                        <button onclick="adjustFontSize(1)"
+                            class="w-8 h-8 flex items-center justify-center rounded-md bg-white border border-gray-200 shadow-sm active:scale-95 transition-all">
+                            <i class="w-4 h-4 text-gray-600" data-lucide="plus"></i>
+                        </button>
+                    </div>
+                </div>
                 <!-- 결과 카드 -->
                 <div class="bg-gray-50 border border-red-100 rounded-[24px] p-6 text-center shadow-sm mb-6">
                     <p class="text-[15px] font-bold text-gray-800 mb-4">네트워크 연결 상태 <span class="text-red-500">비정상</span>

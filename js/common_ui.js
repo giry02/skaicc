@@ -36,7 +36,12 @@ function initCommonUI(textToType) {
     // 4. 스와이프 이벤트 초기화
     initSwipeEvents();
 
-    // 5. 타이핑 효과 시작
+    // 5. [추가] 저장된 폰트 크기 즉시 적용 (모션 깨짐 방지)
+    if (window.applyCurrentFontSize) {
+        window.applyCurrentFontSize();
+    }
+
+    // 6. 타이핑 효과 시작
     let typingTimer;
     let index = 0;
 
@@ -101,31 +106,64 @@ function initCommonUI(textToType) {
     window.continueCounseling = function () {
         closeAllModals();
         clearTimeout(typingTimer);
+
+        const typingArea = document.getElementById('typing-area');
+        if (typingArea) typingArea.style.display = 'flex';
+
         if (typingTextEl) typingTextEl.innerHTML = textToType;
         if (cursorEl) cursorEl.style.display = 'none';
 
         if (mainContentBody) {
             mainContentBody.classList.remove('animate-bounce-up');
-            mainContentBody.classList.add('opacity-0');
         }
 
         if (floatingBanner) floatingBanner.classList.add('invisible', 'pointer-events-none', 'opacity-0');
         if (robotContainer) robotContainer.classList.add('opacity-0');
         if (swipeGuide) swipeGuide.style.display = 'none';
-        if (spacer) spacer.style.height = '120px';
 
-        const target = document.getElementById('target-anchor');
-        if (scrollContainer && target) {
-            scrollContainer.scrollTo({ top: target.offsetTop, behavior: 'auto' });
+        // [수정] 하단 여백(spacer) & 스크롤 로직 최종 수정 (tall screen issue fix)
+        if (scrollContainer && spacer) {
+            // 1. Spacer 리셋
+            spacer.style.height = '0px';
+
+            requestAnimationFrame(() => {
+                const target = document.getElementById('target-anchor');
+                if (!target) return;
+
+                // 2. 높이 계산 (scrollHeight 대신 spacer.offsetTop 사용)
+                // 이유: 내용이 화면보다 짧으면 scrollHeight === clientHeight가 되어버림 (오차 발생)
+                const realContentHeight = spacer.offsetTop;
+                const targetTop = target.offsetTop;
+                const clientH = scrollContainer.clientHeight;
+
+                // 목표: targetTop이 화면 맨 위로 올라갈 수 있도록 전체 높이 확보
+                // 필요 전체 높이 = Viewport 높이(clientH) + 숨겨야 할 높이(targetTop)
+                const neededTotalHeight = clientH + targetTop;
+
+                // 필요한 Spacer = 목표 높이 - 현재 콘텐츠 높이
+                let neededSpacer = neededTotalHeight - realContentHeight;
+
+                // 음수 방지 (이미 내용이 충분히 길면 0)
+                if (neededSpacer < 0) neededSpacer = 0;
+
+                // 3. Spacer 적용
+                spacer.style.height = `${neededSpacer}px`;
+
+                // 4. 스크롤 이동
+                requestAnimationFrame(() => {
+                    // 즉시 이동 (사용자 반응성 우선)
+                    scrollContainer.scrollTo({ top: targetTop, behavior: 'auto' });
+
+                    // 혹시 모를 렌더링 딜레이 대비 (부드러운 보정)
+                    setTimeout(() => {
+                        scrollContainer.scrollTo({ top: targetTop, behavior: 'smooth' });
+                    }, 50);
+
+                    // [복구] 말풍선 및 로봇 아이콘 다시 표시
+                    setTimeout(showBottomElements, 300);
+                });
+            });
         }
-
-        setTimeout(() => {
-            if (mainContentBody) {
-                mainContentBody.classList.remove('opacity-0');
-                mainContentBody.classList.add('animate-bounce-up');
-            }
-            setTimeout(showBottomElements, 300);
-        }, 50);
     };
 
     // 초기 시작
@@ -263,3 +301,103 @@ function initSwipeEvents() {
 
 // 창 로드 시 이벤트 리스너 제거 (initCommonUI 내부에서 처리)
 // window.addEventListener('load', initSwipeEvents);
+
+// [공통] 폰트 크기 조절 함수 (3단계: 기본 -> 크게 -> 아주 크게)
+// Step 0: 기본 (Original)
+// Step 1: 크게 (+4px)
+// Step 2: 아주 크게 (+8px)
+window.currentFontStep = parseInt(localStorage.getItem('fontStep')) || 0; // 0, 1, 2
+window.originalFontSizes = new Map(); // 요소별 초기 폰트 크기 저장
+
+window.adjustFontSize = function (direction) {
+    // 방향에 따라 단계 조절 (1: 증가, -1: 감소)
+    let nextStep = window.currentFontStep + direction;
+
+    // 단계 제한 (0 ~ 2)
+    if (nextStep < 0) nextStep = 0;
+    if (nextStep > 2) nextStep = 2;
+
+    // 단계가 변하지 않았으면 리턴
+    if (nextStep === window.currentFontStep) return;
+
+    window.currentFontStep = nextStep;
+    localStorage.setItem('fontStep', window.currentFontStep); // 상태 저장 (localStorage 사용)
+
+    window.applyCurrentFontSize(); // 적용
+
+    // 디버깅용 로그
+    console.log(`Font Resized: Step ${window.currentFontStep}`);
+};
+
+// 3. 현재 설정된 폰트 크기 적용 (로직 분리)
+window.applyCurrentFontSize = function () {
+    const sizeOffset = window.currentFontStep * 4; // 단계당 4px 씩 증가
+
+    // Typing Text 영역과 Main Content 영역 모두 포함
+    const targets = [
+        document.getElementById('typing-text'),
+        document.getElementById('main-content-body'),
+        document.getElementById('time-modal'),
+        document.getElementById('confirm-modal')
+    ];
+
+    targets.forEach(target => {
+        if (!target) return;
+
+        // 타겟이 단일 텍스트 요소인 경우 (typing-text)
+        if (target.id === 'typing-text') {
+            // 초기 크기 저장 (최초 1회만, 이미 스타일이 적용되어 있어도 원본 계산을 위해 최초 한번만 수행해야 함)
+            // 주의: 페이지 이동 시 스타일은 초기화되므로 매번 다시 캡처해도 되지만, 
+            // 이미 apply가 된 상태에서 호출될 경우를 대비해 flag 검사 필요.
+            // 다만 여기서는 Map에 없으면 캡처하므로, 페이지 로드 후 최초 실행 시 캡처됨.
+            if (!window.originalFontSizes.has(target)) {
+                const style = window.getComputedStyle(target);
+                window.originalFontSizes.set(target, parseFloat(style.fontSize));
+            }
+
+            const baseSize = window.originalFontSizes.get(target);
+            const newSize = baseSize + sizeOffset;
+            target.style.fontSize = `${newSize}px`;
+
+            // 커서 크기도 같이 조정
+            const cursor = document.getElementById('cursor');
+            if (cursor) cursor.style.height = `${newSize + 4}px`;
+        }
+        // 타겟이 컨테이너인 경우 (main-content-body)
+        else {
+            const elements = target.querySelectorAll('*');
+            elements.forEach(el => {
+                // 텍스트가 직접 포함된 요소만 (공백 제외)
+                if (el.childNodes.length > 0) {
+                    let hasText = false;
+                    for (let i = 0; i < el.childNodes.length; i++) {
+                        if (el.childNodes[i].nodeType === Node.TEXT_NODE && el.childNodes[i].textContent.trim().length > 0) {
+                            hasText = true;
+                            break;
+                        }
+                    }
+
+                    if (hasText) {
+                        // 초기 크기 저장 (최초 1회)
+                        if (!window.originalFontSizes.has(el)) {
+                            const style = window.getComputedStyle(el);
+                            window.originalFontSizes.set(el, parseFloat(style.fontSize));
+                        }
+
+                        const baseSize = window.originalFontSizes.get(el);
+                        // baseSize가 유효할 때만 적용
+                        if (!isNaN(baseSize)) {
+                            const newSize = baseSize + sizeOffset;
+                            el.style.fontSize = `${newSize}px`;
+                        }
+                    }
+                }
+            });
+        }
+    });
+};
+
+// 페이지 로드 시 저장된 폰트 크기 적용
+document.addEventListener('DOMContentLoaded', () => {
+    window.applyCurrentFontSize();
+});

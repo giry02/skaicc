@@ -39,8 +39,19 @@
         <!-- 바운스 콘텐츠 -->
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1">
-                <div class="join-step-header" id="target-anchor">
-                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">신청하시는 고객님의<br /><span
+                <div class="join-step-header relative" id="target-anchor">
+                    <!-- Minimalist Font Control -->
+                    <div class="absolute right-0 top-1 flex gap-1.5 pointer-events-auto">
+                        <button onclick="adjustFontSize(-1)"
+                            class="w-7 h-7 bg-white rounded-full border border-gray-200 shadow-sm flex items-center justify-center text-gray-500 hover:text-blue-600 hover:border-blue-200 active:scale-90 transition-all">
+                            <i data-lucide="minus" class="w-3.5 h-3.5"></i>
+                        </button>
+                        <button onclick="adjustFontSize(1)"
+                            class="w-7 h-7 bg-white rounded-full border border-gray-200 shadow-sm flex items-center justify-center text-gray-500 hover:text-blue-600 hover:border-blue-200 active:scale-90 transition-all">
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight pr-14">신청하시는 고객님의<br /><span
                             id="relation-text" class="text-[#5031E5]">가족</span> 성함을 입력해 주세요.</h2>
                 </div>
 

@@ -38,9 +38,20 @@
         <!-- 바운스 콘텐츠 -->
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1">
-                <div class="join-step-header" id="target-anchor">
-                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight"><span class="text-black">이동 및
-                            서비스를</span><br />확인하고 신청해 주세요.</h2>
+                <div class="join-step-header relative" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight pr-14"><span
+                            class="text-black font-bold">이동 및 서비스를</span><br />확인하고 신청해 주세요.</h2>
+                    <!-- Minimalist Font Control -->
+                    <div class="absolute right-0 top-1 flex gap-1.5 pointer-events-auto">
+                        <button onclick="adjustFontSize(-1)"
+                            class="w-7 h-7 bg-white rounded-full border border-gray-200 shadow-sm flex items-center justify-center text-gray-500 hover:text-blue-600 hover:border-blue-200 active:scale-90 transition-all">
+                            <i data-lucide="minus" class="w-3.5 h-3.5"></i>
+                        </button>
+                        <button onclick="adjustFontSize(1)"
+                            class="w-7 h-7 bg-white rounded-full border border-gray-200 shadow-sm flex items-center justify-center text-gray-500 hover:text-blue-600 hover:border-blue-200 active:scale-90 transition-all">
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="join-step-content flex-1">
                     <div class="flex justify-center gap-6 mb-6">
@@ -71,12 +82,19 @@
         </div>
         <div class="w-full h-0 shrink-0" id="bottom-spacer"></div>
     </div>
+
+    <!-- 하단 영역 -->
     <script src="../js/agent_overlay.js"></script>
     <script src="../js/common_ui.js"></script>
     <script>
-        // 페이지 개별 설정 및 UI 초기화
         const pageText = "서비스 내용을 확인해 주세요.";
         initCommonUI(pageText);
+
+        function goToInternetTV() {
+            location.href = 'page212_move_selection.html';
+        }
+
+        // Font Resize Logic (Moved to common_ui.js)
     </script>
 </body>
 

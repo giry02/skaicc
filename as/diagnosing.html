@@ -57,7 +57,20 @@
         </div>
 
         <!-- 바운스 콘텐츠 -->
-        <div class="w-full opacity-0 flex-1 flex flex-col items-center justify-center pb-20" id="main-content-body">
+        <div class="w-full opacity-0 flex-1 flex flex-col items-center justify-center pb-20 relative"
+            id="main-content-body">
+            <div class="absolute right-4 top-0 z-50">
+                <div class="flex gap-1.5 bg-gray-50 rounded-lg p-1">
+                    <button onclick="adjustFontSize(-1)"
+                        class="w-8 h-8 flex items-center justify-center rounded-md bg-white border border-gray-200 shadow-sm active:scale-95 transition-all">
+                        <i class="w-4 h-4 text-gray-600" data-lucide="minus"></i>
+                    </button>
+                    <button onclick="adjustFontSize(1)"
+                        class="w-8 h-8 flex items-center justify-center rounded-md bg-white border border-gray-200 shadow-sm active:scale-95 transition-all">
+                        <i class="w-4 h-4 text-gray-600" data-lucide="plus"></i>
+                    </button>
+                </div>
+            </div>
             <!-- 진단 카드 -->
             <div
                 class="bg-white rounded-[30px] p-10 flex flex-col items-center justify-center w-full max-w-sm shadow-lg border border-gray-100 animate-pop-out">

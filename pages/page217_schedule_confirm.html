@@ -38,9 +38,21 @@
         <!-- 바운스 콘텐츠 -->
         <div class="w-full opacity-0" id="main-content-body">
             <div class="flex flex-col h-full bg-white px-1">
-                <div class="join-step-header" id="target-anchor">
-                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight">서비스 매니저에게 전달 사항이 있다면<br />작성 후
+                <div class="join-step-header relative" id="target-anchor">
+                    <h2 class="text-[20px] font-extrabold text-[#1a1a1a] leading-tight pr-14">서비스 매니저에게 전달 사항이
+                        있다면<br />작성 후
                         상담예약하기를 눌러주세요.</h2>
+                    <!-- Minimalist Font Control -->
+                    <div class="absolute right-0 top-1 flex gap-1.5 pointer-events-auto">
+                        <button onclick="adjustFontSize(-1)"
+                            class="w-7 h-7 bg-white rounded-full border border-gray-200 shadow-sm flex items-center justify-center text-gray-500 hover:text-blue-600 hover:border-blue-200 active:scale-90 transition-all">
+                            <i data-lucide="minus" class="w-3.5 h-3.5"></i>
+                        </button>
+                        <button onclick="adjustFontSize(1)"
+                            class="w-7 h-7 bg-white rounded-full border border-gray-200 shadow-sm flex items-center justify-center text-gray-500 hover:text-blue-600 hover:border-blue-200 active:scale-90 transition-all">
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="join-step-content flex-1 pb-4">
                     <!-- 방문 일정 정보 카드 (사용자 요청에 따라 더 컴팩트하게 변경) -->
